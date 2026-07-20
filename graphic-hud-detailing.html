@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AERO-SHIELD | Next-Gen Auto Armor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-hud { font-family: 'Orbitron', sans-serif; }
+        .hud-border { border: 1px solid rgba(168, 85, 247, 0.2); }
+        .hud-border:hover { border-color: rgba(168, 85, 247, 0.8); }
+        .hud-glow { box-shadow: 0 0 30px rgba(168, 85, 247, 0.15); }
+        .layer-btn.active {
+            background: linear-gradient(90deg, rgba(168,85,247,0.2) 0%, rgba(6,182,212,0.1) 100%);
+            border-color: #a855f7;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-[#09090b] text-zinc-100 antialiased overflow-x-hidden selection:bg-purple-500 selection:text-black">
+
+    <!-- Top Graphic HUD Grid Overlay -->
+    <div class="fixed inset-0 bg-[radial-gradient(#1e1b4b_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none z-0"></div>
+
+    <!-- Header Navigation -->
+    <header class="relative z-50 border-b border-zinc-800/80 bg-[#09090b]/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-purple-600 to-cyan-400 p-[1px]">
+                    <div class="w-full h-full bg-black rounded-[7px] flex items-center justify-center font-hud text-xs text-cyan-400 font-black">AS</div>
+                </div>
+                <div>
+                    <div class="font-hud font-black tracking-widest text-lg bg-gradient-to-r from-white via-zinc-200 to-purple-400 bg-clip-text text-transparent">AERO-SHIELD</div>
+                    <div class="text-[9px] font-mono tracking-[0.3em] text-purple-400 uppercase">Surface Nanotechnology</div>
+                </div>
+            </a>
+
+            <div class="hidden lg:flex items-center gap-8 text-xs font-hud tracking-widest text-zinc-400">
+                <a href="#layers" class="hover:text-purple-400 transition-colors">// 01. ARMOR LAYERS</a>
+                <a href="#specs" class="hover:text-purple-400 transition-colors">// 02. SPECS</a>
+                <a href="#studio" class="hover:text-purple-400 transition-colors">// 03. CLEANROOM</a>
+            </div>
+
+            <a href="#reserve" class="relative group overflow-hidden px-6 py-2.5 rounded-lg border border-purple-500/50 bg-purple-950/30 text-purple-300 font-hud text-xs tracking-widest font-bold uppercase transition-all hover:border-purple-400 hover:text-white">
+                <span class="relative z-10">BOOK ARMOR BAY</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity -z-0"></div>
+            </a>
+        </div>
+    </header>
+
+    <!-- Graphic Hero Section -->
+    <section class="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-20 grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Hero Typography -->
+        <div class="lg:col-span-7 space-y-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-950/30 text-cyan-400 text-[10px] font-mono tracking-widest uppercase">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                Self-Healing 8-MIL Polyurethane Film
+            </div>
+
+            <h1 class="font-hud text-4xl sm:text-6xl lg:text-7xl font-black text-white leading-none tracking-tight">
+                IMPERVIOUS <br>
+                <span class="bg-gradient-to-r from-purple-500 via-cyan-400 to-white bg-clip-text text-transparent">DEFENSE.</span>
+            </h1>
+
+            <p class="text-zinc-400 text-sm sm:text-base max-w-xl font-light leading-relaxed">
+                Engineered for extreme performance and luxury supercars. Combining optical clarity with 10H ceramic graphene topcoats and heat-activated self-healing surface armor.
+            </p>
+
+            <div class="grid grid-cols-3 gap-4 pt-4 border-t border-zinc-800/80 max-w-lg">
+                <div>
+                    <div class="font-hud text-2xl text-purple-400 font-bold">10-YR</div>
+                    <div class="text-[10px] text-zinc-500 uppercase font-mono">Discoloration Warranty</div>
+                </div>
+                <div>
+                    <div class="font-hud text-2xl text-cyan-400 font-bold">0.00%</div>
+                    <div class="text-[10px] text-zinc-500 uppercase font-mono">Optical Distortion</div>
+                </div>
+                <div>
+                    <div class="font-hud text-2xl text-white font-bold">100%</div>
+                    <div class="text-[10px] text-zinc-500 uppercase font-mono">Hydrophobic Barrier</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Hero Graphic Visual Layer Configurator -->
+        <div class="lg:col-span-5 bg-zinc-900/40 border border-zinc-800 p-6 sm:p-8 rounded-3xl backdrop-blur-2xl hud-glow space-y-6" id="layers">
+            <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
+                <span class="font-hud text-xs text-purple-400 tracking-wider uppercase">// Interactive Surface Cross-Section</span>
+                <span class="text-[10px] font-mono text-zinc-500">REV-2026.04</span>
+            </div>
+
+            <div class="relative h-52 rounded-2xl overflow-hidden border border-zinc-800 group">
+                <img id="layer-preview-img" src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1000&q=80" alt="Supercar PPF" class="w-full h-full object-cover transition-all duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+                
+                <!-- Graphic HUD Overlay Info -->
+                <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                    <div>
+                        <div id="layer-title" class="font-hud text-sm font-bold text-white">04. 9H Graphene Matrix Topcoat</div>
+                        <div id="layer-desc" class="text-[10px] text-zinc-400 font-mono mt-0.5">Dual-layer hydrophobic shield resisting UV, chemicals & water spots.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Layer Selection Controls -->
+            <div class="space-y-2">
+                <button onclick="selectLayer('04', '04. 9H Graphene Matrix Topcoat', 'Dual-layer hydrophobic shield resisting UV, chemicals & water spots.', 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1000&q=80')" class="layer-btn active w-full flex items-center justify-between p-3.5 rounded-xl border border-zinc-800 text-xs font-mono transition-all text-zinc-300">
+                    <span>LAYER 04: GRAPHENE TOPCOAT</span>
+                    <span class="text-purple-400 font-hud">ACTIVE</span>
+                </button>
+                <button onclick="selectLayer('03', '03. 8-MIL Self-Healing Polyurethane', 'Thermoplastic polyurethane that absorbs rock chips and self-heals under heat.', 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80')" class="layer-btn w-full flex items-center justify-between p-3.5 rounded-xl border border-zinc-800 text-xs font-mono transition-all text-zinc-300">
+                    <span>LAYER 03: SELF-HEALING PPF</span>
+                    <span class="text-zinc-500 font-hud">SELECT</span>
+                </button>
+                <button onclick="selectLayer('02', '02. Multi-Stage Paint Correction', 'Rotary compounding to eliminate 95%+ of swirl marks, scratches, and haze.', 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1000&q=80')" class="layer-btn w-full flex items-center justify-between p-3.5 rounded-xl border border-zinc-800 text-xs font-mono transition-all text-zinc-300">
+                    <span>LAYER 02: PAINT CORRECTION</span>
+                    <span class="text-zinc-500 font-hud">SELECT</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Script -->
+    <script>
+        function selectLayer(id, title, desc, imgSrc) {
+            document.querySelectorAll('.layer-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            document.getElementById('layer-title').innerText = title;
+            document.getElementById('layer-desc').innerText = desc;
+            document.getElementById('layer-preview-img').src = imgSrc;
+        }
+    </script>
+</body>
+</html>
