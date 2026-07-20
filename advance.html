@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRONOS LABS | Bespoke Auto Detailing & PPF Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .font-tech { font-family: 'Chakra Petch', sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: tabFade 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes tabFade {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-black text-stone-100 antialiased selection:bg-amber-400 selection:text-black">
+
+    <!-- Top Navigation Header with Interactive Tabs -->
+    <header class="border-b border-stone-800/80 bg-black/90 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-amber-400 text-black font-tech font-extrabold flex items-center justify-center text-xl rounded-lg">K</div>
+                <div class="font-tech text-xl font-bold tracking-wider text-white uppercase">
+                    KRONOS <span class="text-amber-400 text-xs font-mono block tracking-widest">DETAILED LABS</span>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE MULTI-PAGE TABS -->
+            <nav class="hidden lg:flex bg-stone-900/80 p-1.5 rounded-full border border-stone-800 text-xs">
+                <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn px-5 py-2 rounded-full font-bold uppercase tracking-wider transition-all text-amber-400 bg-stone-800">
+                    01. Studio
+                </button>
+                <button onclick="switchTab('ppf')" id="tab-ppf" class="tab-btn px-5 py-2 rounded-full font-bold uppercase tracking-wider transition-all text-stone-400 hover:text-stone-200">
+                    02. PPF & Ceramic
+                </button>
+                <button onclick="switchTab('showcase')" id="tab-showcase" class="tab-btn px-5 py-2 rounded-full font-bold uppercase tracking-wider transition-all text-stone-400 hover:text-stone-200">
+                    03. Before / After
+                </button>
+                <button onclick="switchTab('estimator')" id="tab-estimator" class="tab-btn px-5 py-2 rounded-full font-bold uppercase tracking-wider transition-all text-stone-400 hover:text-stone-200">
+                    04. Instant Estimator
+                </button>
+            </nav>
+
+            <button onclick="switchTab('estimator')" class="bg-amber-400 text-black px-5 py-2.5 rounded-xl font-tech font-bold text-xs uppercase tracking-widest hover:bg-amber-300 transition-all shadow-lg shadow-amber-400/20">
+                Book Slot
+            </button>
+        </div>
+    </header>
+
+    <!-- ================================================================= -->
+    <!-- TAB 1: STUDIO OVERVIEW PAGE                                       -->
+    <!-- ================================================================= -->
+    <div id="content-overview" class="tab-content active">
+        <section class="relative min-h-[80vh] flex items-center justify-center px-6 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=2000&q=80" alt="Supercar Detailing Studio" class="absolute inset-0 w-full h-full object-cover opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+
+            <div class="relative z-10 max-w-4xl text-center space-y-6">
+                <span class="font-tech text-xs uppercase tracking-[0.4em] text-amber-400 bg-amber-950/50 border border-amber-800/40 px-4 py-1.5 rounded-full">
+                    Dust-Free Cleanroom Facilities • Bangsar KL
+                </span>
+                <h1 class="font-tech text-5xl sm:text-7xl text-white uppercase tracking-tight leading-tight">
+                    Precision Craft. <br><span class="text-amber-400">Flawless Finish.</span>
+                </h1>
+                <p class="text-xs sm:text-sm text-stone-400 max-w-xl mx-auto font-light leading-relaxed tracking-wider">
+                    Specialized in self-healing Paint Protection Film (PPF), multi-stage paint correction, and custom interior restoration for exotic and luxury vehicles.
+                </p>
+                <div class="pt-4 flex justify-center gap-4">
+                    <button onclick="switchTab('ppf')" class="bg-amber-400 text-black font-tech font-bold px-8 py-3.5 rounded-xl text-xs uppercase tracking-widest hover:bg-amber-300 transition-all">
+                        Explore Film & Coatings
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Studio Specs Bar -->
+        <section class="border-y border-stone-800 bg-stone-950 py-8">
+            <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div>
+                    <div class="font-tech text-2xl text-amber-400">100% DUST FREE</div>
+                    <div class="text-[10px] uppercase text-stone-500 tracking-widest mt-1">Climate Controlled Bay</div>
+                </div>
+                <div>
+                    <div class="font-tech text-2xl text-amber-400">XPEL & STEK</div>
+                    <div class="text-[10px] uppercase text-stone-500 tracking-widest mt-1">Authorized Installers</div>
+                </div>
+                <div>
+                    <div class="font-tech text-2xl text-amber-400">10-YEAR</div>
+                    <div class="text-[10px] uppercase text-stone-500 tracking-widest mt-1">PPF Manufacturer Warranty</div>
+                </div>
+                <div>
+                    <div class="font-tech text-2xl text-amber-400">1,200+</div>
+                    <div class="text-[10px] uppercase text-stone-500 tracking-widest mt-1">Exotics Protected</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 2: PPF & CERAMIC SERVICES                                    -->
+    <!-- ================================================================= -->
+    <div id="content-ppf" class="tab-content">
+        <section class="max-w-7xl mx-auto px-6 py-16 space-y-12">
+            <div class="text-center max-w-xl mx-auto space-y-3">
+                <span class="font-tech text-xs uppercase tracking-[0.3em] text-amber-400">Surface Armor</span>
+                <h2 class="font-tech text-4xl text-white">PAINT PROTECTION FILM (PPF)</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-stone-900/50 border border-stone-800 rounded-3xl p-8 space-y-6">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80" alt="Porsche PPF Installation" class="rounded-2xl h-56 w-full object-cover">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-tech text-2xl text-amber-200">Full Stealth / Gloss PPF</h3>
+                            <span class="text-xs text-amber-400 font-mono font-bold">10-Yr Warranty</span>
+                        </div>
+                        <p class="text-xs text-stone-400 leading-relaxed font-light">
+                            8-mil thick self-healing polyurethane film protecting full bodywork against rock chips, scratches, acid rain, and bird droppings.
+                        </p>
+                        <div class="pt-2 text-[11px] text-stone-400 flex flex-wrap gap-4 border-t border-stone-800">
+                            <span>• Computerized Precision Cut</span>
+                            <span>• Self-Healing Heat Technology</span>
+                            <span>• Hydrophobic Topcoat</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="bg-stone-900/50 border border-stone-800 rounded-3xl p-8 space-y-6">
+                    <img src="https://images.unsplash.com/photo-1520050206274-a1ae44613e6d?auto=format&fit=crop&w=1000&q=80" alt="Ceramic Coating" class="rounded-2xl h-56 w-full object-cover">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-tech text-2xl text-amber-200">Graphene Ceramic Matrix</h3>
+                            <span class="text-xs text-amber-400 font-mono font-bold">5-Yr Warranty</span>
+                        </div>
+                        <p class="text-xs text-stone-400 leading-relaxed font-light">
+                            Advanced atomized Graphene coating providing deep wet mirror reflections, extreme hydrophobic water beading, and UV resistance.
+                        </p>
+                        <div class="pt-2 text-[11px] text-stone-400 flex flex-wrap gap-4 border-t border-stone-800">
+                            <span>• 10H Hardness Standard</span>
+                            <span>• Dual Layer Application</span>
+                            <span>• Infrared Cured</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 3: BEFORE / AFTER SHOWCASE                                    -->
+    <!-- ================================================================= -->
+    <div id="content-showcase" class="tab-content">
+        <section class="max-w-6xl mx-auto px-6 py-16 space-y-12">
+            <div class="text-center max-w-xl mx-auto space-y-3">
+                <span class="font-tech text-xs uppercase tracking-[0.3em] text-amber-400">Paint Correction Proof</span>
+                <h2 class="font-tech text-4xl text-white">3-STAGE RESTORATION</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Before/After Card 1 -->
+                <div class="bg-stone-900 border border-stone-800 rounded-3xl p-6 space-y-4">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="relative">
+                            <span class="absolute top-3 left-3 bg-red-900/80 text-red-200 text-[10px] uppercase font-bold px-2 py-1 rounded">Before (Swirl Marks)</span>
+                            <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80" alt="Scratched paint" class="rounded-xl h-48 w-full object-cover">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute top-3 left-3 bg-emerald-900/80 text-emerald-200 text-[10px] uppercase font-bold px-2 py-1 rounded">After (Ceramic)</span>
+                            <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80" alt="Restored glossy paint" class="rounded-xl h-48 w-full object-cover">
+                        </div>
+                    </div>
+                    <h3 class="font-tech text-lg text-white">BMW M4 Competition • Full Paint Correction</h3>
+                    <p class="text-xs text-stone-400">Heavy swirl marks and hologram removal via rotary compounding followed by Kronos Graphene Pro Coating.</p>
+                </div>
+
+                <!-- Before/After Card 2 -->
+                <div class="bg-stone-900 border border-stone-800 rounded-3xl p-6 space-y-4">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="relative">
+                            <span class="absolute top-3 left-3 bg-red-900/80 text-red-200 text-[10px] uppercase font-bold px-2 py-1 rounded">Before (Faded Leather)</span>
+                            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80" alt="Dirty interior" class="rounded-xl h-48 w-full object-cover">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute top-3 left-3 bg-emerald-900/80 text-emerald-200 text-[10px] uppercase font-bold px-2 py-1 rounded">After (Restored Matte)</span>
+                            <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80" alt="Clean leather interior" class="rounded-xl h-48 w-full object-cover">
+                        </div>
+                    </div>
+                    <h3 class="font-tech text-lg text-white">Porsche 911 GT3 RS • Leather Deep Nourish</h3>
+                    <p class="text-xs text-stone-400">Steam sanitization, dye restoration, and ceramic matte leather protection against grease and cracking.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- TAB 4: INTERACTIVE ESTIMATOR & BOOKING                            -->
+    <!-- ================================================================= -->
+    <div id="content-estimator" class="tab-content">
+        <section class="max-w-3xl mx-auto px-6 py-16">
+            <div class="bg-stone-900 border border-stone-800 rounded-3xl p-8 sm:p-12 space-y-8 shadow-2xl">
+                <div class="text-center space-y-2">
+                    <span class="font-tech text-xs uppercase tracking-[0.3em] text-amber-400">Interactive Quote</span>
+                    <h2 class="font-tech text-3xl text-white">STUDIO RESERVATION</h2>
+                    <p class="text-xs text-stone-400">Select options to calculate estimated studio time and rate.</p>
+                </div>
+
+                <form class="space-y-4 text-xs">
+                    <div>
+                        <label class="block text-stone-400 uppercase tracking-wider text-[10px] mb-2 font-bold">1. Vehicle Category</label>
+                        <select class="w-full bg-black border border-stone-800 rounded-xl px-4 py-3 text-stone-200 focus:outline-none focus:border-amber-400">
+                            <option>Exotic Supercar / Hypercar</option>
+                            <option>Sports Coupe / Luxury Sedan</option>
+                            <option>Full-Size SUV / Performance Truck</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-stone-400 uppercase tracking-wider text-[10px] mb-2 font-bold">2. Protection Package</label>
+                        <select class="w-full bg-black border border-stone-800 rounded-xl px-4 py-3 text-stone-200 focus:outline-none focus:border-amber-400">
+                            <option>Full Body Clear PPF (Self-Healing) — ~RM 8,500</option>
+                            <option>Front Track Pack PPF + Ceramic — ~RM 4,200</option>
+                            <option>3-Stage Paint Correction & Graphene — ~RM 2,400</option>
+                        </select>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-stone-400 uppercase tracking-wider text-[10px] mb-2 font-bold">Full Name</label>
+                            <input type="text" placeholder="Dato' / Mr. / Ms." class="w-full bg-black border border-stone-800 rounded-xl px-4 py-3 text-stone-200 focus:outline-none focus:border-amber-400">
+                        </div>
+                        <div>
+                            <label class="block text-stone-400 uppercase tracking-wider text-[10px] mb-2 font-bold">WhatsApp Mobile Number</label>
+                            <input type="text" placeholder="+60123456789" class="w-full bg-black border border-stone-800 rounded-xl px-4 py-3 text-stone-200 focus:outline-none focus:border-amber-400">
+                        </div>
+                    </div>
+
+                    <button type="button" class="w-full bg-amber-400 hover:bg-amber-300 text-black py-4 rounded-xl font-tech font-bold uppercase tracking-widest text-xs transition-all shadow-xl shadow-amber-400/10">
+                        Request VIP Studio Slot
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-stone-900 text-center text-xs text-stone-600">
+        <p>© 2026 KRONOS DETAILED LABS • High-End Auto Protection</p>
+    </footer>
+
+    <!-- Tab Switcher Script -->
+    <script>
+        function switchTab(tabId) {
+            // Hide all contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Reset all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.className = "tab-btn px-5 py-2 rounded-full font-bold uppercase tracking-wider transition-all text-stone-400 hover:text-stone-200";
+            });
+
+            // Show active content
+            document.getElementById('content-' + tabId).classList.add('active');
+
+            // Highlight active button
+            const activeBtn = document.getElementById('tab-' + tabId);
+            if (activeBtn) {
+                activeBtn.className = "tab-btn px-5 py-2 rounded-full font-bold uppercase tracking-wider transition-all text-amber-400 bg-stone-800";
+            }
+        }
+    </script>
+</body>
+</html>
