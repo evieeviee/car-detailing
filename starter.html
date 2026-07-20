@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Auto Spa | Premium Car Detailing</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+</head>
+<body class="bg-slate-900 text-slate-100 antialiased">
+
+    <!-- Top Alert Bar -->
+    <div class="bg-cyan-500 text-slate-950 font-bold text-xs py-2 px-4 text-center tracking-wide">
+        🔥 Flash Sale: 20% OFF Ceramic Coating Packages this month! Use code <span class="underline">SHINE2026</span>
+    </div>
+
+    <!-- Header Navigation -->
+    <nav class="border-b border-slate-800 bg-slate-900/90 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <span class="text-2xl">✨</span>
+                <span class="font-extrabold text-xl tracking-tight text-white uppercase">APEX <span class="text-cyan-400">DETAILED</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-300">
+                <a href="#services" class="hover:text-cyan-400 transition-colors">Packages</a>
+                <a href="#about" class="hover:text-cyan-400 transition-colors">Why Apex</a>
+                <a href="#reviews" class="hover:text-cyan-400 transition-colors">Reviews</a>
+            </div>
+            <a href="#book" class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-cyan-400/20">
+                Book Slot
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Quick Quote Widget -->
+    <section class="max-w-6xl mx-auto px-6 py-12 md:py-20 grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6">
+            <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-cyan-400 bg-cyan-950/80 border border-cyan-800/50 px-3.5 py-1.5 rounded-full">
+                <span>🛡️</span> Certified Ceramic Pro & PPF Specialists
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-white leading-tight tracking-tight">
+                Showroom Shine. <br><span class="text-cyan-400">Zero Compromise.</span>
+            </h1>
+            <p class="text-slate-400 text-sm sm:text-base max-w-xl font-normal leading-relaxed">
+                From deep interior steam cleaning to multi-stage paint correction and 9H ceramic coating. We restore and protect your pride and joy.
+            </p>
+
+            <div class="flex flex-wrap gap-6 pt-2 text-xs text-slate-300 border-t border-slate-800">
+                <div class="flex items-center gap-2">
+                    <span class="text-cyan-400">✓</span> 100% Satisfaction Guarantee
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-cyan-400">✓</span> Drop-off & Pickup Available
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Booking Form Card -->
+        <div class="lg:col-span-5 bg-slate-800/80 border border-slate-700/60 p-6 sm:p-8 rounded-3xl shadow-2xl space-y-4">
+            <div class="border-b border-slate-700 pb-3">
+                <h3 class="text-lg font-bold text-white">Get Instant Quote</h3>
+                <p class="text-xs text-slate-400">Select your vehicle type to see pricing</p>
+            </div>
+
+            <form class="space-y-3 text-xs">
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Vehicle Type</label>
+                    <select class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-cyan-400">
+                        <option>Sedan / Hatchback</option>
+                        <option>SUV / Crossover</option>
+                        <option>Pickup Truck / MPV</option>
+                        <option>Supercar / Luxury Exotic</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Service Needed</label>
+                    <select class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-cyan-400">
+                        <option>Full Interior & Exterior Detail</option>
+                        <option>9H Ceramic Coating (3-Year Protection)</option>
+                        <option>Paint Correction & Scratch Removal</option>
+                        <option>Paint Protection Film (PPF)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-semibold mb-1">Phone / WhatsApp</label>
+                    <input type="text" placeholder="+60 12-345 6789" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-cyan-400">
+                </div>
+
+                <button type="button" class="w-full bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-3.5 rounded-xl uppercase tracking-wider text-xs transition-all shadow-lg shadow-cyan-400/20">
+                    Get Free Quote & Availability
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Services Packages -->
+    <section class="bg-slate-950 py-16 border-t border-slate-800" id="services">
+        <div class="max-w-6xl mx-auto px-6 space-y-12">
+            <div class="text-center max-w-xl mx-auto space-y-2">
+                <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">Packages & Pricing</span>
+                <h2 class="text-3xl font-extrabold text-white">Choose Your Level of Detail</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Package 1 -->
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl space-y-6 flex flex-col justify-between hover:border-slate-700 transition-all">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-white">Express Refresh</h3>
+                        <div class="text-3xl font-black text-cyan-400">RM 180 <span class="text-xs font-normal text-slate-400">/ session</span></div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Perfect for routine maintenance. Deep foam wash, interior vacuum, tire dressing & spray wax.</p>
+                        <ul class="text-xs text-slate-300 space-y-2.5 pt-2 border-t border-slate-800">
+                            <li>✓ Hand Foam Wash & Dry</li>
+                            <li>✓ Deep Vacuum & Dashboard Wipe</li>
+                            <li>✓ Rim & Tire Gloss Armor</li>
+                            <li>✓ Hydrophobic Spray Sealant</li>
+                        </ul>
+                    </div>
+                    <button class="w-full border border-cyan-400/40 hover:border-cyan-400 text-cyan-400 font-bold py-3 rounded-xl text-xs uppercase tracking-wider">Book Express</button>
+                </div>
+
+                <!-- Package 2 (Featured) -->
+                <div class="bg-gradient-to-b from-cyan-950/40 to-slate-900 border-2 border-cyan-400 p-8 rounded-3xl space-y-6 flex flex-col justify-between relative shadow-xl shadow-cyan-950/50">
+                    <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-cyan-400 text-slate-950 text-[10px] uppercase font-black px-3 py-1 rounded-full tracking-widest">Most Popular</span>
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-white">Signature Full Detail</h3>
+                        <div class="text-3xl font-black text-cyan-400">RM 480 <span class="text-xs font-normal text-slate-400">/ session</span></div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Total interior sanitization & single-stage gloss enhancement polish.</p>
+                        <ul class="text-xs text-slate-300 space-y-2.5 pt-2 border-t border-slate-800">
+                            <li>✓ Everything in Express</li>
+                            <li>✓ Interior Leather/Fabric Steam Clean</li>
+                            <li>✓ Clay Bar Paint Decontamination</li>
+                            <li>✓ 1-Stage Paint Correction (60% Swirl Removal)</li>
+                            <li>✓ Engine Bay Detailing</li>
+                        </ul>
+                    </div>
+                    <button class="w-full bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold py-3 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-cyan-400/20">Book Full Detail</button>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl space-y-6 flex flex-col justify-between hover:border-slate-700 transition-all">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-white">9H Ceramic Shield</h3>
+                        <div class="text-3xl font-black text-cyan-400">RM 1,290 <span class="text-xs font-normal text-slate-400">/ 3-yr warranty</span></div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Ultimate gloss and paint protection. Includes 2-stage paint correction and dual-layer nano ceramic coating.</p>
+                        <ul class="text-xs text-slate-300 space-y-2.5 pt-2 border-t border-slate-800">
+                            <li>✓ 2-Stage Paint Correction (90%+ Swirl Removal)</li>
+                            <li>✓ 9H Dual-Layer Nano Ceramic Coating</li>
+                            <li>✓ Glass & Wheel Ceramic Protection</li>
+                            <li>✓ 3-Year Warranty + Free Inspection</li>
+                        </ul>
+                    </div>
+                    <button class="w-full border border-cyan-400/40 hover:border-cyan-400 text-cyan-400 font-bold py-3 rounded-xl text-xs uppercase tracking-wider">Book Ceramic</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-800 text-center text-xs text-slate-500">
+        <p>© 2026 Apex Auto Spa Studio • Shah Alam / Damansara Studio</p>
+    </footer>
+
+</body>
+</html>
