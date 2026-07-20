@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VALET PRO | Interactive Detailer Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-mono-code { font-family: 'JetBrains Mono', monospace; }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased">
+
+    <!-- Main Workspace Grid -->
+    <div class="min-h-screen flex flex-col md:flex-row">
+        
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="w-full md:w-72 bg-zinc-900/90 border-r border-zinc-800 p-6 flex flex-col justify-between shrink-0">
+            <div class="space-y-8">
+                <!-- Brand -->
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-orange-500 text-black font-black flex items-center justify-center font-mono-code">V</div>
+                    <div>
+                        <div class="font-extrabold text-sm tracking-wider text-white">VALET PRO</div>
+                        <div class="text-[10px] font-mono-code text-orange-400 uppercase">Detailing Workspace</div>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <nav class="space-y-1.5 text-xs font-semibold">
+                    <button onclick="openTab('configurator')" id="btn-configurator" class="sidebar-btn active w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-orange-400 bg-zinc-800 border border-zinc-700/50">
+                        <span>🛠️</span> <span>Build Package</span>
+                    </button>
+                    <button onclick="openTab('timeline')" id="btn-timeline" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-zinc-400 hover:text-white hover:bg-zinc-800/50">
+                        <span>⏱️</span> <span>Process Timeline</span>
+                    </button>
+                    <button onclick="openTab('tracker')" id="btn-tracker" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-zinc-400 hover:text-white hover:bg-zinc-800/50">
+                        <span>📅</span> <span>Live Bay Tracker</span>
+                    </button>
+                    <button onclick="openTab('vip')" id="btn-vip" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-zinc-400 hover:text-white hover:bg-zinc-800/50">
+                        <span>👑</span> <span>VIP Membership</span>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Operating Status Indicator -->
+            <div class="pt-6 border-t border-zinc-800 space-y-2">
+                <div class="flex items-center justify-between text-[11px]">
+                    <span class="text-zinc-500">Studio Bays</span>
+                    <span class="text-emerald-400 font-mono-code font-bold">● 2 Open</span>
+                </div>
+                <div class="text-[10px] text-zinc-500 font-mono-code">Next Available: Today, 3:30 PM</div>
+            </div>
+        </aside>
+
+        <!-- MAIN WORKSPACE CONTENT AREA -->
+        <main class="flex-1 p-6 md:p-10 overflow-y-auto max-w-5xl">
+
+            <!-- TAB 1: INTERACTIVE PACKAGE BUILDER -->
+            <div id="panel-configurator" class="tab-panel active space-y-8">
+                <div>
+                    <span class="text-xs font-mono-code text-orange-400 uppercase tracking-widest">Step 01 / Package Configurator</span>
+                    <h1 class="text-3xl font-extrabold text-white mt-1">Design Your Detailing Plan</h1>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Options Selection (2 Cols) -->
+                    <div class="lg:col-span-2 space-y-6">
+                        
+                        <!-- Vehicle Size Selection -->
+                        <div class="space-y-3">
+                            <label class="text-xs font-bold text-zinc-400 uppercase tracking-wider">1. Select Vehicle Class</label>
+                            <div class="grid grid-cols-3 gap-3 text-xs">
+                                <button class="p-4 bg-zinc-900 border-2 border-orange-500 rounded-xl text-left font-bold text-white">
+                                    Compact / Sedan
+                                    <span class="block text-[10px] font-normal text-zinc-400 mt-1">Standard Rate</span>
+                                </button>
+                                <button class="p-4 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl text-left font-bold text-zinc-300">
+                                    Mid / Full SUV
+                                    <span class="block text-[10px] font-normal text-zinc-400 mt-1">+ RM 150</span>
+                                </button>
+                                <button class="p-4 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl text-left font-bold text-zinc-300">
+                                    Exotic / Supercar
+                                    <span class="block text-[10px] font-normal text-zinc-400 mt-1">Custom Care</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Add-On Modules -->
+                        <div class="space-y-3">
+                            <label class="text-xs font-bold text-zinc-400 uppercase tracking-wider">2. Choose Modules</label>
+                            <div class="space-y-2 text-xs">
+                                <label class="flex items-center justify-between p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl cursor-pointer hover:border-zinc-700">
+                                    <div class="flex items-center gap-3">
+                                        <input type="checkbox" checked class="accent-orange-500 w-4 h-4">
+                                        <div>
+                                            <span class="font-bold text-white block">Multi-Stage Paint Correction</span>
+                                            <span class="text-[11px] text-zinc-500">Removes swirl marks, holograms & light scratches</span>
+                                        </div>
+                                    </div>
+                                    <span class="font-mono-code text-orange-400 font-bold">+ RM 450</span>
+                                </label>
+
+                                <label class="flex items-center justify-between p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl cursor-pointer hover:border-zinc-700">
+                                    <div class="flex items-center gap-3">
+                                        <input type="checkbox" checked class="accent-orange-500 w-4 h-4">
+                                        <div>
+                                            <span class="font-bold text-white block">9H Nano Ceramic Coating (Body)</span>
+                                            <span class="text-[11px] text-zinc-500">3-Year hydrophobic UV gloss protection</span>
+                                        </div>
+                                    </div>
+                                    <span class="font-mono-code text-orange-400 font-bold">+ RM 800</span>
+                                </label>
+
+                                <label class="flex items-center justify-between p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl cursor-pointer hover:border-zinc-700">
+                                    <div class="flex items-center gap-3">
+                                        <input type="checkbox" class="accent-orange-500 w-4 h-4">
+                                        <div>
+                                            <span class="font-bold text-white block">Windscreen Glass Armor & Wheel Coating</span>
+                                            <span class="text-[11px] text-zinc-500">Repels rain water and prevents brake dust adhesion</span>
+                                        </div>
+                                    </div>
+                                    <span class="font-mono-code text-orange-400 font-bold">+ RM 250</span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Real-Time Price Summary (1 Col) -->
+                    <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl space-y-6 h-fit">
+                        <div class="border-b border-zinc-800 pb-4">
+                            <span class="text-[10px] font-mono-code uppercase text-zinc-500">Estimated Total</span>
+                            <div class="text-3xl font-extrabold text-orange-400 font-mono-code mt-1">RM 1,250</div>
+                            <span class="text-[10px] text-zinc-400">Estimated duration: 6 - 8 Hours</span>
+                        </div>
+
+                        <form class="space-y-3 text-xs">
+                            <input type="text" placeholder="Owner Name" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-zinc-200 focus:outline-none focus:border-orange-500">
+                            <input type="text" placeholder="Plate Number" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-zinc-200 focus:outline-none focus:border-orange-500">
+                            <button type="button" class="w-full bg-orange-500 hover:bg-orange-400 text-black font-extrabold py-3.5 rounded-xl uppercase tracking-wider transition-all">
+                                Reserve Studio Slot
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: PROCESS TIMELINE -->
+            <div id="panel-timeline" class="tab-panel space-y-8">
+                <div>
+                    <span class="text-xs font-mono-code text-orange-400 uppercase tracking-widest">Step 02 / Transparency Guarantee</span>
+                    <h1 class="text-3xl font-extrabold text-white mt-1">Our 5-Stage Detailing Workflow</h1>
+                </div>
+
+                <div class="space-y-4 text-xs">
+                    <div class="p-5 bg-zinc-900/60 border border-zinc-800 rounded-xl flex gap-4">
+                        <div class="font-mono-code text-orange-400 font-bold text-lg">01</div>
+                        <div>
+                            <h3 class="font-bold text-white text-sm">Snow Foam & Decontamination Wash</h3>
+                            <p class="text-zinc-400 mt-1">pH-neutral hand wash, iron filings removal, and clay bar treatment to remove embedded contaminants from paint pores.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-zinc-900/60 border border-zinc-800 rounded-xl flex gap-4">
+                        <div class="font-mono-code text-orange-400 font-bold text-lg">02</div>
+                        <div>
+                            <h3 class="font-bold text-white text-sm">Paint Inspection & Thickness Gauge Test</h3>
+                            <p class="text-zinc-400 mt-1">Digital measurement of clear coat thickness across all panels to ensure safe compounding without damaging paint integrity.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-zinc-900/60 border border-zinc-800 rounded-xl flex gap-4">
+                        <div class="font-mono-code text-orange-400 font-bold text-lg">03</div>
+                        <div>
+                            <h3 class="font-bold text-white text-sm">Dual-Action Machine Polishing</h3>
+                            <p class="text-zinc-400 mt-1">Stage 1 compounding to remove defects, followed by Stage 2 finishing polish for ultimate optical clarity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: LIVE TRACKER -->
+            <div id="panel-tracker" class="tab-panel space-y-6">
+                <div>
+                    <span class="text-xs font-mono-code text-orange-400 uppercase tracking-widest">Live Operations</span>
+                    <h1 class="text-3xl font-extrabold text-white mt-1">Today's Studio Schedule</h1>
+                </div>
+
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden text-xs">
+                    <div class="grid grid-cols-4 p-4 border-b border-zinc-800 text-zinc-400 font-mono-code font-bold">
+                        <span>BAY #</span>
+                        <span>VEHICLE</span>
+                        <span>SERVICE</span>
+                        <span>STATUS</span>
+                    </div>
+                    <div class="grid grid-cols-4 p-4 border-b border-zinc-800 items-center">
+                        <span class="font-mono-code font-bold text-white">BAY 01</span>
+                        <span>Porsche 911 GT3</span>
+                        <span>Full PPF Wrap</span>
+                        <span class="text-amber-400 font-mono-code">● In Progress</span>
+                    </div>
+                    <div class="grid grid-cols-4 p-4 border-b border-zinc-800 items-center">
+                        <span class="font-mono-code font-bold text-white">BAY 02</span>
+                        <span>Mercedes AMG GTS</span>
+                        <span>Ceramic Coating</span>
+                        <span class="text-emerald-400 font-mono-code">● Curing Phase</span>
+                    </div>
+                    <div class="grid grid-cols-4 p-4 items-center">
+                        <span class="font-mono-code font-bold text-white">BAY 03</span>
+                        <span>Empty Slot</span>
+                        <span>Ready for Entry</span>
+                        <span class="text-cyan-400 font-mono-code">● Available @ 3:30 PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: VIP MEMBERSHIP -->
+            <div id="panel-vip" class="tab-panel space-y-6">
+                <div>
+                    <span class="text-xs font-mono-code text-orange-400 uppercase tracking-widest">Club Tier</span>
+                    <h1 class="text-3xl font-extrabold text-white mt-1">Valet Pro Care Club</h1>
+                </div>
+
+                <div class="bg-gradient-to-r from-orange-950/40 to-zinc-900 border border-orange-500/30 p-8 rounded-2xl space-y-4">
+                    <h2 class="text-xl font-bold text-white">Annual Detailing Subscription — MYR 2,400 / year</h2>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                        Includes 12x Monthly Maintenance Hand Washes, 2x Interior Steam Cleanings, Unlimited Ceramic Top-Coat reboosts, and priority weekend bay reservations.
+                    </p>
+                    <button class="bg-orange-500 text-black text-xs font-bold px-6 py-3 rounded-xl uppercase tracking-wider">Inquire VIP Access</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Tab Switcher Script -->
+    <script>
+        function openTab(tabName) {
+            // Hide all tab panels
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            // Reset sidebar buttons
+            const buttons = document.querySelectorAll('.sidebar-btn');
+            buttons.forEach(btn => {
+                btn.className = "sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-zinc-400 hover:text-white hover:bg-zinc-800/50";
+            });
+
+            // Activate target panel & button
+            document.getElementById('panel-' + tabName).classList.add('active');
+            const activeBtn = document.getElementById('btn-' + tabName);
+            if (activeBtn) {
+                activeBtn.className = "sidebar-btn active w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-orange-400 bg-zinc-800 border border-zinc-700/50";
+            }
+        }
+    </script>
+</body>
+</html>
