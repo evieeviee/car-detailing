@@ -898,6 +898,66 @@ footer{
 @media(max-width:600px){
   .design-grid{ grid-template-columns:1fr; }
 }
+
+/* SIMPLIFIED TWO-PACKAGE COLLECTION */
+.design-actions{
+  grid-template-columns:1fr;
+}
+
+.preview-info{
+  text-align:center;
+}
+
+@media(max-width:700px){
+  .nav{
+    min-height:72px;
+  }
+
+  .nav-links{
+    display:flex;
+    gap:4px;
+  }
+
+  .nav-link{
+    padding:7px 8px;
+    font-size:10px;
+  }
+
+  .menu-btn{
+    display:none;
+  }
+
+  .brand-copy span{
+    display:none;
+  }
+
+  .nav-cta{
+    padding:8px 10px;
+    font-size:9px;
+  }
+
+  .preview-toolbar{
+    grid-template-columns:1fr auto;
+    gap:10px;
+  }
+
+  .preview-info{
+    grid-column:1/-1;
+    grid-row:1;
+    text-align:left;
+  }
+
+  #closePreview{
+    grid-column:1;
+    grid-row:2;
+  }
+
+  #backToPlanniqueFromPreview{
+    grid-column:2;
+    grid-row:2;
+  }
+}
+
 </style>
 </head>
 
@@ -905,7 +965,7 @@ footer{
 
 <header class="navbar">
   <div class="wrap nav">
-    <button class="brand nav-route" data-route="home">
+    <button class="brand nav-route" data-route="essential">
       <span class="brand-mark">C</span>
       <span class="brand-copy">
         <strong>Car Detailing</strong>
@@ -914,180 +974,53 @@ footer{
     </button>
 
     <nav class="nav-links" id="navLinks">
-      <button class="nav-link nav-route" data-route="home">Home</button>
-      <button class="nav-link nav-route" data-route="portfolio">Portfolio</button>
-      <button class="nav-link nav-route" data-route="starter">Starter</button>
-      <button class="nav-link nav-route" data-route="advance">Advance & Portal</button>
-      <button class="nav-link nav-route" data-route="packages">Packages</button>
-      <button class="nav-link nav-route" data-route="contact">Contact</button>
+      <button class="nav-link nav-route active" data-route="essential">Essential</button>
+      <button class="nav-link nav-route" data-route="signature">Signature</button>
     </nav>
 
-    <button class="nav-cta nav-route" data-route="contact">Get Started</button>
+    <button class="nav-cta" id="backToPlannique">← Back to Plannique</button>
     <button class="menu-btn" id="menuBtn">☰</button>
   </div>
 </header>
 
 <main>
 
-<!-- HOME PAGE -->
-<section class="page active" data-page="home">
-  <div class="home-hero">
-    <div class="wrap home-grid">
-      <div>
-        <div class="home-badge">✦ High-Performance Auto Detailer Designs</div>
-        <h1>Dominate the local <span>Detailing</span> market</h1>
-        <p>Showcase ceramic coatings, PPF installations, paint correction, and interior detailing with precision-engineered web designs built to convert car enthusiasts into clients.</p>
-        
-        <div class="page-actions">
-          <button class="btn btn-primary nav-route" data-route="portfolio">Explore Portfolio</button>
-          <button class="btn btn-secondary nav-route" data-route="packages">View Pricing</button>
-        </div>
-
-        <div class="home-tags">
-          <span>Ceramic Coating</span>
-          <span>Paint Protection Film (PPF)</span>
-          <span>Auto Spa</span>
-          <span>Customer Booking Portal</span>
-        </div>
-      </div>
-
-      <div class="home-visual">
-        <div class="home-card-main">
-          <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1000&q=85" alt="Car Detailing">
-          <div class="home-card-overlay">
-            <strong>Interactive Customer Portals</strong>
-            <p>Live status tracking, job updates, and service estimator integration.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PORTFOLIO PAGE -->
-<section class="page" data-page="portfolio">
+<!-- ESSENTIAL PAGE -->
+<section class="page active" data-page="essential">
   <div class="page-hero">
-    <div class="wrap page-hero-grid">
-      <div>
-        <div class="eyebrow">Design Showcase</div>
-        <div class="title">Car Detailing Templates</div>
-        <p class="copy">Select any template below to test full interactive desktop, tablet, and mobile previews.</p>
-      </div>
+    <div class="wrap">
+      <div class="eyebrow">Essential Package · RM499</div>
+      <div class="title">One-Page Car Detailing Themes</div>
+      <p class="copy">
+        Focused one-page website samples for independent detailers, mobile auto spa businesses,
+        ceramic coating studios and smaller automotive service brands.
+      </p>
     </div>
   </div>
 
   <div class="content-section">
     <div class="wrap">
-      <div class="portfolio-tools">
-        <div class="filter-tabs">
-          <button class="filter-btn active" data-filter="all">All Templates</button>
-          <button class="filter-btn" data-filter="starter">Starter</button>
-          <button class="filter-btn" data-filter="advance">Advance & Portal</button>
-        </div>
-
-        <div class="search-box">
-          <input id="portfolioSearch" type="search" placeholder="Search templates...">
-        </div>
-      </div>
-
-      <div id="starterSection">
-        <div class="collection-intro">
-          <div class="collection-title">
-            <h2>Starter Collection</h2>
-          </div>
-        </div>
-        <div class="design-grid" id="starterGrid"></div>
-      </div>
-
-      <div id="advanceSection">
-        <div class="collection-intro">
-          <div class="collection-title">
-            <h2>Advance & Portal Collection</h2>
-          </div>
-        </div>
-        <div class="design-grid" id="advanceGrid"></div>
-      </div>
+      <div class="design-grid" id="essentialGrid"></div>
     </div>
   </div>
 </section>
 
-<!-- STARTER PAGE -->
-<section class="page" data-page="starter">
+<!-- SIGNATURE PAGE -->
+<section class="page" data-page="signature">
   <div class="page-hero">
     <div class="wrap">
-      <div class="eyebrow">Starter Tier</div>
-      <div class="title">Starter Detailing Designs</div>
-      <p class="copy">Sleek, high-converting one-page layouts built for quick setup and fast WhatsApp leads.</p>
-    </div>
-  </div>
-  <div class="content-section">
-    <div class="wrap">
-      <div class="design-grid" id="starterPageGrid"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ADVANCE PAGE -->
-<section class="page" data-page="advance">
-  <div class="page-hero">
-    <div class="wrap">
-      <div class="eyebrow">Signature & Portal Tier</div>
-      <div class="title">Advance, HUD & Portal Designs</div>
-      <p class="copy">Multi-page experience featuring HUD vehicle selectors, editorial layouts, and customer dashboard management portals.</p>
-    </div>
-  </div>
-  <div class="content-section">
-    <div class="wrap">
-      <div class="design-grid" id="advancePageGrid"></div>
-    </div>
-  </div>
-</section>
-
-<!-- PACKAGES PAGE -->
-<section class="page" data-page="packages">
-  <div class="page-hero">
-    <div class="wrap">
-      <div class="eyebrow">Pricing Plans</div>
-      <div class="title">Detailing Website Packages</div>
+      <div class="eyebrow">Signature Package · RM1,299</div>
+      <div class="title">Premium Multi-Page Detailing Themes</div>
+      <p class="copy">
+        Advanced website samples with up to seven page views for established detailing studios,
+        PPF specialists, luxury automotive businesses and customer portal concepts.
+      </p>
     </div>
   </div>
 
   <div class="content-section">
-    <div class="wrap package-grid">
-      <div class="package-card">
-        <h2>Starter Package</h2>
-        <div class="package-price"><small>RM</small>499</div>
-        <p style="color:var(--muted);margin-top:10px;">Perfect for independent detailers and mobile auto spa setups.</p>
-        <div class="package-features">
-          <div class="package-feature">Single-page responsive layout</div>
-          <div class="package-feature">Services & Package price list</div>
-          <div class="package-feature">Before/After Transformation Slider</div>
-          <div class="package-feature">Direct WhatsApp booking link</div>
-        </div>
-      </div>
-
-      <div class="package-card featured">
-        <h2>Signature & Portal</h2>
-        <div class="package-price"><small>RM</small>1,299</div>
-        <p style="color:var(--muted);margin-top:10px;">Full-scale system with vehicle status tracking & HUD UI features.</p>
-        <div class="package-features">
-          <div class="package-feature">Multi-page architectural navigation</div>
-          <div class="package-feature">Customer Dashboard / Portal page</div>
-          <div class="package-feature">Interactive Graphic HUD detailing viewer</div>
-          <div class="package-feature">Bilingual support setup</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT PAGE -->
-<section class="page" data-page="contact">
-  <div class="page-hero">
     <div class="wrap">
-      <div class="eyebrow">Get In Touch</div>
-      <div class="title">Start Your Detailing Project</div>
-      <p class="copy">Ready to upgrade your studio's online image? Send us an inquiry today.</p>
+      <div class="design-grid" id="signatureGrid"></div>
     </div>
   </div>
 </section>
@@ -1098,37 +1031,53 @@ footer{
   <div class="wrap footer-grid">
     <div>
       <strong style="font-family:'Chakra Petch';font-size:18px;color:#fff;text-transform:uppercase;">Car Detailing Collection</strong>
-      <p style="margin-top:10px;">Engineered web solutions for auto aesthetic specialists.</p>
+      <p style="margin-top:10px;">Essential and Signature website samples by Plannique Design Co.</p>
     </div>
+
     <div>
-      <h4 style="color:#fff;margin-bottom:10px;">Navigation</h4>
-      <p><a href="#/portfolio">Portfolio</a></p>
-      <p><a href="#/packages">Packages</a></p>
+      <h4 style="color:#fff;margin-bottom:10px;">Packages</h4>
+      <p>
+        <button class="nav-route" data-route="essential" style="border:0;background:none;color:inherit;text-transform:uppercase;">
+          Essential · RM499
+        </button>
+      </p>
+      <p>
+        <button class="nav-route" data-route="signature" style="border:0;background:none;color:inherit;text-transform:uppercase;">
+          Signature · RM1,299
+        </button>
+      </p>
     </div>
+
     <div>
-      <h4 style="color:#fff;margin-bottom:10px;">Contact</h4>
-      <p>WhatsApp: +60 18-907 9798</p>
+      <h4 style="color:#fff;margin-bottom:10px;">Return</h4>
+      <p>
+        <button id="footerBackToPlannique" style="border:0;background:none;color:inherit;text-transform:uppercase;">
+          ← Back to Plannique
+        </button>
+      </p>
     </div>
   </div>
+
   <div class="wrap footer-bottom">
-    <span>© 2026 Plannique Design Co. All rights reserved.</span>
+    <span>© 2026 Plannique Design Co.</span>
   </div>
 </footer>
 
-<a class="float-wa" href="https://wa.me/60189079798" target="_blank">💬 WhatsApp Inquiry</a>
+
 
 <!-- PREVIEW MODAL -->
 <div class="preview-modal" id="previewModal">
   <div class="preview-toolbar">
-    <button class="preview-back" id="closePreview">← Back</button>
+    <button class="preview-back" id="closePreview">← Back to Collection</button>
+
     <div class="preview-info">
       <strong id="previewThemeName">Theme Name</strong>
       <span id="previewThemeMeta">Package Code</span>
     </div>
-    <div class="preview-actions">
-      <a class="btn btn-primary" id="openFullDemo" href="#" target="_blank">Open Direct File ↗</a>
-    </div>
+
+    <button class="preview-back" id="backToPlanniqueFromPreview">← Back to Plannique</button>
   </div>
+
   <div class="preview-stage">
     <div class="preview-shell" id="previewShell">
       <iframe class="preview-frame" id="previewFrame" src=""></iframe>
@@ -1150,74 +1099,74 @@ footer{
 
 const detailingDesigns = [
   {
-    package: "starter",
+    package: "essential",
     name: "Dark Ceramic Studio",
     code: "DET-STR-01",
     file: "starter.html",
     style: "Dark Cyber-Tech",
     desc: "A bold dark-mode one-pager built for high-end ceramic coating and paint correction specialists.",
     image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=85",
-    tags: ["Starter", "Dark Mode", "Ceramic Coating"]
+    tags: ["Essential", "Dark Mode", "Ceramic Coating"]
   },
   {
-    package: "starter",
+    package: "essential",
     name: "Light Auto Spa",
     code: "DET-STR-02",
     file: "starter-light-detailing.html",
     style: "Clean Minimalist Light",
     desc: "Clean, high-contrast light theme highlighting interior detailing, leather treatment, and express washes.",
     image: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=85",
-    tags: ["Starter", "Light Theme", "Auto Spa"]
+    tags: ["Essential", "Light Theme", "Auto Spa"]
   },
   {
-    package: "advance",
+    package: "signature",
     name: "Apex Performance Studio",
     code: "DET-ADV-01",
     file: "advance.html",
     style: "Multi-Page Performance",
     desc: "Comprehensive multi-page website featuring PPF installation guides and treatment comparisons.",
     image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=800&q=85",
-    tags: ["Advance", "Multi-Page", "PPF Focus"]
+    tags: ["Signature", "Multi-Page", "PPF Focus"]
   },
   {
-    package: "advance",
+    package: "signature",
     name: "Pro Shield Detailing",
     code: "DET-ADV-02",
     file: "advance1.html",
     style: "Sleek Carbon Metallic",
     desc: "Metallic-accented design tailored for luxury supercars, exotic vehicle wraps, and window tinting.",
     image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=85",
-    tags: ["Advance", "Supercars", "Protection"]
+    tags: ["Signature", "Supercars", "Protection"]
   },
   {
-    package: "advance",
+    package: "signature",
     name: "Graphic HUD Detailing",
     code: "DET-ADV-HUD",
     file: "graphic-hud-detailing.html",
     style: "Sci-Fi HUD UI",
     desc: "Futuristic Heads-Up Display interface with visual vehicle inspection and layer breakdown.",
     image: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=85",
-    tags: ["Advance", "HUD Graphics", "Interactive"]
+    tags: ["Signature", "HUD Graphics", "Interactive"]
   },
   {
-    package: "advance",
+    package: "signature",
     name: "Editorial Graphics Detailing",
     code: "DET-ADV-EDT",
     file: "editorial-graphic-detailing.html",
     style: "High-Fashion Editorial",
     desc: "Magazine-style bold typography layout showcasing bespoke auto artistry and full color wraps.",
     image: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=85",
-    tags: ["Advance", "Editorial", "Custom Wraps"]
+    tags: ["Signature", "Editorial", "Custom Wraps"]
   },
   {
-    package: "advance",
+    package: "signature",
     name: "Client Dashboard & Portal",
     code: "DET-ADV-PRT",
     file: "advance-dashboard-portal.html",
     style: "Customer Web Portal",
     desc: "Interactive customer dashboard allowing clients to track vehicle detailing status and download warranty cards.",
     image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=85",
-    tags: ["Portal", "Client Tracking", "Dashboard"]
+    tags: ["Signature", "Client Tracking", "Dashboard"]
   }
 ];
 
@@ -1236,51 +1185,84 @@ function createCard(design){
           ${design.tags.map(t=>`<span>${t}</span>`).join("")}
         </div>
         <div class="design-actions">
-          <button class="design-btn" onclick="openPreview('${design.code}')">Preview</button>
-          <a class="design-btn primary" href="starter-light-detailing.html" target="_blank">View File</a>
+          <button class="design-btn primary" onclick="openPreview('${design.code}')">Open Full-Screen Preview</button>
         </div>
       </div>
     </div>
   `;
 }
 
-// Render Grids
-const starterItems = detailingDesigns.filter(d=>d.package==='starter');
-const advanceItems = detailingDesigns.filter(d=>d.package==='advance');
+// Render package grids
+const essentialItems = detailingDesigns.filter(design => design.package === 'essential');
+const signatureItems = detailingDesigns.filter(design => design.package === 'signature');
 
-document.getElementById('starterGrid').innerHTML = starterItems.map(createCard).join('');
-document.getElementById('advanceGrid').innerHTML = advanceItems.map(createCard).join('');
-document.getElementById('starterPageGrid').innerHTML = starterItems.map(createCard).join('');
-document.getElementById('advancePageGrid').innerHTML = advanceItems.map(createCard).join('');
+document.getElementById('essentialGrid').innerHTML = essentialItems.map(createCard).join('');
+document.getElementById('signatureGrid').innerHTML = signatureItems.map(createCard).join('');
 
-// Navigation Handling
+// Navigation
 const pages = document.querySelectorAll('.page');
+
 function showPage(route){
-  pages.forEach(p => p.classList.toggle('active', p.dataset.page === route));
+  pages.forEach(page => {
+    page.classList.toggle('active', page.dataset.page === route);
+  });
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.toggle('active', link.dataset.route === route);
+  });
+
   window.scrollTo(0,0);
 }
 
-document.querySelectorAll('.nav-route').forEach(btn => {
-  btn.addEventListener('click', () => showPage(btn.dataset.route));
+document.querySelectorAll('.nav-route').forEach(button => {
+  button.addEventListener('click', () => showPage(button.dataset.route));
 });
 
-// Modal Preview
+// Return to Plannique.
+const PLANNIQUE_URL = "https://evieeviee.github.io/PlanniqueDesignCo/";
+
+function backToPlannique(){
+  if(window.parent && window.parent !== window){
+    window.parent.postMessage({type:"plannique-close-collection"},"*");
+    return;
+  }
+
+  window.location.href = PLANNIQUE_URL;
+}
+
+document.getElementById('backToPlannique').addEventListener('click', backToPlannique);
+document.getElementById('footerBackToPlannique').addEventListener('click', backToPlannique);
+
+// Full-screen theme preview.
 const modal = document.getElementById('previewModal');
 const iframe = document.getElementById('previewFrame');
 
 function openPreview(code){
-  const item = detailingDesigns.find(d => d.code === code);
+  const item = detailingDesigns.find(design => design.code === code);
   if(!item) return;
+
   document.getElementById('previewThemeName').textContent = item.name;
-  document.getElementById('previewThemeMeta').textContent = `${item.code} · ${item.file}`;
-  document.getElementById('openFullDemo').href = item.file;
+  document.getElementById('previewThemeMeta').textContent =
+    `${item.package === 'essential' ? 'Essential' : 'Signature'} · ${item.code}`;
+
   iframe.src = item.file;
   modal.classList.add('open');
+  document.body.classList.add('modal-open');
 }
 
-document.getElementById('closePreview').addEventListener('click', () => {
+function closePreview(){
   modal.classList.remove('open');
   iframe.src = '';
+  document.body.classList.remove('modal-open');
+}
+
+document.getElementById('closePreview').addEventListener('click', closePreview);
+document.getElementById('backToPlanniqueFromPreview').addEventListener('click', backToPlannique);
+
+document.addEventListener('keydown', event => {
+  if(event.key === 'Escape'){
+    closePreview();
+  }
 });
 </script>
 
