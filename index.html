@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<meta
+  name="description"
+  content="Explore high-performance website designs for car detailing, auto spa, ceramic coating studios, and vehicle protection centers."
+>
+
+<title>Car Detailing Website Collection | Plannique Design Co</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+:root{
+  --bg:#0b0e14;
+  --bg-soft:#121722;
+  --panel:#182030;
+  --panel-light:#222c40;
+  --border:#2a364f;
+  --border-bright:#3b4c6e;
+
+  --text:#e6edf8;
+  --muted:#8c9bb5;
+
+  --accent:#00e5ff;
+  --accent-dark:#0088cc;
+  --accent-glow:rgba(0,229,255,0.25);
+
+  --red:#ff3366;
+  --green:#25d366;
+
+  --shadow:0 20px 50px rgba(0,0,0,0.5);
+  --shadow-glow:0 0 30px rgba(0,229,255,0.15);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  min-height:100vh;
+  font-family:"Inter",Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 80% 10%,rgba(0,229,255,0.08),transparent 40%),
+    radial-gradient(circle at 10% 80%,rgba(255,51,102,0.05),transparent 40%),
+    var(--bg);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+body.modal-open,
+body.menu-open{
+  overflow:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+img{
+  display:block;
+  max-width:100%;
+}
+
+.wrap{
+  width:min(1220px,calc(100% - 40px));
+  margin:auto;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  color:var(--accent);
+  font-family:"Chakra Petch",sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.eyebrow:before{
+  content:"";
+  width:12px;
+  height:12px;
+  background:var(--accent);
+  clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+}
+
+.title{
+  margin-top:10px;
+  font-family:"Chakra Petch",sans-serif;
+  font-size:clamp(32px,4vw,52px);
+  line-height:1.1;
+  text-transform:uppercase;
+  letter-spacing:-0.5px;
+}
+
+.copy{
+  margin-top:14px;
+  max-width:720px;
+  color:var(--muted);
+  font-size:16px;
+}
+
+.btn{
+  min-height:48px;
+  padding:12px 24px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border:0;
+  border-radius:6px;
+  font-family:"Chakra Petch",sans-serif;
+  font-size:14px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  transition:.2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn-primary{
+  background:var(--accent);
+  color:#000;
+  box-shadow:var(--shadow-glow);
+}
+
+.btn-primary:hover{
+  background:#33ebff;
+  box-shadow:0 0 40px rgba(0,229,255,0.4);
+}
+
+.btn-secondary{
+  background:var(--panel);
+  border:1px solid var(--border-bright);
+  color:var(--text);
+}
+
+.btn-secondary:hover{
+  background:var(--panel-light);
+  border-color:var(--accent);
+}
+
+.btn-wa{
+  background:var(--green);
+  color:#fff;
+  box-shadow:0 10px 25px rgba(37,211,102,0.3);
+}
+
+/* NAVIGATION */
+
+.navbar{
+  position:fixed;
+  inset:0 0 auto;
+  z-index:1000;
+  background:rgba(11,14,20,0.92);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(16px);
+}
+
+.nav{
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:0;
+  background:none;
+  text-align:left;
+}
+
+.brand-mark{
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  background:var(--accent);
+  color:#000;
+  clip-path:polygon(25% 0%,100% 0%,75% 100%,0% 100%);
+  font-family:"Chakra Petch",sans-serif;
+  font-size:22px;
+  font-weight:700;
+}
+
+.brand-copy strong{
+  display:block;
+  font-family:"Chakra Petch",sans-serif;
+  font-size:18px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.brand-copy span{
+  display:block;
+  color:var(--accent);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.nav-link{
+  padding:8px 12px;
+  border:0;
+  border-radius:4px;
+  background:none;
+  color:var(--muted);
+  font-family:"Chakra Petch",sans-serif;
+  font-size:13px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  transition:.2s;
+}
+
+.nav-link:hover,
+.nav-link.active{
+  color:var(--accent);
+  background:rgba(0,229,255,0.06);
+}
+
+.nav-cta{
+  padding:10px 18px;
+  border:1px solid var(--accent);
+  border-radius:4px;
+  background:transparent;
+  color:var(--accent);
+  font-family:"Chakra Petch",sans-serif;
+  font-size:12px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  transition:.2s;
+}
+
+.nav-cta:hover{
+  background:var(--accent);
+  color:#000;
+}
+
+.menu-btn{
+  display:none;
+  width:40px;
+  height:40px;
+  border:1px solid var(--border);
+  border-radius:4px;
+  background:var(--panel);
+  color:var(--text);
+  font-size:18px;
+}
+
+/* PAGE SYSTEM */
+
+main{
+  padding-top:76px;
+}
+
+.page{
+  display:none;
+  min-height:calc(100vh - 76px);
+  animation:pageEnter .3s ease;
+}
+
+.page.active{
+  display:block;
+}
+
+@keyframes pageEnter{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.page-hero{
+  padding:70px 0 50px;
+  background:
+    linear-gradient(to bottom,rgba(18,23,34,0.8),var(--bg)),
+    radial-gradient(circle at 50% 0%,rgba(0,229,255,0.1),transparent 70%);
+  border-bottom:1px solid var(--border);
+}
+
+.page-hero-grid{
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:50px;
+  align-items:center;
+}
+
+.page-actions{
+  margin-top:25px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.page-visual{
+  height:340px;
+  overflow:hidden;
+  border:1px solid var(--border-bright);
+  border-radius:12px;
+  box-shadow:var(--shadow-glow);
+}
+
+.page-visual img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.content-section{
+  padding:70px 0;
+}
+
+/* HOME HERO */
+
+.home-hero{
+  padding:80px 0;
+  position:relative;
+  overflow:hidden;
+}
+
+.home-grid{
+  display:grid;
+  grid-template-columns:1.05fr 0.95fr;
+  gap:50px;
+  align-items:center;
+}
+
+.home-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 14px;
+  border:1px solid var(--border-bright);
+  border-radius:99px;
+  background:var(--panel);
+  color:var(--accent);
+  font-family:"Chakra Petch",sans-serif;
+  font-size:12px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.home-hero h1{
+  margin-top:20px;
+  font-family:"Chakra Petch",sans-serif;
+  font-size:clamp(42px,5.5vw,72px);
+  line-height:1;
+  text-transform:uppercase;
+  letter-spacing:-1px;
+}
+
+.home-hero h1 span{
+  color:transparent;
+  -webkit-text-stroke:1px var(--accent);
+}
+
+.home-hero p{
+  margin-top:20px;
+  color:var(--muted);
+  font-size:18px;
+}
+
+.home-tags{
+  margin-top:25px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.home-tags span{
+  padding:6px 12px;
+  border:1px solid var(--border);
+  border-radius:4px;
+  background:rgba(255,255,255,0.03);
+  color:var(--text);
+  font-size:12px;
+  font-weight:600;
+}
+
+.home-visual{
+  position:relative;
+  min-height:480px;
+}
+
+.home-card-main{
+  width:100%;
+  height:440px;
+  border:1px solid var(--border-bright);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:var(--shadow-glow);
+  position:relative;
+}
+
+.home-card-main img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.home-card-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,var(--bg) 10%,transparent 70%);
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+.home-card-overlay strong{
+  font-family:"Chakra Petch",sans-serif;
+  font-size:24px;
+  text-transform:uppercase;
+}
+
+.home-card-overlay p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
+}
+
+/* PORTFOLIO */
+
+.portfolio-tools{
+  margin-bottom:35px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.filter-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.filter-btn{
+  padding:8px 16px;
+  border:1px solid var(--border);
+  border-radius:4px;
+  background:var(--panel);
+  color:var(--muted);
+  font-family:"Chakra Petch",sans-serif;
+  font-size:12px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  transition:.2s;
+}
+
+.filter-btn:hover,
+.filter-btn.active{
+  border-color:var(--accent);
+  background:var(--accent);
+  color:#000;
+}
+
+.search-box{
+  min-width:280px;
+  flex:1;
+  max-width:380px;
+  position:relative;
+}
+
+.search-box input{
+  width:100%;
+  padding:10px 16px 10px 40px;
+  border:1px solid var(--border);
+  border-radius:4px;
+  background:var(--panel);
+  color:var(--text);
+  outline:none;
+}
+
+.search-box input:focus{
+  border-color:var(--accent);
+  box-shadow:var(--shadow-glow);
+}
+
+.search-box icon{
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--muted);
+}
+
+.collection-intro{
+  margin:40px 0 20px;
+  padding-bottom:15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+
+.collection-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.collection-title h2{
+  font-family:"Chakra Petch",sans-serif;
+  font-size:26px;
+  text-transform:uppercase;
+}
+
+.design-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+
+.design-card{
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--panel);
+  overflow:hidden;
+  transition:.25s ease;
+  display:flex;
+  flex-direction:column;
+}
+
+.design-card:hover{
+  border-color:var(--accent);
+  transform:translateY(-5px);
+  box-shadow:var(--shadow-glow);
+}
+
+.design-preview{
+  height:240px;
+  position:relative;
+  overflow:hidden;
+  background:var(--bg-soft);
+}
+
+.design-preview img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.4s;
+}
+
+.design-card:hover .design-preview img{
+  transform:scale(1.05);
+}
+
+.design-badge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  padding:4px 8px;
+  border-radius:3px;
+  background:rgba(11,14,20,0.85);
+  border:1px solid var(--border-bright);
+  color:var(--accent);
+  font-family:"Chakra Petch",sans-serif;
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+}
+
+.design-code{
+  position:absolute;
+  top:12px;
+  right:12px;
+  padding:4px 8px;
+  border-radius:3px;
+  background:var(--accent);
+  color:#000;
+  font-family:"Chakra Petch",sans-serif;
+  font-size:10px;
+  font-weight:700;
+}
+
+.design-body{
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.design-body h3{
+  font-family:"Chakra Petch",sans-serif;
+  font-size:20px;
+  text-transform:uppercase;
+}
+
+.design-desc{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+  flex:1;
+}
+
+.design-tags{
+  margin-top:15px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.design-tags span{
+  padding:3px 8px;
+  border-radius:3px;
+  background:rgba(255,255,255,0.04);
+  color:var(--muted);
+  font-size:10px;
+  font-weight:600;
+}
+
+.design-actions{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.design-btn{
+  padding:10px;
+  border:1px solid var(--border-bright);
+  border-radius:4px;
+  background:var(--bg-soft);
+  color:var(--text);
+  font-family:"Chakra Petch",sans-serif;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  text-align:center;
+  transition:.2s;
+}
+
+.design-btn:hover{
+  border-color:var(--accent);
+  color:var(--accent);
+}
+
+.design-btn.primary{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#000;
+}
+
+.design-btn.primary:hover{
+  background:#33ebff;
+}
+
+/* PACKAGES */
+
+.package-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+
+.package-card{
+  padding:36px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--panel);
+  position:relative;
+}
+
+.package-card.featured{
+  border-color:var(--accent);
+  box-shadow:var(--shadow-glow);
+}
+
+.package-card h2{
+  font-family:"Chakra Petch",sans-serif;
+  font-size:32px;
+  text-transform:uppercase;
+}
+
+.package-price{
+  margin-top:15px;
+  font-family:"Chakra Petch",sans-serif;
+  font-size:46px;
+  font-weight:700;
+  color:var(--accent);
+}
+
+.package-price small{
+  font-size:18px;
+  color:var(--muted);
+}
+
+.package-features{
+  margin-top:25px;
+  display:grid;
+  gap:10px;
+}
+
+.package-feature{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+  color:var(--text);
+}
+
+.package-feature:before{
+  content:"✓";
+  color:var(--accent);
+  font-weight:900;
+}
+
+/* PREVIEW MODAL */
+
+.preview-modal{
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  display:none;
+  flex-direction:column;
+  background:#05070a;
+}
+
+.preview-modal.open{
+  display:flex;
+}
+
+.preview-toolbar{
+  min-height:64px;
+  padding:10px 20px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:20px;
+  align-items:center;
+  background:var(--panel);
+  border-bottom:1px solid var(--border);
+}
+
+.preview-back{
+  padding:8px 16px;
+  border:1px solid var(--border-bright);
+  border-radius:4px;
+  background:var(--bg-soft);
+  color:var(--text);
+  font-family:"Chakra Petch",sans-serif;
+  font-size:12px;
+  font-weight:700;
+  text-transform:uppercase;
+}
+
+.preview-info strong{
+  display:block;
+  font-family:"Chakra Petch",sans-serif;
+  font-size:18px;
+  text-transform:uppercase;
+}
+
+.preview-info span{
+  display:block;
+  color:var(--accent);
+  font-size:11px;
+  font-weight:700;
+}
+
+.preview-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.preview-stage{
+  flex:1;
+  padding:15px;
+  display:flex;
+  justify-content:center;
+  background:#000;
+}
+
+.preview-shell{
+  width:100%;
+  height:100%;
+  border-radius:8px;
+  overflow:hidden;
+  background:#fff;
+  transition:width .3s ease;
+}
+
+.preview-shell.desktop{ width:100%; }
+.preview-shell.tablet{ width:820px; }
+.preview-shell.mobile{ width:390px; }
+
+.preview-frame{
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+/* FOOTER */
+
+footer{
+  padding:50px 0 25px;
+  background:var(--bg-soft);
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:13px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr;
+  gap:40px;
+}
+
+.footer-bottom{
+  margin-top:40px;
+  padding-top:20px;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+}
+
+.float-wa{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:999;
+  padding:12px 20px;
+  border-radius:99px;
+  background:var(--green);
+  color:#fff;
+  font-family:"Chakra Petch",sans-serif;
+  font-size:13px;
+  font-weight:700;
+  text-transform:uppercase;
+  box-shadow:0 10px 30px rgba(37,211,102,0.3);
+}
+
+@media(max-width:900px){
+  .design-grid{ grid-template-columns:1fr 1fr; }
+  .home-grid, .page-hero-grid, .package-grid, .footer-grid{ grid-template-columns:1fr; }
+  .nav-links{ display:none; }
+  .menu-btn{ display:block; }
+}
+
+@media(max-width:600px){
+  .design-grid{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="wrap nav">
+    <button class="brand nav-route" data-route="home">
+      <span class="brand-mark">C</span>
+      <span class="brand-copy">
+        <strong>Car Detailing</strong>
+        <span>Showcase Collection</span>
+      </span>
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <button class="nav-link nav-route" data-route="home">Home</button>
+      <button class="nav-link nav-route" data-route="portfolio">Portfolio</button>
+      <button class="nav-link nav-route" data-route="starter">Starter</button>
+      <button class="nav-link nav-route" data-route="advance">Advance & Portal</button>
+      <button class="nav-link nav-route" data-route="packages">Packages</button>
+      <button class="nav-link nav-route" data-route="contact">Contact</button>
+    </nav>
+
+    <button class="nav-cta nav-route" data-route="contact">Get Started</button>
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </div>
+</header>
+
+<main>
+
+<!-- HOME PAGE -->
+<section class="page active" data-page="home">
+  <div class="home-hero">
+    <div class="wrap home-grid">
+      <div>
+        <div class="home-badge">✦ High-Performance Auto Detailer Designs</div>
+        <h1>Dominate the local <span>Detailing</span> market</h1>
+        <p>Showcase ceramic coatings, PPF installations, paint correction, and interior detailing with precision-engineered web designs built to convert car enthusiasts into clients.</p>
+        
+        <div class="page-actions">
+          <button class="btn btn-primary nav-route" data-route="portfolio">Explore Portfolio</button>
+          <button class="btn btn-secondary nav-route" data-route="packages">View Pricing</button>
+        </div>
+
+        <div class="home-tags">
+          <span>Ceramic Coating</span>
+          <span>Paint Protection Film (PPF)</span>
+          <span>Auto Spa</span>
+          <span>Customer Booking Portal</span>
+        </div>
+      </div>
+
+      <div class="home-visual">
+        <div class="home-card-main">
+          <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1000&q=85" alt="Car Detailing">
+          <div class="home-card-overlay">
+            <strong>Interactive Customer Portals</strong>
+            <p>Live status tracking, job updates, and service estimator integration.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO PAGE -->
+<section class="page" data-page="portfolio">
+  <div class="page-hero">
+    <div class="wrap page-hero-grid">
+      <div>
+        <div class="eyebrow">Design Showcase</div>
+        <div class="title">Car Detailing Templates</div>
+        <p class="copy">Select any template below to test full interactive desktop, tablet, and mobile previews.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div class="wrap">
+      <div class="portfolio-tools">
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-filter="all">All Templates</button>
+          <button class="filter-btn" data-filter="starter">Starter</button>
+          <button class="filter-btn" data-filter="advance">Advance & Portal</button>
+        </div>
+
+        <div class="search-box">
+          <input id="portfolioSearch" type="search" placeholder="Search templates...">
+        </div>
+      </div>
+
+      <div id="starterSection">
+        <div class="collection-intro">
+          <div class="collection-title">
+            <h2>Starter Collection</h2>
+          </div>
+        </div>
+        <div class="design-grid" id="starterGrid"></div>
+      </div>
+
+      <div id="advanceSection">
+        <div class="collection-intro">
+          <div class="collection-title">
+            <h2>Advance & Portal Collection</h2>
+          </div>
+        </div>
+        <div class="design-grid" id="advanceGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STARTER PAGE -->
+<section class="page" data-page="starter">
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">Starter Tier</div>
+      <div class="title">Starter Detailing Designs</div>
+      <p class="copy">Sleek, high-converting one-page layouts built for quick setup and fast WhatsApp leads.</p>
+    </div>
+  </div>
+  <div class="content-section">
+    <div class="wrap">
+      <div class="design-grid" id="starterPageGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVANCE PAGE -->
+<section class="page" data-page="advance">
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">Signature & Portal Tier</div>
+      <div class="title">Advance, HUD & Portal Designs</div>
+      <p class="copy">Multi-page experience featuring HUD vehicle selectors, editorial layouts, and customer dashboard management portals.</p>
+    </div>
+  </div>
+  <div class="content-section">
+    <div class="wrap">
+      <div class="design-grid" id="advancePageGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES PAGE -->
+<section class="page" data-page="packages">
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">Pricing Plans</div>
+      <div class="title">Detailing Website Packages</div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div class="wrap package-grid">
+      <div class="package-card">
+        <h2>Starter Package</h2>
+        <div class="package-price"><small>RM</small>499</div>
+        <p style="color:var(--muted);margin-top:10px;">Perfect for independent detailers and mobile auto spa setups.</p>
+        <div class="package-features">
+          <div class="package-feature">Single-page responsive layout</div>
+          <div class="package-feature">Services & Package price list</div>
+          <div class="package-feature">Before/After Transformation Slider</div>
+          <div class="package-feature">Direct WhatsApp booking link</div>
+        </div>
+      </div>
+
+      <div class="package-card featured">
+        <h2>Signature & Portal</h2>
+        <div class="package-price"><small>RM</small>1,299</div>
+        <p style="color:var(--muted);margin-top:10px;">Full-scale system with vehicle status tracking & HUD UI features.</p>
+        <div class="package-features">
+          <div class="package-feature">Multi-page architectural navigation</div>
+          <div class="package-feature">Customer Dashboard / Portal page</div>
+          <div class="package-feature">Interactive Graphic HUD detailing viewer</div>
+          <div class="package-feature">Bilingual support setup</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT PAGE -->
+<section class="page" data-page="contact">
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">Get In Touch</div>
+      <div class="title">Start Your Detailing Project</div>
+      <p class="copy">Ready to upgrade your studio's online image? Send us an inquiry today.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <strong style="font-family:'Chakra Petch';font-size:18px;color:#fff;text-transform:uppercase;">Car Detailing Collection</strong>
+      <p style="margin-top:10px;">Engineered web solutions for auto aesthetic specialists.</p>
+    </div>
+    <div>
+      <h4 style="color:#fff;margin-bottom:10px;">Navigation</h4>
+      <p><a href="#/portfolio">Portfolio</a></p>
+      <p><a href="#/packages">Packages</a></p>
+    </div>
+    <div>
+      <h4 style="color:#fff;margin-bottom:10px;">Contact</h4>
+      <p>WhatsApp: +60 18-907 9798</p>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 Plannique Design Co. All rights reserved.</span>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/60189079798" target="_blank">💬 WhatsApp Inquiry</a>
+
+<!-- PREVIEW MODAL -->
+<div class="preview-modal" id="previewModal">
+  <div class="preview-toolbar">
+    <button class="preview-back" id="closePreview">← Back</button>
+    <div class="preview-info">
+      <strong id="previewThemeName">Theme Name</strong>
+      <span id="previewThemeMeta">Package Code</span>
+    </div>
+    <div class="preview-actions">
+      <a class="btn btn-primary" id="openFullDemo" href="#" target="_blank">Open Direct File ↗</a>
+    </div>
+  </div>
+  <div class="preview-stage">
+    <div class="preview-shell" id="previewShell">
+      <iframe class="preview-frame" id="previewFrame" src=""></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+/* 
+  Exact file list matching your car-detailing repository screenshot:
+  - starter.html
+  - starter-light-detailing.html
+  - advance.html
+  - advance1.html
+  - graphic-hud-detailing.html
+  - editorial-graphic-detailing.html
+  - advance-dashboard-portal.html
+*/
+
+const detailingDesigns = [
+  {
+    package: "starter",
+    name: "Dark Ceramic Studio",
+    code: "DET-STR-01",
+    file: "starter.html",
+    style: "Dark Cyber-Tech",
+    desc: "A bold dark-mode one-pager built for high-end ceramic coating and paint correction specialists.",
+    image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=85",
+    tags: ["Starter", "Dark Mode", "Ceramic Coating"]
+  },
+  {
+    package: "starter",
+    name: "Light Auto Spa",
+    code: "DET-STR-02",
+    file: "starter-light-detailing.html",
+    style: "Clean Minimalist Light",
+    desc: "Clean, high-contrast light theme highlighting interior detailing, leather treatment, and express washes.",
+    image: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=85",
+    tags: ["Starter", "Light Theme", "Auto Spa"]
+  },
+  {
+    package: "advance",
+    name: "Apex Performance Studio",
+    code: "DET-ADV-01",
+    file: "advance.html",
+    style: "Multi-Page Performance",
+    desc: "Comprehensive multi-page website featuring PPF installation guides and treatment comparisons.",
+    image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=800&q=85",
+    tags: ["Advance", "Multi-Page", "PPF Focus"]
+  },
+  {
+    package: "advance",
+    name: "Pro Shield Detailing",
+    code: "DET-ADV-02",
+    file: "advance1.html",
+    style: "Sleek Carbon Metallic",
+    desc: "Metallic-accented design tailored for luxury supercars, exotic vehicle wraps, and window tinting.",
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=85",
+    tags: ["Advance", "Supercars", "Protection"]
+  },
+  {
+    package: "advance",
+    name: "Graphic HUD Detailing",
+    code: "DET-ADV-HUD",
+    file: "graphic-hud-detailing.html",
+    style: "Sci-Fi HUD UI",
+    desc: "Futuristic Heads-Up Display interface with visual vehicle inspection and layer breakdown.",
+    image: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=85",
+    tags: ["Advance", "HUD Graphics", "Interactive"]
+  },
+  {
+    package: "advance",
+    name: "Editorial Graphics Detailing",
+    code: "DET-ADV-EDT",
+    file: "editorial-graphic-detailing.html",
+    style: "High-Fashion Editorial",
+    desc: "Magazine-style bold typography layout showcasing bespoke auto artistry and full color wraps.",
+    image: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=85",
+    tags: ["Advance", "Editorial", "Custom Wraps"]
+  },
+  {
+    package: "advance",
+    name: "Client Dashboard & Portal",
+    code: "DET-ADV-PRT",
+    file: "advance-dashboard-portal.html",
+    style: "Customer Web Portal",
+    desc: "Interactive customer dashboard allowing clients to track vehicle detailing status and download warranty cards.",
+    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=85",
+    tags: ["Portal", "Client Tracking", "Dashboard"]
+  }
+];
+
+function createCard(design){
+  return `
+    <div class="design-card">
+      <div class="design-preview">
+        <img src="${design.image}" alt="${design.name}">
+        <span class="design-badge">${design.package}</span>
+        <span class="design-code">${design.code}</span>
+      </div>
+      <div class="design-body">
+        <h3>${design.name}</h3>
+        <p class="design-desc">${design.desc}</p>
+        <div class="design-tags">
+          ${design.tags.map(t=>`<span>${t}</span>`).join("")}
+        </div>
+        <div class="design-actions">
+          <button class="design-btn" onclick="openPreview('${design.code}')">Preview</button>
+          <a class="design-btn primary" href="starter-light-detailing.html" target="_blank">View File</a>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Render Grids
+const starterItems = detailingDesigns.filter(d=>d.package==='starter');
+const advanceItems = detailingDesigns.filter(d=>d.package==='advance');
+
+document.getElementById('starterGrid').innerHTML = starterItems.map(createCard).join('');
+document.getElementById('advanceGrid').innerHTML = advanceItems.map(createCard).join('');
+document.getElementById('starterPageGrid').innerHTML = starterItems.map(createCard).join('');
+document.getElementById('advancePageGrid').innerHTML = advanceItems.map(createCard).join('');
+
+// Navigation Handling
+const pages = document.querySelectorAll('.page');
+function showPage(route){
+  pages.forEach(p => p.classList.toggle('active', p.dataset.page === route));
+  window.scrollTo(0,0);
+}
+
+document.querySelectorAll('.nav-route').forEach(btn => {
+  btn.addEventListener('click', () => showPage(btn.dataset.route));
+});
+
+// Modal Preview
+const modal = document.getElementById('previewModal');
+const iframe = document.getElementById('previewFrame');
+
+function openPreview(code){
+  const item = detailingDesigns.find(d => d.code === code);
+  if(!item) return;
+  document.getElementById('previewThemeName').textContent = item.name;
+  document.getElementById('previewThemeMeta').textContent = `${item.code} · ${item.file}`;
+  document.getElementById('openFullDemo').href = item.file;
+  iframe.src = item.file;
+  modal.classList.add('open');
+}
+
+document.getElementById('closePreview').addEventListener('click', () => {
+  modal.classList.remove('open');
+  iframe.src = '';
+});
+</script>
+
+</body>
+</html>
