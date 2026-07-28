@@ -1,285 +1,1183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KRONOS LABS | Bespoke Auto Detailing & PPF Portal</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        .font-tech { font-family: 'Chakra Petch', sans-serif; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: tabFade 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes tabFade {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KRONOS LABS | Signature Automotive Protection Studio</title>
+<meta name="description" content="KRONOS LABS is a cinematic automotive protection studio specialising in paint protection film, ceramic coating, paint correction, interior restoration and luxury vehicle care.">
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --black:#050506;
+  --graphite:#0e1013;
+  --panel:#15181d;
+  --panel2:#1b1f25;
+  --sand:#d6c3a3;
+  --amber:#f1b64c;
+  --cream:#f5efe4;
+  --white:#f7f8fa;
+  --muted:#9ba1a8;
+  --line:rgba(255,255,255,.09);
+  --green:#25d366;
+  --red:#ff665f;
+  --shadow:0 30px 90px rgba(0,0,0,.48);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:"Manrope",Arial,sans-serif;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;object-fit:cover}
+button,input,select,textarea{font:inherit}
+
+.shell{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(5,5,6,.92);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  width:min(1440px,calc(100% - 34px));
+  margin:auto;
+  min-height:78px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:20px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  white-space:nowrap;
+}
+.brand-mark{
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:1px solid var(--amber);
+  color:var(--amber);
+  font-family:"Chakra Petch";
+  font-weight:700;
+}
+.brand-copy strong{
+  display:block;
+  font-family:"Chakra Petch";
+  letter-spacing:1px;
+  font-size:17px;
+}
+.brand-copy span{
+  display:block;
+  margin-top:2px;
+  color:var(--sand);
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.menu-wrap{min-width:0;overflow:hidden}
+.menu{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  scroll-snap-type:x proximity;
+}
+.menu::-webkit-scrollbar{display:none}
+.tab-btn{
+  flex:0 0 auto;
+  padding:10px 14px;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  color:#8e959e;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.tab-btn.active{
+  background:var(--cream);
+  color:#111;
+}
+.reserve-btn{
+  border:1px solid var(--amber);
+  background:transparent;
+  color:var(--amber);
+  padding:12px 17px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.view{
+  display:none;
+  animation:fade .35s ease;
+}
+.view.active{display:block}
+@keyframes fade{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+
+.hero{
+  min-height:calc(100vh - 78px);
+  position:relative;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;
+  inset:0;
+}
+.hero-bg img{height:100%}
+.hero-bg:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(5,5,6,.98) 0%,rgba(5,5,6,.78) 38%,rgba(5,5,6,.22) 76%,rgba(5,5,6,.5) 100%),
+    linear-gradient(to top,rgba(5,5,6,.88),transparent 48%);
+}
+.hero-content{
+  width:min(1440px,calc(100% - 34px));
+  margin:auto;
+  min-height:calc(100vh - 78px);
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+}
+.hero-copy{
+  max-width:760px;
+  padding:70px 0;
+}
+.kicker{
+  font-family:"Chakra Petch";
+  color:var(--amber);
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:11px;
+}
+h1,h2,h3{font-family:"Chakra Petch",sans-serif}
+h1{
+  margin-top:18px;
+  font-size:clamp(64px,9vw,140px);
+  line-height:.82;
+  text-transform:uppercase;
+  letter-spacing:-3px;
+}
+h1 span{
+  display:block;
+  color:var(--sand);
+}
+.hero-copy p{
+  max-width:610px;
+  margin-top:24px;
+  color:#c4c9cf;
+  line-height:1.75;
+  font-size:16px;
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:28px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  border:1px solid var(--line);
+  padding:14px 20px;
+  background:var(--panel);
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+.btn.amber{
+  background:var(--amber);
+  border-color:var(--amber);
+  color:#111;
+}
+.btn.cream{
+  background:var(--cream);
+  border-color:var(--cream);
+  color:#111;
+}
+.btn.wa{
+  background:var(--green);
+  border-color:var(--green);
+}
+.hero-index{
+  position:absolute;
+  z-index:3;
+  right:30px;
+  bottom:28px;
+  display:flex;
+  gap:10px;
+}
+.index-card{
+  width:175px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:rgba(15,17,20,.78);
+  backdrop-filter:blur(14px);
+}
+.index-card strong{
+  display:block;
+  font-family:"Chakra Petch";
+  font-size:24px;
+  color:var(--amber);
+}
+.index-card span{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.page{
+  width:min(1320px,calc(100% - 34px));
+  margin:auto;
+  padding:72px 0 90px;
+}
+.page-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:30px;
+  margin-bottom:34px;
+}
+.page-head h2{
+  margin-top:10px;
+  font-size:clamp(44px,6vw,88px);
+  line-height:.9;
+  text-transform:uppercase;
+}
+.page-copy{
+  max-width:520px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.story-stack{
+  display:grid;
+  gap:26px;
+}
+.story{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:560px;
+  border:1px solid var(--line);
+  border-radius:28px;
+  overflow:hidden;
+  background:var(--graphite);
+}
+.story:nth-child(even) .story-image{order:2}
+.story-image img{height:100%}
+.story-copy{
+  padding:54px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.story-no{
+  color:var(--amber);
+  font-family:"Chakra Petch";
+  font-size:13px;
+  letter-spacing:2px;
+}
+.story h3{
+  margin-top:12px;
+  font-size:46px;
+  line-height:.95;
+  text-transform:uppercase;
+}
+.story p{
+  margin-top:18px;
+  color:var(--muted);
+  line-height:1.75;
+}
+.specs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:24px;
+}
+.spec{
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--panel);
+}
+.spec strong{
+  display:block;
+  color:var(--sand);
+  font-size:13px;
+}
+.spec span{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.compare-wrap{
+  display:grid;
+  grid-template-columns:1fr .45fr;
+  gap:24px;
+}
+.compare{
+  position:relative;
+  height:620px;
+  border-radius:28px;
+  overflow:hidden;
+  border:1px solid var(--line);
+}
+.compare img{
+  position:absolute;
+  inset:0;
+  height:100%;
+}
+.compare-after{
+  clip-path:inset(0 0 0 50%);
+}
+.compare-line{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:50%;
+  width:2px;
+  background:#fff;
+  z-index:3;
+  pointer-events:none;
+}
+.compare-line:after{
+  content:"↔";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#fff;
+  color:#111;
+  font-weight:900;
+}
+.compare input{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:0;
+  cursor:ew-resize;
+  z-index:4;
+}
+.compare-label{
+  position:absolute;
+  z-index:2;
+  top:18px;
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+.compare-label.before{
+  left:18px;
+  background:rgba(122,20,20,.78);
+}
+.compare-label.after{
+  right:18px;
+  background:rgba(18,107,63,.78);
+}
+.result-panel{
+  display:grid;
+  gap:14px;
+}
+.result-card{
+  padding:22px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:18px;
+}
+.result-card strong{
+  display:block;
+  font-family:"Chakra Petch";
+  font-size:28px;
+  color:var(--amber);
+}
+.result-card span{
+  display:block;
+  margin-top:6px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.selector-layout{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:24px;
+}
+.selector-panel,.quote-panel{
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:var(--graphite);
+}
+.selector-group + .selector-group{margin-top:22px}
+.selector-group label{
+  display:block;
+  color:#aeb4bc;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  font-weight:800;
+}
+.chip-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+.chip{
+  padding:15px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:#cbd0d6;
+  border-radius:13px;
+  cursor:pointer;
+  font-weight:800;
+}
+.chip.active{
+  border-color:var(--amber);
+  color:#fff;
+  box-shadow:inset 0 0 0 1px var(--amber);
+}
+.addons{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+}
+.addon{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:12px;
+  align-items:center;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:var(--panel);
+}
+.addon input{
+  width:17px;
+  height:17px;
+  accent-color:var(--amber);
+}
+.addon strong{font-size:13px}
+.addon span{
+  color:var(--muted);
+  font-size:11px;
+}
+.addon-price{
+  color:var(--amber)!important;
+  font-family:"Chakra Petch";
+  white-space:nowrap;
+}
+.quote-total{
+  font-family:"Chakra Petch";
+  font-size:48px;
+  color:var(--amber);
+  margin-top:8px;
+}
+.quote-duration{
+  color:var(--muted);
+  font-size:12px;
+}
+.quote-list{
+  display:grid;
+  gap:8px;
+  margin-top:20px;
+  font-size:12px;
+}
+.quote-list div{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+.quote-form{
+  display:grid;
+  gap:11px;
+  margin-top:22px;
+}
+.quote-form input,.quote-form select,.contact-form input,.contact-form select,.contact-form textarea{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:#0a0b0d;
+  color:#fff;
+}
+
+.journal-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr .8fr;
+  grid-auto-rows:260px;
+  gap:14px;
+}
+.journal-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  border:1px solid var(--line);
+}
+.journal-card:first-child{grid-row:span 2}
+.journal-card img{height:100%}
+.journal-card:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.82),transparent 58%);
+}
+.journal-copy{
+  position:absolute;
+  z-index:2;
+  left:18px;
+  right:18px;
+  bottom:18px;
+}
+.journal-copy span{
+  color:var(--amber);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+}
+.journal-copy h3{
+  margin-top:6px;
+  font-size:24px;
+}
+
+.concierge{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:24px;
+}
+.location-card,.contact-card{
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:var(--graphite);
+}
+.location-card h3,.contact-card h3{
+  font-size:34px;
+}
+.location-card p{
+  margin-top:12px;
+  color:var(--muted);
+  line-height:1.7;
+}
+.info-list{
+  display:grid;
+  gap:10px;
+  margin-top:18px;
+}
+.info-list div{
+  padding:13px;
+  border-radius:11px;
+  background:var(--panel);
+}
+.map{
+  margin-top:20px;
+  height:330px;
+  border-radius:16px;
+  overflow:hidden;
+}
+.map iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+.contact-form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:18px;
+}
+.contact-form textarea{
+  grid-column:1/-1;
+  min-height:130px;
+}
+.contact-form button{grid-column:1/-1}
+
+.mobile-nav{display:none}
+
+@media(max-width:980px){
+  .header-inner{grid-template-columns:auto 1fr}
+  .reserve-btn{display:none}
+  .page-head{display:block}
+  .page-copy{margin-top:14px}
+  .story,.compare-wrap,.selector-layout,.concierge{grid-template-columns:1fr}
+  .story:nth-child(even) .story-image{order:0}
+  .story{min-height:auto}
+  .story-image{height:420px}
+  .hero-index{display:none}
+  .journal-grid{grid-template-columns:1fr 1fr}
+  .journal-card:first-child{grid-row:auto;grid-column:1/-1}
+}
+@media(max-width:680px){
+  body{padding-bottom:72px}
+  .header-inner{
+    grid-template-columns:1fr;
+    gap:8px;
+    padding:10px 0;
+  }
+  .brand{justify-content:center}
+  .menu{
+    justify-content:flex-start;
+    padding-bottom:4px;
+  }
+  .hero-content{align-items:flex-end}
+  .hero-copy{padding:80px 0 50px}
+  h1{font-size:58px}
+  .page{padding-top:46px}
+  .story-copy{padding:28px}
+  .story h3{font-size:36px}
+  .specs,.chip-grid,.contact-form{grid-template-columns:1fr}
+  .contact-form textarea,.contact-form button{grid-column:auto}
+  .compare{height:470px}
+  .journal-grid{grid-template-columns:1fr;grid-auto-rows:250px}
+  .journal-card:first-child{grid-column:auto}
+  .mobile-nav{
+    display:flex;
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:1200;
+    overflow-x:auto;
+    gap:7px;
+    padding:9px;
+    background:#0b0d10;
+    border-top:1px solid var(--line);
+  }
+  .mobile-nav button{
+    flex:0 0 auto;
+    border:1px solid var(--line);
+    background:var(--panel);
+    color:#9ca3ac;
+    padding:10px 12px;
+    border-radius:10px;
+    font-size:11px;
+    font-weight:800;
+  }
+  .mobile-nav button.active{
+    color:#111;
+    background:var(--cream);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+}
+</style>
 </head>
-<body class="bg-black text-stone-100 antialiased selection:bg-amber-400 selection:text-black">
 
-    <!-- Top Navigation Header with Interactive Tabs -->
-    <header class="border-b border-stone-800/80 bg-black/90 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            
-            <!-- Brand Logo -->
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-amber-400 text-black font-tech font-extrabold flex items-center justify-center text-xl rounded-lg">K</div>
-                <div class="font-tech text-xl font-bold tracking-wider text-white uppercase">
-                    KRONOS <span class="text-amber-400 text-xs font-mono block tracking-widest">DETAILED LABS</span>
-                </div>
-            </div>
+<body>
 
-            <!-- INTERACTIVE MULTI-PAGE TABS -->
-            <nav class="hidden lg:flex bg-stone-900/80 p-1.5 rounded-full border border-stone-800 text-xs">
-                <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn px-5 py-2 rounded-full font-bold uppercase tracking-wider transition-all text-amber-400 bg-stone-800">
-                    01. Studio
-                </button>
-                <button onclick="switchTab('ppf')" id="tab-ppf" class="tab-btn px-5 py-2 rounded-full font-bold uppercase tracking-wider transition-all text-stone-400 hover:text-stone-200">
-                    02. PPF & Ceramic
-                </button>
-                <button onclick="switchTab('showcase')" id="tab-showcase" class="tab-btn px-5 py-2 rounded-full font-bold uppercase tracking-wider transition-all text-stone-400 hover:text-stone-200">
-                    03. Before / After
-                </button>
-                <button onclick="switchTab('estimator')" id="tab-estimator" class="tab-btn px-5 py-2 rounded-full font-bold uppercase tracking-wider transition-all text-stone-400 hover:text-stone-200">
-                    04. Instant Estimator
-                </button>
-            </nav>
+<div class="shell">
+<header>
+  <div class="header-inner">
+    <a class="brand" href="#" onclick="showView('studio');return false;">
+      <div class="brand-mark">K</div>
+      <div class="brand-copy">
+        <strong>KRONOS LABS</strong>
+        <span>Automotive Protection Atelier</span>
+      </div>
+    </a>
 
-            <button onclick="switchTab('estimator')" class="bg-amber-400 text-black px-5 py-2.5 rounded-xl font-tech font-bold text-xs uppercase tracking-widest hover:bg-amber-300 transition-all shadow-lg shadow-amber-400/20">
-                Book Slot
-            </button>
+    <div class="menu-wrap">
+      <nav class="menu">
+        <button class="tab-btn active" data-view="studio">Studio</button>
+        <button class="tab-btn" data-view="protection">Protection Stories</button>
+        <button class="tab-btn" data-view="results">Before / After</button>
+        <button class="tab-btn" data-view="selector">Protection Selector</button>
+        <button class="tab-btn" data-view="journal">Studio Journal</button>
+        <button class="tab-btn" data-view="concierge">Concierge</button>
+      </nav>
+    </div>
+
+    <button class="reserve-btn" onclick="showView('concierge')">Reserve Studio Slot</button>
+  </div>
+</header>
+
+<main>
+
+<section class="view active" id="view-studio">
+  <div class="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=2000&q=86" alt="Luxury detailing studio">
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-copy">
+        <div class="kicker">Signature Automotive Protection</div>
+        <h1>Engineered<br><span>to preserve.</span></h1>
+        <p>
+          A cinematic automotive protection studio specialising in paint protection film,
+          ceramic coating, paint correction and interior restoration for luxury and performance vehicles.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn amber" onclick="showView('protection')">Explore Protection</button>
+          <button class="btn wa" onclick="showView('concierge')">Book via WhatsApp</button>
         </div>
-    </header>
-
-    <!-- ================================================================= -->
-    <!-- TAB 1: STUDIO OVERVIEW PAGE                                       -->
-    <!-- ================================================================= -->
-    <div id="content-overview" class="tab-content active">
-        <section class="relative min-h-[80vh] flex items-center justify-center px-6 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=2000&q=80" alt="Supercar Detailing Studio" class="absolute inset-0 w-full h-full object-cover opacity-30">
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-
-            <div class="relative z-10 max-w-4xl text-center space-y-6">
-                <span class="font-tech text-xs uppercase tracking-[0.4em] text-amber-400 bg-amber-950/50 border border-amber-800/40 px-4 py-1.5 rounded-full">
-                    Dust-Free Cleanroom Facilities • Bangsar KL
-                </span>
-                <h1 class="font-tech text-5xl sm:text-7xl text-white uppercase tracking-tight leading-tight">
-                    Precision Craft. <br><span class="text-amber-400">Flawless Finish.</span>
-                </h1>
-                <p class="text-xs sm:text-sm text-stone-400 max-w-xl mx-auto font-light leading-relaxed tracking-wider">
-                    Specialized in self-healing Paint Protection Film (PPF), multi-stage paint correction, and custom interior restoration for exotic and luxury vehicles.
-                </p>
-                <div class="pt-4 flex justify-center gap-4">
-                    <button onclick="switchTab('ppf')" class="bg-amber-400 text-black font-tech font-bold px-8 py-3.5 rounded-xl text-xs uppercase tracking-widest hover:bg-amber-300 transition-all">
-                        Explore Film & Coatings
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Studio Specs Bar -->
-        <section class="border-y border-stone-800 bg-stone-950 py-8">
-            <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div>
-                    <div class="font-tech text-2xl text-amber-400">100% DUST FREE</div>
-                    <div class="text-[10px] uppercase text-stone-500 tracking-widest mt-1">Climate Controlled Bay</div>
-                </div>
-                <div>
-                    <div class="font-tech text-2xl text-amber-400">XPEL & STEK</div>
-                    <div class="text-[10px] uppercase text-stone-500 tracking-widest mt-1">Authorized Installers</div>
-                </div>
-                <div>
-                    <div class="font-tech text-2xl text-amber-400">10-YEAR</div>
-                    <div class="text-[10px] uppercase text-stone-500 tracking-widest mt-1">PPF Manufacturer Warranty</div>
-                </div>
-                <div>
-                    <div class="font-tech text-2xl text-amber-400">1,200+</div>
-                    <div class="text-[10px] uppercase text-stone-500 tracking-widest mt-1">Exotics Protected</div>
-                </div>
-            </div>
-        </section>
+      </div>
     </div>
 
-    <!-- ================================================================= -->
-    <!-- TAB 2: PPF & CERAMIC SERVICES                                    -->
-    <!-- ================================================================= -->
-    <div id="content-ppf" class="tab-content">
-        <section class="max-w-7xl mx-auto px-6 py-16 space-y-12">
-            <div class="text-center max-w-xl mx-auto space-y-3">
-                <span class="font-tech text-xs uppercase tracking-[0.3em] text-amber-400">Surface Armor</span>
-                <h2 class="font-tech text-4xl text-white">PAINT PROTECTION FILM (PPF)</h2>
-            </div>
+    <div class="hero-index">
+      <div class="index-card">
+        <strong>10-Year</strong>
+        <span>Selected PPF warranty</span>
+      </div>
+      <div class="index-card">
+        <strong>Dust-Free</strong>
+        <span>Climate-controlled installation bay</span>
+      </div>
+      <div class="index-card">
+        <strong>1,200+</strong>
+        <span>Vehicles protected</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Service Card 1 -->
-                <div class="bg-stone-900/50 border border-stone-800 rounded-3xl p-8 space-y-6">
-                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80" alt="Porsche PPF Installation" class="rounded-2xl h-56 w-full object-cover">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center">
-                            <h3 class="font-tech text-2xl text-amber-200">Full Stealth / Gloss PPF</h3>
-                            <span class="text-xs text-amber-400 font-mono font-bold">10-Yr Warranty</span>
-                        </div>
-                        <p class="text-xs text-stone-400 leading-relaxed font-light">
-                            8-mil thick self-healing polyurethane film protecting full bodywork against rock chips, scratches, acid rain, and bird droppings.
-                        </p>
-                        <div class="pt-2 text-[11px] text-stone-400 flex flex-wrap gap-4 border-t border-stone-800">
-                            <span>• Computerized Precision Cut</span>
-                            <span>• Self-Healing Heat Technology</span>
-                            <span>• Hydrophobic Topcoat</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service Card 2 -->
-                <div class="bg-stone-900/50 border border-stone-800 rounded-3xl p-8 space-y-6">
-                    <img src="https://images.unsplash.com/photo-1520050206274-a1ae44613e6d?auto=format&fit=crop&w=1000&q=80" alt="Ceramic Coating" class="rounded-2xl h-56 w-full object-cover">
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center">
-                            <h3 class="font-tech text-2xl text-amber-200">Graphene Ceramic Matrix</h3>
-                            <span class="text-xs text-amber-400 font-mono font-bold">5-Yr Warranty</span>
-                        </div>
-                        <p class="text-xs text-stone-400 leading-relaxed font-light">
-                            Advanced atomized Graphene coating providing deep wet mirror reflections, extreme hydrophobic water beading, and UV resistance.
-                        </p>
-                        <div class="pt-2 text-[11px] text-stone-400 flex flex-wrap gap-4 border-t border-stone-800">
-                            <span>• 10H Hardness Standard</span>
-                            <span>• Dual Layer Application</span>
-                            <span>• Infrared Cured</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="view" id="view-protection">
+  <div class="page">
+    <div class="page-head">
+      <div>
+        <div class="kicker">Protection Stories</div>
+        <h2>Different surfaces. Different systems.</h2>
+      </div>
+      <p class="page-copy">Each protection solution is presented as a full visual story rather than a standard service-card grid.</p>
     </div>
 
-    <!-- ================================================================= -->
-    <!-- TAB 3: BEFORE / AFTER SHOWCASE                                    -->
-    <!-- ================================================================= -->
-    <div id="content-showcase" class="tab-content">
-        <section class="max-w-6xl mx-auto px-6 py-16 space-y-12">
-            <div class="text-center max-w-xl mx-auto space-y-3">
-                <span class="font-tech text-xs uppercase tracking-[0.3em] text-amber-400">Paint Correction Proof</span>
-                <h2 class="font-tech text-4xl text-white">3-STAGE RESTORATION</h2>
-            </div>
+    <div class="story-stack">
+      <article class="story">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1300&q=86" alt="Paint protection film installation">
+        </div>
+        <div class="story-copy">
+          <div class="story-no">01 / IMPACT PROTECTION</div>
+          <h3>Self-healing paint protection film.</h3>
+          <p>Transparent polyurethane film designed to protect high-impact panels or the full vehicle against stone chips, light scratches and environmental contamination.</p>
+          <div class="specs">
+            <div class="spec"><strong>Coverage</strong><span>Front-end or full body</span></div>
+            <div class="spec"><strong>Finish</strong><span>Gloss or satin</span></div>
+            <div class="spec"><strong>Technology</strong><span>Heat-assisted self healing</span></div>
+            <div class="spec"><strong>Warranty</strong><span>Up to 10 years</span></div>
+          </div>
+        </div>
+      </article>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Before/After Card 1 -->
-                <div class="bg-stone-900 border border-stone-800 rounded-3xl p-6 space-y-4">
-                    <div class="grid grid-cols-2 gap-2">
-                        <div class="relative">
-                            <span class="absolute top-3 left-3 bg-red-900/80 text-red-200 text-[10px] uppercase font-bold px-2 py-1 rounded">Before (Swirl Marks)</span>
-                            <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80" alt="Scratched paint" class="rounded-xl h-48 w-full object-cover">
-                        </div>
-                        <div class="relative">
-                            <span class="absolute top-3 left-3 bg-emerald-900/80 text-emerald-200 text-[10px] uppercase font-bold px-2 py-1 rounded">After (Ceramic)</span>
-                            <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80" alt="Restored glossy paint" class="rounded-xl h-48 w-full object-cover">
-                        </div>
-                    </div>
-                    <h3 class="font-tech text-lg text-white">BMW M4 Competition • Full Paint Correction</h3>
-                    <p class="text-xs text-stone-400">Heavy swirl marks and hologram removal via rotary compounding followed by Kronos Graphene Pro Coating.</p>
-                </div>
+      <article class="story">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1520050206274-a1ae44613e6d?auto=format&fit=crop&w=1300&q=86" alt="Ceramic coating finish">
+        </div>
+        <div class="story-copy">
+          <div class="story-no">02 / SURFACE CHEMISTRY</div>
+          <h3>Graphene ceramic matrix.</h3>
+          <p>A multi-layer coating system created for deep reflections, hydrophobic behaviour, UV resistance and easier ongoing maintenance.</p>
+          <div class="specs">
+            <div class="spec"><strong>Hardness</strong><span>Up to 10H-rated system</span></div>
+            <div class="spec"><strong>Curing</strong><span>Infrared-assisted</span></div>
+            <div class="spec"><strong>Layers</strong><span>Single or dual layer</span></div>
+            <div class="spec"><strong>Coverage</strong><span>Paint, glass and wheels</span></div>
+          </div>
+        </div>
+      </article>
 
-                <!-- Before/After Card 2 -->
-                <div class="bg-stone-900 border border-stone-800 rounded-3xl p-6 space-y-4">
-                    <div class="grid grid-cols-2 gap-2">
-                        <div class="relative">
-                            <span class="absolute top-3 left-3 bg-red-900/80 text-red-200 text-[10px] uppercase font-bold px-2 py-1 rounded">Before (Faded Leather)</span>
-                            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80" alt="Dirty interior" class="rounded-xl h-48 w-full object-cover">
-                        </div>
-                        <div class="relative">
-                            <span class="absolute top-3 left-3 bg-emerald-900/80 text-emerald-200 text-[10px] uppercase font-bold px-2 py-1 rounded">After (Restored Matte)</span>
-                            <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80" alt="Clean leather interior" class="rounded-xl h-48 w-full object-cover">
-                        </div>
-                    </div>
-                    <h3 class="font-tech text-lg text-white">Porsche 911 GT3 RS • Leather Deep Nourish</h3>
-                    <p class="text-xs text-stone-400">Steam sanitization, dye restoration, and ceramic matte leather protection against grease and cracking.</p>
-                </div>
-            </div>
-        </section>
+      <article class="story">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1597007066704-67bf2068d5b2?auto=format&fit=crop&w=1300&q=86" alt="Paint correction process">
+        </div>
+        <div class="story-copy">
+          <div class="story-no">03 / OPTICAL RESTORATION</div>
+          <h3>Multi-stage paint correction.</h3>
+          <p>Measured compounding and finishing stages reduce oxidation, swirl marks, haze and light scratches before protection is applied.</p>
+          <div class="specs">
+            <div class="spec"><strong>Inspection</strong><span>Paint-depth measurement</span></div>
+            <div class="spec"><strong>Correction</strong><span>One to three stages</span></div>
+            <div class="spec"><strong>Target</strong><span>Clarity and defect reduction</span></div>
+            <div class="spec"><strong>Finish</strong><span>Panel-by-panel inspection</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-results">
+  <div class="page">
+    <div class="page-head">
+      <div>
+        <div class="kicker">Interactive Restoration Proof</div>
+        <h2>Drag to reveal the finish.</h2>
+      </div>
+      <p class="page-copy">The comparison interaction gives this Signature demo a more visual, premium presentation than ordinary before-and-after cards.</p>
     </div>
 
-    <!-- ================================================================= -->
-    <!-- TAB 4: INTERACTIVE ESTIMATOR & BOOKING                            -->
-    <!-- ================================================================= -->
-    <div id="content-estimator" class="tab-content">
-        <section class="max-w-3xl mx-auto px-6 py-16">
-            <div class="bg-stone-900 border border-stone-800 rounded-3xl p-8 sm:p-12 space-y-8 shadow-2xl">
-                <div class="text-center space-y-2">
-                    <span class="font-tech text-xs uppercase tracking-[0.3em] text-amber-400">Interactive Quote</span>
-                    <h2 class="font-tech text-3xl text-white">STUDIO RESERVATION</h2>
-                    <p class="text-xs text-stone-400">Select options to calculate estimated studio time and rate.</p>
-                </div>
+    <div class="compare-wrap">
+      <div class="compare" id="compareBox">
+        <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1300&q=86" alt="Vehicle before correction">
+        <img class="compare-after" id="afterImage" src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1300&q=86" alt="Vehicle after correction">
+        <span class="compare-label before">Before</span>
+        <span class="compare-label after">After</span>
+        <div class="compare-line" id="compareLine"></div>
+        <input type="range" min="0" max="100" value="50" oninput="updateCompare(this.value)">
+      </div>
 
-                <form class="space-y-4 text-xs">
-                    <div>
-                        <label class="block text-stone-400 uppercase tracking-wider text-[10px] mb-2 font-bold">1. Vehicle Category</label>
-                        <select class="w-full bg-black border border-stone-800 rounded-xl px-4 py-3 text-stone-200 focus:outline-none focus:border-amber-400">
-                            <option>Exotic Supercar / Hypercar</option>
-                            <option>Sports Coupe / Luxury Sedan</option>
-                            <option>Full-Size SUV / Performance Truck</option>
-                        </select>
-                    </div>
+      <div class="result-panel">
+        <div class="result-card">
+          <strong>90%+</strong>
+          <span>Targeted visible-defect reduction depending on paint condition</span>
+        </div>
+        <div class="result-card">
+          <strong>3 Stages</strong>
+          <span>Cutting, refining and final finishing</span>
+        </div>
+        <div class="result-card">
+          <strong>Panel Log</strong>
+          <span>Inspection notes recorded before and after work</span>
+        </div>
+        <div class="result-card">
+          <strong>Final Seal</strong>
+          <span>Protection layer applied after correction</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    <div>
-                        <label class="block text-stone-400 uppercase tracking-wider text-[10px] mb-2 font-bold">2. Protection Package</label>
-                        <select class="w-full bg-black border border-stone-800 rounded-xl px-4 py-3 text-stone-200 focus:outline-none focus:border-amber-400">
-                            <option>Full Body Clear PPF (Self-Healing) — ~RM 8,500</option>
-                            <option>Front Track Pack PPF + Ceramic — ~RM 4,200</option>
-                            <option>3-Stage Paint Correction & Graphene — ~RM 2,400</option>
-                        </select>
-                    </div>
-
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-stone-400 uppercase tracking-wider text-[10px] mb-2 font-bold">Full Name</label>
-                            <input type="text" placeholder="Dato' / Mr. / Ms." class="w-full bg-black border border-stone-800 rounded-xl px-4 py-3 text-stone-200 focus:outline-none focus:border-amber-400">
-                        </div>
-                        <div>
-                            <label class="block text-stone-400 uppercase tracking-wider text-[10px] mb-2 font-bold">WhatsApp Mobile Number</label>
-                            <input type="text" placeholder="+60123456789" class="w-full bg-black border border-stone-800 rounded-xl px-4 py-3 text-stone-200 focus:outline-none focus:border-amber-400">
-                        </div>
-                    </div>
-
-                    <button type="button" class="w-full bg-amber-400 hover:bg-amber-300 text-black py-4 rounded-xl font-tech font-bold uppercase tracking-widest text-xs transition-all shadow-xl shadow-amber-400/10">
-                        Request VIP Studio Slot
-                    </button>
-                </form>
-            </div>
-        </section>
+<section class="view" id="view-selector">
+  <div class="page">
+    <div class="page-head">
+      <div>
+        <div class="kicker">Interactive Protection Selector</div>
+        <h2>Build a protection strategy.</h2>
+      </div>
+      <p class="page-copy">Select vehicle type, protection coverage and supporting treatments to generate a live estimate.</p>
     </div>
 
-    <!-- Footer -->
-    <footer class="py-8 border-t border-stone-900 text-center text-xs text-stone-600">
-        <p>© 2026 KRONOS DETAILED LABS • High-End Auto Protection</p>
-    </footer>
+    <div class="selector-layout">
+      <div class="selector-panel">
+        <div class="selector-group">
+          <label>1. Vehicle category</label>
+          <div class="chip-grid">
+            <button class="chip active vehicle-chip" data-name="Sports Coupe / Sedan" data-price="0">Sports Coupe / Sedan</button>
+            <button class="chip vehicle-chip" data-name="Luxury SUV / MPV" data-price="500">Luxury SUV / MPV</button>
+            <button class="chip vehicle-chip" data-name="Exotic / Supercar" data-price="1200">Exotic / Supercar</button>
+            <button class="chip vehicle-chip" data-name="Collector Vehicle" data-price="1800">Collector Vehicle</button>
+          </div>
+        </div>
 
-    <!-- Tab Switcher Script -->
-    <script>
-        function switchTab(tabId) {
-            // Hide all contents
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
+        <div class="selector-group">
+          <label>2. Primary protection system</label>
+          <div class="chip-grid">
+            <button class="chip active system-chip" data-name="Front Track Pack PPF" data-price="4200" data-duration="2 days">Front Track Pack PPF</button>
+            <button class="chip system-chip" data-name="Full Body PPF" data-price="8500" data-duration="4–6 days">Full Body PPF</button>
+            <button class="chip system-chip" data-name="Graphene Ceramic Coating" data-price="2400" data-duration="2 days">Graphene Ceramic</button>
+            <button class="chip system-chip" data-name="Paint Correction Only" data-price="1600" data-duration="1–2 days">Paint Correction</button>
+          </div>
+        </div>
 
-            // Reset all buttons
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => {
-                btn.className = "tab-btn px-5 py-2 rounded-full font-bold uppercase tracking-wider transition-all text-stone-400 hover:text-stone-200";
-            });
+        <div class="selector-group">
+          <label>3. Optional enhancements</label>
+          <div class="addons">
+            <label class="addon">
+              <input class="addon-check" type="checkbox" data-name="Glass & Wheel Coating" data-price="450">
+              <div><strong>Glass & Wheel Coating</strong><br><span>Rain repellency and easier wheel maintenance</span></div>
+              <span class="addon-price">RM450</span>
+            </label>
 
-            // Show active content
-            document.getElementById('content-' + tabId).classList.add('active');
+            <label class="addon">
+              <input class="addon-check" type="checkbox" data-name="Interior Ceramic Protection" data-price="680">
+              <div><strong>Interior Ceramic Protection</strong><br><span>Leather, trim and fabric protection</span></div>
+              <span class="addon-price">RM680</span>
+            </label>
 
-            // Highlight active button
-            const activeBtn = document.getElementById('tab-' + tabId);
-            if (activeBtn) {
-                activeBtn.className = "tab-btn px-5 py-2 rounded-full font-bold uppercase tracking-wider transition-all text-amber-400 bg-stone-800";
-            }
-        }
-    </script>
+            <label class="addon">
+              <input class="addon-check" type="checkbox" data-name="Engine Bay Presentation Detail" data-price="280">
+              <div><strong>Engine Bay Presentation Detail</strong><br><span>Careful cleaning and finishing treatment</span></div>
+              <span class="addon-price">RM280</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <aside class="quote-panel">
+        <div class="kicker">Estimated investment</div>
+        <div class="quote-total" id="quoteTotal">RM4,200</div>
+        <div class="quote-duration" id="quoteDuration">Estimated studio time: 2 days</div>
+
+        <div class="quote-list" id="quoteList"></div>
+
+        <div class="quote-form">
+          <input id="quoteName" placeholder="Owner name">
+          <input id="quoteModel" placeholder="Vehicle model">
+          <select id="quoteTiming">
+            <option>Earliest available slot</option>
+            <option>This week</option>
+            <option>This weekend</option>
+            <option>Choose later</option>
+          </select>
+          <button class="btn amber" onclick="sendEstimate()">Request Studio Consultation</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-journal">
+  <div class="page">
+    <div class="page-head">
+      <div>
+        <div class="kicker">Studio Journal</div>
+        <h2>Inside the protection process.</h2>
+      </div>
+      <p class="page-copy">A magazine-style gallery gives this Signature concept a more editorial feel than the dashboard-style VALET PRO design.</p>
+    </div>
+
+    <div class="journal-grid">
+      <article class="journal-card">
+        <img src="https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1400&q=86" alt="Paint inspection">
+        <div class="journal-copy"><span>Inspection</span><h3>Reading paint under controlled lighting</h3></div>
+      </article>
+      <article class="journal-card">
+        <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=900&q=86" alt="Wheel detailing">
+        <div class="journal-copy"><span>Detail</span><h3>Wheel and brake-surface care</h3></div>
+      </article>
+      <article class="journal-card">
+        <img src="https://images.unsplash.com/photo-1520050206274-a1ae44613e6d?auto=format&fit=crop&w=900&q=86" alt="Ceramic coating">
+        <div class="journal-copy"><span>Protection</span><h3>Layering and curing ceramic coatings</h3></div>
+      </article>
+      <article class="journal-card">
+        <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=900&q=86" alt="Interior restoration">
+        <div class="journal-copy"><span>Interior</span><h3>Restoring leather without unwanted shine</h3></div>
+      </article>
+      <article class="journal-card">
+        <img src="https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=900&q=86" alt="Finished vehicle">
+        <div class="journal-copy"><span>Handover</span><h3>Final finish and aftercare briefing</h3></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-concierge">
+  <div class="page">
+    <div class="page-head">
+      <div>
+        <div class="kicker">Private Studio Concierge</div>
+        <h2>Plan your vehicle's visit.</h2>
+      </div>
+      <p class="page-copy">Share the vehicle, protection goals and preferred timing. The enquiry continues directly through WhatsApp.</p>
+    </div>
+
+    <div class="concierge">
+      <div class="location-card">
+        <h3>KRONOS LABS</h3>
+        <p>Dust-controlled automotive protection studio for PPF, correction, coating and interior restoration.</p>
+
+        <div class="info-list">
+          <div>📍 Bangsar / Kuala Lumpur Studio</div>
+          <div>🕒 By appointment, Monday–Saturday</div>
+          <div>📞 +60 16-808 3598</div>
+          <div>🚗 Enclosed transport coordination available</div>
+        </div>
+
+        <div class="map">
+          <iframe src="https://www.google.com/maps?q=Bangsar%20Kuala%20Lumpur&output=embed" loading="lazy" title="KRONOS LABS location"></iframe>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <h3>Request a consultation</h3>
+
+        <form class="contact-form" onsubmit="sendConsultation(event)">
+          <input id="contactName" placeholder="Owner name" required>
+          <input id="contactPhone" placeholder="WhatsApp number" required>
+
+          <input id="contactModel" placeholder="Vehicle model">
+          <select id="contactService">
+            <option>Front Track Pack PPF</option>
+            <option>Full Body PPF</option>
+            <option>Graphene Ceramic Coating</option>
+            <option>Paint Correction</option>
+            <option>Interior Restoration</option>
+            <option>Complete Protection Consultation</option>
+          </select>
+
+          <input id="contactDate" type="date">
+          <select id="contactTransport">
+            <option>Self drop-off</option>
+            <option>Request vehicle pickup</option>
+            <option>Enclosed transport consultation</option>
+          </select>
+
+          <textarea id="contactDetails" placeholder="Tell us about the paint condition, protection goals, colour or any special requirements"></textarea>
+
+          <button class="btn amber" type="submit">Continue on WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<div class="mobile-nav">
+  <button class="active" data-view="studio">Studio</button>
+  <button data-view="protection">Protection</button>
+  <button data-view="results">Results</button>
+  <button data-view="selector">Estimator</button>
+  <button data-view="journal">Journal</button>
+  <button data-view="concierge">Book</button>
+</div>
+
+<script>
+const viewButtons=[...document.querySelectorAll("[data-view]")];
+const views=[...document.querySelectorAll(".view")];
+
+function showView(name){
+  views.forEach(view=>view.classList.toggle("active",view.id==="view-"+name));
+  viewButtons.forEach(button=>button.classList.toggle("active",button.dataset.view===name));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+viewButtons.forEach(button=>{
+  button.addEventListener("click",()=>showView(button.dataset.view));
+});
+
+function updateCompare(value){
+  document.getElementById("afterImage").style.clipPath=`inset(0 0 0 ${value}%)`;
+  document.getElementById("compareLine").style.left=value+"%";
+}
+
+let vehicleName="Sports Coupe / Sedan";
+let vehiclePrice=0;
+let systemName="Front Track Pack PPF";
+let systemPrice=4200;
+let systemDuration="2 days";
+
+document.querySelectorAll(".vehicle-chip").forEach(button=>{
+  button.addEventListener("click",()=>{
+    document.querySelectorAll(".vehicle-chip").forEach(item=>item.classList.remove("active"));
+    button.classList.add("active");
+    vehicleName=button.dataset.name;
+    vehiclePrice=Number(button.dataset.price);
+    updateEstimate();
+  });
+});
+
+document.querySelectorAll(".system-chip").forEach(button=>{
+  button.addEventListener("click",()=>{
+    document.querySelectorAll(".system-chip").forEach(item=>item.classList.remove("active"));
+    button.classList.add("active");
+    systemName=button.dataset.name;
+    systemPrice=Number(button.dataset.price);
+    systemDuration=button.dataset.duration;
+    updateEstimate();
+  });
+});
+
+document.querySelectorAll(".addon-check").forEach(check=>check.addEventListener("change",updateEstimate));
+
+function updateEstimate(){
+  let total=vehiclePrice+systemPrice;
+  let addons=[];
+
+  document.querySelectorAll(".addon-check").forEach(check=>{
+    if(check.checked){
+      total+=Number(check.dataset.price);
+      addons.push({name:check.dataset.name,price:Number(check.dataset.price)});
+    }
+  });
+
+  document.getElementById("quoteTotal").textContent="RM"+total.toLocaleString();
+  document.getElementById("quoteDuration").textContent="Estimated studio time: "+systemDuration;
+
+  document.getElementById("quoteList").innerHTML=
+    `<div><span>${vehicleName}</span><strong>${vehiclePrice ? "RM"+vehiclePrice : "Base"}</strong></div>
+     <div><span>${systemName}</span><strong>RM${systemPrice.toLocaleString()}</strong></div>`+
+    addons.map(item=>`<div><span>${item.name}</span><strong>RM${item.price.toLocaleString()}</strong></div>`).join("");
+}
+
+function sendEstimate(){
+  const owner=document.getElementById("quoteName").value || "Not specified";
+  const model=document.getElementById("quoteModel").value || "Not specified";
+  const timing=document.getElementById("quoteTiming").value;
+  const addons=[...document.querySelectorAll(".addon-check:checked")].map(item=>item.dataset.name).join(", ") || "None";
+  const total=document.getElementById("quoteTotal").textContent;
+
+  const message=
+`Hi KRONOS LABS! I would like to request a protection consultation.
+
+Owner: ${owner}
+Vehicle model: ${model}
+Vehicle category: ${vehicleName}
+Primary system: ${systemName}
+Enhancements: ${addons}
+Estimated investment: ${total}
+Preferred timing: ${timing}`;
+
+  window.open("https://wa.me/60168083598?text="+encodeURIComponent(message),"_blank");
+}
+
+function sendConsultation(event){
+  event.preventDefault();
+
+  const message=
+`Hi KRONOS LABS! I would like to request a studio consultation.
+
+Owner: ${document.getElementById("contactName").value}
+WhatsApp: ${document.getElementById("contactPhone").value}
+Vehicle model: ${document.getElementById("contactModel").value || "Not specified"}
+Service: ${document.getElementById("contactService").value}
+Preferred date: ${document.getElementById("contactDate").value || "Flexible"}
+Transport: ${document.getElementById("contactTransport").value}
+Requirements: ${document.getElementById("contactDetails").value || "None"}`;
+
+  window.open("https://wa.me/60168083598?text="+encodeURIComponent(message),"_blank");
+}
+
+updateEstimate();
+</script>
+
 </body>
 </html>
