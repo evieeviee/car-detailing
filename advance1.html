@@ -1,756 +1,1434 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Obsidian Auto Atelier | Premium Car Detailing Malaysia</title>
-<meta name="description" content="Premium car detailing, ceramic coating, paint correction and interior restoration in Kuala Lumpur, Malaysia. Packages from RM180.">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600&display=swap');
 
+<title>OBSIDIAN MOTION | Signature Automotive Detailing Studio</title>
+<meta name="description" content="A premium multi-view automotive detailing website for paint correction, ceramic coating, PPF, interior restoration and studio booking.">
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Michroma&display=swap" rel="stylesheet">
+
+<style>
 :root{
-  --bg:#060708;
-  --panel:#0f1113;
-  --panel2:#15181b;
-  --line:rgba(255,255,255,.09);
-  --text:#f6f7f8;
-  --muted:#9da3aa;
-  --gold:#c9a66b;
-  --gold2:#ead4a5;
-  --white:#fff;
-  --shadow:0 30px 90px rgba(0,0,0,.45);
+  --navy:#06111f;
+  --navy2:#0a192a;
+  --panel:#0e2034;
+  --panel2:#142b43;
+  --ice:#8ed9ff;
+  --silver:#c7d2dc;
+  --pearl:#f5f8fb;
+  --muted:#8fa3b5;
+  --line:rgba(255,255,255,.10);
+  --green:#25d366;
+  --red:#ff6f6f;
+  --shadow:0 30px 90px rgba(0,0,0,.42);
 }
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:"Manrope",sans-serif;
+  background:var(--navy);
+  color:var(--pearl);
+  font-family:"DM Sans",Arial,sans-serif;
+  overflow:hidden;
 }
-a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block}
 button,input,select,textarea{font:inherit}
-.container{width:min(1220px,calc(100% - 34px));margin:auto}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;object-fit:cover}
+
+.app{
+  min-height:100vh;
+  display:grid;
+  grid-template-rows:auto 1fr;
+}
 
 header{
-  position:fixed;
-  top:0;left:0;right:0;
-  z-index:50;
-  background:linear-gradient(180deg,rgba(0,0,0,.72),rgba(0,0,0,.05));
+  position:relative;
+  z-index:1000;
+  background:rgba(6,17,31,.92);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
 }
-.nav{
-  height:88px;
-  display:flex;
+.header-inner{
+  width:min(1480px,calc(100% - 34px));
+  margin:auto;
+  min-height:80px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
   align-items:center;
-  justify-content:space-between;
   gap:20px;
 }
-.logo{
+.brand{
   display:flex;
   align-items:center;
   gap:12px;
-  font-weight:800;
-  letter-spacing:.12em;
+  white-space:nowrap;
+}
+.brand-mark{
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  border:1px solid var(--ice);
+  color:var(--ice);
+  font-family:"Michroma";
+  font-size:16px;
+}
+.brand-copy strong{
+  display:block;
+  font-family:"Michroma";
+  font-size:14px;
+  letter-spacing:1px;
+}
+.brand-copy span{
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+  font-size:9px;
   text-transform:uppercase;
-  font-size:13px;
+  letter-spacing:1.7px;
 }
-.logo-mark{
-  width:38px;height:38px;
-  border:1px solid rgba(255,255,255,.28);
-  display:grid;place-items:center;
-  border-radius:50%;
-  color:var(--gold2);
-  font-family:"Playfair Display",serif;
-  font-size:19px;
+
+.menu-wrap{min-width:0;overflow:hidden}
+.menu{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  overflow-x:auto;
+  scrollbar-width:none;
 }
-.links{display:flex;gap:28px;font-size:12px;color:#d2d4d6}
-.links a:hover{color:#fff}
-.nav-cta{
-  padding:12px 18px;
-  border:1px solid rgba(255,255,255,.32);
+.menu::-webkit-scrollbar{display:none}
+.nav-btn{
+  flex:0 0 auto;
+  border:1px solid transparent;
+  background:transparent;
+  color:#91a4b6;
+  padding:10px 13px;
   border-radius:999px;
   font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
+  font-weight:700;
+}
+.nav-btn.active{
+  background:var(--pearl);
+  color:#0a1827;
+}
+.reserve-btn{
+  border:1px solid var(--ice);
+  background:rgba(142,217,255,.08);
+  color:var(--ice);
+  padding:12px 18px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.workspace{
+  height:calc(100vh - 81px);
+  overflow-y:auto;
+  background:
+    radial-gradient(circle at top right,rgba(142,217,255,.09),transparent 26%),
+    var(--navy);
+}
+.view{
+  display:none;
+  animation:reveal .35s ease;
+}
+.view.active{display:block}
+@keyframes reveal{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:none}
 }
 
 .hero{
-  min-height:100vh;
-  display:flex;
-  align-items:flex-end;
+  min-height:calc(100vh - 81px);
   position:relative;
   overflow:hidden;
-  background:
-    linear-gradient(180deg,rgba(2,3,4,.08),rgba(2,3,4,.26) 40%,rgba(2,3,4,.94)),
-    url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=2200&q=90') center/cover;
+}
+.hero img{
+  position:absolute;
+  inset:0;
+  height:100%;
 }
 .hero:after{
   content:"";
-  position:absolute;inset:0;
-  background:radial-gradient(circle at 72% 42%,rgba(201,166,107,.16),transparent 28%);
-  pointer-events:none;
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(6,17,31,.98),rgba(6,17,31,.80) 40%,rgba(6,17,31,.18) 76%),
+    linear-gradient(to top,rgba(6,17,31,.92),transparent 50%);
 }
-.hero-content{
+.hero-inner{
+  width:min(1480px,calc(100% - 34px));
+  min-height:calc(100vh - 81px);
+  margin:auto;
   position:relative;
   z-index:2;
-  padding:0 0 82px;
-  width:100%;
+  display:flex;
+  align-items:center;
 }
-.eyebrow{
-  font-size:11px;
+.hero-copy{max-width:820px}
+.kicker{
+  color:var(--ice);
+  font-size:10px;
   text-transform:uppercase;
-  letter-spacing:.22em;
-  color:var(--gold2);
+  letter-spacing:2.6px;
+  font-family:"Michroma";
 }
-.hero h1{
-  font-size:clamp(60px,8vw,112px);
-  line-height:.9;
-  letter-spacing:-.065em;
-  margin:18px 0 22px;
-  max-width:980px;
+h1,h2,h3{font-family:"Michroma",sans-serif}
+h1{
+  margin:18px 0 0;
+  font-size:clamp(56px,8vw,124px);
+  line-height:.88;
+  letter-spacing:-2px;
 }
-.hero p{
-  max-width:650px;
-  color:#c9cdd1;
-  font-size:17px;
+h1 span{
+  display:block;
+  color:var(--silver);
+}
+.hero-copy p{
+  margin-top:24px;
+  max-width:620px;
+  color:#c5d0da;
   line-height:1.8;
+  font-size:16px;
 }
 .hero-actions{
   display:flex;
-  gap:12px;
   flex-wrap:wrap;
+  gap:12px;
   margin-top:30px;
 }
 .btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
-  border:0;
-  cursor:pointer;
-  padding:14px 20px;
   border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:#fff;
+  padding:14px 20px;
   font-weight:800;
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
 }
-.btn-gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#18130c}
-.btn-dark{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff}
-.hero-meta{
-  margin-top:46px;
+.btn.ice{
+  background:var(--ice);
+  border-color:var(--ice);
+  color:#071422;
+}
+.btn.wa{
+  background:var(--green);
+  border-color:var(--green);
+}
+.hero-metrics{
+  position:absolute;
+  z-index:3;
+  right:26px;
+  bottom:26px;
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  max-width:900px;
+  grid-template-columns:repeat(3,160px);
+  gap:10px;
 }
-.meta{
-  border-top:1px solid rgba(255,255,255,.18);
-  padding-top:16px;
-}
-.meta strong{display:block;font-size:22px}
-.meta span{font-size:11px;color:#9da3aa;text-transform:uppercase;letter-spacing:.1em}
-
-.section{padding:120px 0}
-.section-head{
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:40px;
-  margin-bottom:46px;
-}
-.section-head h2{
-  font-size:clamp(46px,6vw,76px);
-  line-height:.98;
-  letter-spacing:-.055em;
-  margin:0;
-  max-width:820px;
-}
-.section-head p{
-  max-width:430px;
-  color:var(--muted);
-  line-height:1.8;
-  margin:0;
-}
-
-.services{background:#0b0d0f}
-.service-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-.service-card{
-  min-height:410px;
-  position:relative;
-  overflow:hidden;
-  border-radius:20px;
-  padding:26px;
-  display:flex;
-  align-items:flex-end;
-  background-size:cover;
-  background-position:center;
-  box-shadow:var(--shadow);
-}
-.service-card:before{
-  content:"";
-  position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(4,5,6,.08),rgba(4,5,6,.84));
-}
-.service-card>div{position:relative}
-.service-card small{
-  color:var(--gold2);
-  text-transform:uppercase;
-  letter-spacing:.16em;
-}
-.service-card h3{
-  margin:10px 0 8px;
-  font-size:30px;
-  letter-spacing:-.04em;
-}
-.service-card p{
-  color:#c0c4c8;
-  line-height:1.65;
-  font-size:13px;
-}
-.s1{background-image:url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1200&q=90')}
-.s2{background-image:url('https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=1200&q=90')}
-.s3{background-image:url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=90')}
-
-.before-after{background:#070809}
-.compare{
-  position:relative;
-  min-height:650px;
-  border-radius:24px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-}
-.compare .left,.compare .right{
-  position:absolute;inset:0;
-  background-size:cover;background-position:center;
-}
-.compare .left{
-  background-image:
-    linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.18)),
-    url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=90');
-  filter:saturate(.55) brightness(.7);
-}
-.compare .right{
-  background-image:
-    linear-gradient(rgba(0,0,0,.02),rgba(0,0,0,.02)),
-    url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=90');
-  clip-path:inset(0 0 0 52%);
-}
-.divider{
-  position:absolute;top:0;bottom:0;left:52%;
-  width:2px;background:#fff;
-}
-.divider:before{
-  content:"↔";
-  position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:54px;height:54px;border-radius:50%;
-  display:grid;place-items:center;
-  background:#fff;color:#111;font-weight:800;
-}
-.label{
-  position:absolute;top:22px;
-  padding:9px 12px;border-radius:999px;
-  background:rgba(0,0,0,.5);backdrop-filter:blur(8px);
-  font-size:11px;text-transform:uppercase;letter-spacing:.12em
-}
-.label.before{left:22px}.label.after{right:22px}
-
-.packages{background:#0b0d0f}
-.package-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
-.package{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:24px;
-  position:relative;
-}
-.package.featured{
-  background:linear-gradient(180deg,#1a1712,#101112);
-  border-color:rgba(201,166,107,.5);
-  transform:translateY(-8px);
-}
-.package-badge{
-  position:absolute;top:14px;right:14px;
-  font-size:9px;text-transform:uppercase;
-  background:var(--gold);color:#16110b;
-  padding:6px 8px;border-radius:999px;font-weight:800
-}
-.package h3{font-size:22px;margin:8px 0}
-.package .price{font-size:34px;font-weight:800;margin:18px 0}
-.package .price span{font-size:11px;color:var(--muted);font-weight:500}
-.package ul{padding:0;list-style:none;margin:20px 0 25px}
-.package li{padding:9px 0;border-bottom:1px solid var(--line);font-size:12px;color:#c1c5c9}
-.package a{
-  display:block;text-align:center;
-  padding:12px;border-radius:999px;
-  border:1px solid rgba(255,255,255,.15);
-  font-size:11px;font-weight:800
-}
-.package.featured a{background:var(--gold);color:#15110b;border:0}
-
-.process{background:#08090a}
-.process-grid{
-  display:grid;
-  grid-template-columns:.9fr 1.1fr;
-  gap:60px;
-  align-items:start;
-}
-.process-visual{
-  min-height:680px;
-  border-radius:22px;
-  background:
-    linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.3)),
-    url('https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=1400&q=90') center/cover;
-  position:sticky;top:110px;
-}
-.steps{display:grid;gap:14px}
-.step{
-  padding:24px;
+.metric{
+  padding:16px;
   border-radius:16px;
-  background:var(--panel);
   border:1px solid var(--line);
+  background:rgba(9,24,39,.76);
+  backdrop-filter:blur(14px);
+}
+.metric strong{
+  display:block;
+  color:var(--ice);
+  font-family:"Michroma";
+  font-size:21px;
+}
+.metric span{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.page{
+  width:min(1360px,calc(100% - 34px));
+  margin:auto;
+  padding:70px 0 90px;
+}
+.page-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+  margin-bottom:34px;
+}
+.page-head h2{
+  margin:10px 0 0;
+  font-size:clamp(40px,5vw,76px);
+  line-height:.95;
+}
+.page-copy{
+  max-width:520px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.service-showcase{
   display:grid;
-  grid-template-columns:48px 1fr;
-  gap:16px;
+  gap:22px;
 }
-.num{
-  width:48px;height:48px;
-  border-radius:50%;
-  display:grid;place-items:center;
-  border:1px solid rgba(201,166,107,.55);
-  color:var(--gold2);
-}
-.step h3{margin:2px 0 8px;font-size:20px}
-.step p{margin:0;color:var(--muted);line-height:1.65;font-size:13px}
-
-.testimonials{background:#0c0e10}
-.review-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
-.review-main,.review-side{
-  background:var(--panel);
+.service-scene{
+  min-height:530px;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
   border:1px solid var(--line);
-  border-radius:20px;
-  padding:30px;
-}
-.stars{color:var(--gold2);letter-spacing:.18em}
-.review-main blockquote{
-  font:500 40px/1.35 "Playfair Display",serif;
-  margin:28px 0;
-}
-.review-side{display:flex;flex-direction:column;justify-content:space-between}
-.review-side strong{font-size:54px}
-.review-side p{color:var(--muted);line-height:1.7}
-
-.booking{background:#070809}
-.booking-wrap{
-  background:linear-gradient(135deg,#15181b,#0d0f11);
-  border:1px solid var(--line);
-  border-radius:24px;
+  border-radius:28px;
   overflow:hidden;
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  background:var(--navy2);
 }
-.booking-copy{
+.service-scene:nth-child(even) .scene-image{order:2}
+.scene-image img{height:100%}
+.scene-copy{
   padding:46px;
-  background:
-    linear-gradient(180deg,rgba(8,9,10,.2),rgba(8,9,10,.85)),
-    url('https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=1400&q=90') center/cover;
-  min-height:560px;
   display:flex;
   flex-direction:column;
-  justify-content:flex-end;
+  justify-content:center;
 }
-.booking-copy h2{
-  font-size:56px;
+.scene-no{
+  color:var(--ice);
+  font-family:"Michroma";
+  font-size:10px;
+  letter-spacing:2px;
+}
+.scene-copy h3{
+  margin:12px 0 0;
+  font-size:42px;
   line-height:1;
-  letter-spacing:-.05em;
-  margin:12px 0;
 }
-.booking-form{padding:42px}
-.field{margin-bottom:16px}
-.field label{display:block;font-size:11px;color:#b9bec3;margin-bottom:7px;text-transform:uppercase;letter-spacing:.08em}
-.field input,.field select,.field textarea{
-  width:100%;
-  background:#0c0e10;
-  border:1px solid var(--line);
-  color:#fff;
-  border-radius:11px;
-  padding:13px 14px;
-  outline:none;
+.scene-copy p{
+  margin-top:18px;
+  color:var(--muted);
+  line-height:1.75;
 }
-.field textarea{min-height:100px;resize:vertical}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.submit{
-  width:100%;
-  border:0;
-  border-radius:999px;
+.spec-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:24px;
+}
+.spec{
   padding:14px;
-  background:linear-gradient(135deg,var(--gold2),var(--gold));
-  color:#16110c;
-  font-weight:900;
-  cursor:pointer;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--panel);
 }
-.form-note{font-size:10px;color:#777f87;margin-top:12px;text-align:center}
-
-footer{
-  background:#050607;
-  border-top:1px solid var(--line);
-  padding:34px 0;
-  color:#747b82;
+.spec strong{
+  display:block;
+  color:var(--silver);
   font-size:12px;
 }
-.footer{
+.spec span{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.compare-layout{
+  display:grid;
+  grid-template-columns:1fr .42fr;
+  gap:22px;
+}
+.compare{
+  position:relative;
+  height:620px;
+  border-radius:28px;
+  overflow:hidden;
+  border:1px solid var(--line);
+}
+.compare img{
+  position:absolute;
+  inset:0;
+  height:100%;
+}
+.compare-after{clip-path:inset(0 0 0 50%)}
+.compare-line{
+  position:absolute;
+  left:50%;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:#fff;
+  z-index:3;
+}
+.compare-line:after{
+  content:"↔";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:52px;
+  height:52px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#fff;
+  color:#111;
+  font-weight:900;
+}
+.compare input{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:0;
+  cursor:ew-resize;
+  z-index:4;
+}
+.compare-label{
+  position:absolute;
+  z-index:2;
+  top:18px;
+  padding:8px 11px;
+  border-radius:999px;
+  background:rgba(0,0,0,.55);
+  font-size:10px;
+  font-weight:900;
+}
+.compare-label.before{left:18px}
+.compare-label.after{right:18px}
+.result-stack{
+  display:grid;
+  gap:13px;
+}
+.result-card{
+  padding:21px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:17px;
+}
+.result-card strong{
+  display:block;
+  color:var(--ice);
+  font-family:"Michroma";
+  font-size:24px;
+}
+.result-card span{
+  display:block;
+  margin-top:6px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.config-grid{
+  display:grid;
+  grid-template-columns:.95fr 1.05fr;
+  gap:22px;
+}
+.config-panel,.summary-panel{
+  padding:27px;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:var(--navy2);
+}
+.config-group + .config-group{margin-top:22px}
+.config-group label{
+  display:block;
+  color:#aebdca;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  font-weight:800;
+}
+.chips{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+.chip{
+  padding:15px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:#bec9d3;
+  border-radius:13px;
+  font-weight:800;
+}
+.chip.active{
+  border-color:var(--ice);
+  box-shadow:inset 0 0 0 1px var(--ice);
+  color:#fff;
+}
+.addons{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+}
+.addon{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:12px;
+  align-items:center;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:var(--panel);
+}
+.addon input{
+  width:17px;
+  height:17px;
+  accent-color:var(--ice);
+}
+.addon strong{font-size:12px}
+.addon small{
+  display:block;
+  color:var(--muted);
+  margin-top:3px;
+}
+.addon-price{
+  color:var(--ice);
+  font-family:"Michroma";
+  font-size:11px;
+}
+.total{
+  font-family:"Michroma";
+  color:var(--ice);
+  font-size:46px;
+  margin-top:8px;
+}
+.duration{
+  color:var(--muted);
+  font-size:11px;
+}
+.summary-list{
+  display:grid;
+  gap:8px;
+  margin-top:20px;
+  font-size:12px;
+}
+.summary-list div{
   display:flex;
   justify-content:space-between;
-  gap:20px;
-  flex-wrap:wrap;
+  gap:12px;
+}
+.summary-form{
+  display:grid;
+  gap:10px;
+  margin-top:22px;
+}
+.summary-form input,.summary-form select,.booking-form input,.booking-form select,.booking-form textarea{
+  width:100%;
+  padding:14px;
+  border-radius:11px;
+  border:1px solid var(--line);
+  background:#071422;
+  color:#fff;
 }
 
-.floating-book{
-  position:fixed;
-  right:18px;bottom:18px;
-  z-index:60;
-  padding:13px 18px;
-  border-radius:999px;
-  background:linear-gradient(135deg,var(--gold2),var(--gold));
-  color:#16110c;
-  font-size:11px;
-  font-weight:900;
+.tour-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr .85fr;
+  grid-auto-rows:250px;
+  gap:14px;
+}
+.tour-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  border:1px solid var(--line);
+}
+.tour-card:first-child{grid-row:span 2}
+.tour-card img{height:100%}
+.tour-card:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.78),transparent 60%);
+}
+.tour-copy{
+  position:absolute;
+  z-index:2;
+  left:17px;
+  bottom:16px;
+}
+.tour-copy span{
+  color:var(--ice);
+  font-size:9px;
   text-transform:uppercase;
-  letter-spacing:.08em;
-  box-shadow:0 18px 50px rgba(201,166,107,.25)
+  letter-spacing:1.4px;
+}
+.tour-copy h3{
+  margin:5px 0 0;
+  font-size:21px;
 }
 
-@media(max-width:1000px){
-  .package-grid{grid-template-columns:1fr 1fr}
-  .process-grid,.booking-wrap{grid-template-columns:1fr}
-  .process-visual{position:relative;top:auto;min-height:460px}
+.garage-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
 }
-@media(max-width:820px){
-  .links{display:none}
-  .hero-meta{grid-template-columns:1fr 1fr}
-  .service-grid{grid-template-columns:1fr}
-  .review-grid{grid-template-columns:1fr}
-  .section-head{display:block}
-  .section-head p{margin-top:18px}
-  .compare{min-height:480px}
+.garage-card{
+  border:1px solid var(--line);
+  border-radius:20px;
+  overflow:hidden;
+  background:var(--navy2);
 }
-@media(max-width:560px){
-  .nav{height:72px}
-  .nav-cta{display:none}
-  .hero h1{font-size:58px}
-  .hero-meta{grid-template-columns:1fr 1fr}
-  .package-grid{grid-template-columns:1fr}
-  .package.featured{transform:none}
-  .form-row{grid-template-columns:1fr}
-  .booking-copy,.booking-form{padding:26px}
-  .booking-copy h2{font-size:44px}
-  .review-main blockquote{font-size:30px}
+.garage-card img{height:230px}
+.garage-body{padding:18px}
+.garage-body h3{margin:0;font-size:20px}
+.garage-body p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+.tags span{
+  padding:6px 9px;
+  border-radius:999px;
+  background:var(--panel);
+  color:#c4ced7;
+  font-size:10px;
+}
+
+.plan-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+.plan{
+  padding:25px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:var(--navy2);
+  position:relative;
+}
+.plan.featured{
+  border-color:var(--ice);
+  background:linear-gradient(180deg,rgba(142,217,255,.10),var(--navy2));
+}
+.plan h3{font-size:23px}
+.plan-price{
+  margin-top:12px;
+  font-size:30px;
+  font-weight:800;
+}
+.plan ul{
+  padding-left:18px;
+  color:#c4ced7;
+  line-height:1.9;
+  font-size:12px;
+}
+.badge{
+  position:absolute;
+  top:14px;
+  right:14px;
+  background:var(--ice);
+  color:#071422;
+  padding:5px 8px;
+  border-radius:999px;
+  font-size:9px;
+  font-weight:900;
+}
+
+.faq{
+  display:grid;
+  gap:10px;
+}
+.faq-item{
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--navy2);
+  overflow:hidden;
+}
+.faq-q{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px;
+  border:0;
+  background:transparent;
+  color:#fff;
+  text-align:left;
+  font-weight:800;
+}
+.faq-a{
+  max-height:0;
+  overflow:hidden;
+  color:var(--muted);
+  transition:max-height .3s ease;
+}
+.faq-a p{
+  margin:0;
+  padding:0 18px 18px;
+  line-height:1.7;
+}
+.faq-item.open .faq-a{max-height:180px}
+
+.booking-grid{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:22px;
+}
+.location-card,.booking-card{
+  padding:27px;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:var(--navy2);
+}
+.location-card h3,.booking-card h3{
+  margin:0;
+  font-size:30px;
+}
+.location-card p{
+  color:var(--muted);
+  line-height:1.7;
+}
+.info-list{
+  display:grid;
+  gap:10px;
+  margin-top:18px;
+}
+.info-list div{
+  padding:13px;
+  border-radius:11px;
+  background:var(--panel);
+}
+.map{
+  height:310px;
+  border-radius:15px;
+  overflow:hidden;
+  margin-top:18px;
+}
+.map iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+.booking-form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:18px;
+}
+.booking-form textarea{
+  grid-column:1/-1;
+  min-height:125px;
+}
+.booking-form button{grid-column:1/-1}
+
+.mobile-nav{display:none}
+
+@media(max-width:1050px){
+  .header-inner{grid-template-columns:auto 1fr}
+  .reserve-btn{display:none}
+  .service-scene,.compare-layout,.config-grid,.booking-grid{grid-template-columns:1fr}
+  .service-scene:nth-child(even) .scene-image{order:0}
+  .scene-image{height:420px}
+  .page-head{display:block}
+  .page-copy{margin-top:14px}
+  .tour-grid{grid-template-columns:1fr 1fr}
+  .tour-card:first-child{grid-column:1/-1;grid-row:auto}
+  .garage-grid,.plan-grid{grid-template-columns:1fr 1fr}
+  .hero-metrics{display:none}
+}
+@media(max-width:680px){
+  body{overflow:auto;padding-bottom:72px}
+  .workspace{height:auto;overflow:visible}
+  .header-inner{
+    grid-template-columns:1fr;
+    gap:8px;
+    padding:10px 0;
+  }
+  .brand{justify-content:center}
+  .menu{justify-content:flex-start}
+  h1{font-size:54px}
+  .hero-inner{align-items:flex-end}
+  .hero-copy{padding-bottom:52px}
+  .scene-copy{padding:27px}
+  .scene-copy h3{font-size:34px}
+  .spec-grid,.chips,.garage-grid,.plan-grid,.booking-form{grid-template-columns:1fr}
+  .booking-form textarea,.booking-form button{grid-column:auto}
+  .compare{height:470px}
+  .tour-grid{grid-template-columns:1fr;grid-auto-rows:250px}
+  .tour-card:first-child{grid-column:auto}
+  .mobile-nav{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:1200;
+    display:flex;
+    overflow-x:auto;
+    gap:7px;
+    padding:9px;
+    background:#081626;
+    border-top:1px solid var(--line);
+  }
+  .mobile-nav button{
+    flex:0 0 auto;
+    border:1px solid var(--line);
+    background:var(--panel);
+    color:#91a4b6;
+    padding:10px 12px;
+    border-radius:10px;
+    font-size:11px;
+    font-weight:800;
+  }
+  .mobile-nav button.active{
+    background:var(--pearl);
+    color:#071422;
+  }
 }
 </style>
 </head>
+
 <body>
 
+<div class="app">
+
 <header>
-  <div class="container nav">
-    <div class="logo">
-      <span class="logo-mark">O</span>
-      <span>Obsidian Auto Atelier</span>
+  <div class="header-inner">
+    <a class="brand" href="#" onclick="showView('home');return false;">
+      <div class="brand-mark">O</div>
+      <div class="brand-copy">
+        <strong>OBSIDIAN MOTION</strong>
+        <span>Signature Automotive Studio</span>
+      </div>
+    </a>
+
+    <div class="menu-wrap">
+      <nav class="menu">
+        <button class="nav-btn active" data-view="home">Home</button>
+        <button class="nav-btn" data-view="services">Services</button>
+        <button class="nav-btn" data-view="results">Results</button>
+        <button class="nav-btn" data-view="configurator">Configurator</button>
+        <button class="nav-btn" data-view="studio">Studio Tour</button>
+        <button class="nav-btn" data-view="garage">Customer Garage</button>
+        <button class="nav-btn" data-view="plans">Care Plans</button>
+        <button class="nav-btn" data-view="faq">FAQ</button>
+        <button class="nav-btn" data-view="booking">Book</button>
+      </nav>
     </div>
-    <nav class="links">
-      <a href="#services">Services</a>
-      <a href="#results">Results</a>
-      <a href="#packages">Packages</a>
-      <a href="#process">Our Process</a>
-    </nav>
-    <a class="nav-cta" href="#booking">Book Appointment</a>
+
+    <button class="reserve-btn" onclick="showView('booking')">Reserve Appointment</button>
   </div>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="container hero-content">
-      <div class="eyebrow">Premium car detailing · Kuala Lumpur, Malaysia</div>
-      <h1>Every surface.<br>Every reflection.<br>Perfected.</h1>
-      <p>Precision detailing, paint correction and ceramic protection for owners who expect more from every finish.</p>
-      <div class="hero-actions">
-        <a class="btn btn-gold" href="#booking">Book an appointment</a>
-        <a class="btn btn-dark" href="#packages">View packages</a>
-      </div>
+<main class="workspace">
 
-      <div class="hero-meta">
-        <div class="meta"><strong>2,800+</strong><span>Cars detailed</span></div>
-        <div class="meta"><strong>4.9/5</strong><span>Customer rating</span></div>
-        <div class="meta"><strong>8 years</strong><span>Detailing expertise</span></div>
-        <div class="meta"><strong>KL</strong><span>Studio location</span></div>
-      </div>
-    </div>
-  </section>
+<section class="view active" id="view-home">
+  <div class="hero">
+    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=2200&q=88" alt="Premium automotive detailing">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="kicker">Midnight Titanium Collection</div>
+        <h1>Every surface.<span>Every reflection.</span>Perfected.</h1>
+        <p>Precision detailing, ceramic protection, paint correction and PPF for owners who expect more from every finish.</p>
 
-  <section class="section services" id="services">
-    <div class="container">
-      <div class="section-head">
-        <h2>Crafted care for every layer of your car.</h2>
-        <p>From deep interior restoration to long-term ceramic protection, every service is carried out with careful preparation and professional-grade products.</p>
-      </div>
-      <div class="service-grid">
-        <article class="service-card s1">
-          <div><small>01 · Exterior</small><h3>Paint Correction</h3><p>Machine polishing to reduce swirl marks, oxidation and surface imperfections while restoring clarity and gloss.</p></div>
-        </article>
-        <article class="service-card s2">
-          <div><small>02 · Protection</small><h3>Ceramic Coating</h3><p>Durable hydrophobic protection designed to preserve shine, simplify maintenance and enhance depth.</p></div>
-        </article>
-        <article class="service-card s3">
-          <div><small>03 · Interior</small><h3>Interior Restoration</h3><p>Deep cleaning, stain treatment, leather care and detailed finishing for a fresher, more refined cabin.</p></div>
-        </article>
+        <div class="hero-actions">
+          <button class="btn ice" onclick="showView('configurator')">Build Your Package</button>
+          <button class="btn wa" onclick="showView('booking')">Book via WhatsApp</button>
+        </div>
       </div>
     </div>
-  </section>
 
-  <section class="section before-after" id="results">
-    <div class="container">
-      <div class="section-head">
-        <h2>The difference is in the finish.</h2>
-        <p>Move from tired paintwork and dull reflections to a sharper, deeper and more refined final result.</p>
-      </div>
-      <div class="compare">
-        <div class="left"></div>
-        <div class="right"></div>
-        <div class="divider"></div>
-        <div class="label before">Before</div>
-        <div class="label after">After</div>
-      </div>
+    <div class="hero-metrics">
+      <div class="metric"><strong>2,800+</strong><span>Vehicles detailed</span></div>
+      <div class="metric"><strong>4.9/5</strong><span>Customer rating</span></div>
+      <div class="metric"><strong>8 Years</strong><span>Studio expertise</span></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section packages" id="packages">
-    <div class="container">
-      <div class="section-head">
-        <h2>Choose the level of finish your car deserves.</h2>
-        <p>All prices are shown in Malaysian Ringgit. Final quotation may vary based on vehicle size and paint condition.</p>
-      </div>
-
-      <div class="package-grid">
-        <article class="package">
-          <small class="eyebrow">Essential</small>
-          <h3>Maintenance Detail</h3>
-          <div class="price">RM180 <span>/ session</span></div>
-          <ul>
-            <li>Exterior wash and dry</li>
-            <li>Wheel and tyre cleaning</li>
-            <li>Interior vacuum</li>
-            <li>Dashboard treatment</li>
-            <li>Spray wax finish</li>
-          </ul>
-          <a href="#booking">Choose package</a>
-        </article>
-
-        <article class="package">
-          <small class="eyebrow">Enhanced</small>
-          <h3>Premium Detail</h3>
-          <div class="price">RM480 <span>/ session</span></div>
-          <ul>
-            <li>Deep exterior decontamination</li>
-            <li>Single-stage polish</li>
-            <li>Interior deep cleaning</li>
-            <li>Leather conditioning</li>
-            <li>6-month sealant protection</li>
-          </ul>
-          <a href="#booking">Choose package</a>
-        </article>
-
-        <article class="package featured">
-          <div class="package-badge">Most Popular</div>
-          <small class="eyebrow">Protection</small>
-          <h3>Ceramic Signature</h3>
-          <div class="price">RM1,280 <span>/ package</span></div>
-          <ul>
-            <li>Full paint correction</li>
-            <li>3-year ceramic coating</li>
-            <li>Glass coating</li>
-            <li>Wheel coating</li>
-            <li>Complimentary first maintenance</li>
-          </ul>
-          <a href="#booking">Choose package</a>
-        </article>
-
-        <article class="package">
-          <small class="eyebrow">Ultimate</small>
-          <h3>Atelier Collection</h3>
-          <div class="price">RM2,680 <span>/ package</span></div>
-          <ul>
-            <li>Multi-stage paint correction</li>
-            <li>5-year ceramic protection</li>
-            <li>Interior ceramic protection</li>
-            <li>Engine bay detailing</li>
-            <li>Priority maintenance plan</li>
-          </ul>
-          <a href="#booking">Choose package</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section process" id="process">
-    <div class="container process-grid">
-      <div class="process-visual"></div>
+<section class="view" id="view-services">
+  <div class="page">
+    <div class="page-head">
       <div>
-        <div class="section-head" style="display:block;margin-bottom:30px">
-          <h2>Our process is measured, not rushed.</h2>
-          <p style="margin-top:18px">Every vehicle begins with an inspection and ends with a final quality review under controlled lighting.</p>
+        <div class="kicker">Signature Services</div>
+        <h2>One vehicle. Multiple layers of care.</h2>
+      </div>
+      <p class="page-copy">Each service is presented as a cinematic story instead of a standard card grid.</p>
+    </div>
+
+    <div class="service-showcase">
+      <article class="service-scene">
+        <div class="scene-image">
+          <img src="https://images.unsplash.com/photo-1597007066704-67bf2068d5b2?auto=format&fit=crop&w=1300&q=86" alt="Paint correction">
         </div>
-        <div class="steps">
-          <div class="step"><div class="num">01</div><div><h3>Vehicle inspection</h3><p>We assess paint condition, interior wear and customer priorities before recommending the right treatment.</p></div></div>
-          <div class="step"><div class="num">02</div><div><h3>Preparation and decontamination</h3><p>The vehicle is safely washed, chemically treated and prepared to remove embedded contamination.</p></div></div>
-          <div class="step"><div class="num">03</div><div><h3>Correction and restoration</h3><p>Paint, trim and interior surfaces are corrected using the appropriate tools, products and techniques.</p></div></div>
-          <div class="step"><div class="num">04</div><div><h3>Protection and final review</h3><p>Protective products are applied before a final inspection, finishing check and customer handover.</p></div></div>
+        <div class="scene-copy">
+          <div class="scene-no">01 / OPTICAL RESTORATION</div>
+          <h3>Paint correction</h3>
+          <p>Measured polishing stages reduce swirl marks, oxidation, haze and light scratches while restoring clarity and depth.</p>
+          <div class="spec-grid">
+            <div class="spec"><strong>Stages</strong><span>Single to multi-stage</span></div>
+            <div class="spec"><strong>Inspection</strong><span>Paint-depth measurement</span></div>
+            <div class="spec"><strong>Target</strong><span>Gloss and defect reduction</span></div>
+            <div class="spec"><strong>From</strong><span>RM480</span></div>
+          </div>
         </div>
+      </article>
+
+      <article class="service-scene">
+        <div class="scene-image">
+          <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1300&q=86" alt="Ceramic coating">
+        </div>
+        <div class="scene-copy">
+          <div class="scene-no">02 / SURFACE PROTECTION</div>
+          <h3>Ceramic coating</h3>
+          <p>Hydrophobic protection designed to preserve gloss, simplify maintenance and provide stronger resistance against environmental contamination.</p>
+          <div class="spec-grid">
+            <div class="spec"><strong>Coverage</strong><span>Paint, glass and wheels</span></div>
+            <div class="spec"><strong>Protection</strong><span>1–5 years</span></div>
+            <div class="spec"><strong>Finish</strong><span>Deep reflective gloss</span></div>
+            <div class="spec"><strong>From</strong><span>RM1,280</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="service-scene">
+        <div class="scene-image">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1300&q=86" alt="Paint protection film">
+        </div>
+        <div class="scene-copy">
+          <div class="scene-no">03 / IMPACT PROTECTION</div>
+          <h3>Paint protection film</h3>
+          <p>Transparent self-healing film for high-impact panels or full-body coverage against chips, scratches and road contamination.</p>
+          <div class="spec-grid">
+            <div class="spec"><strong>Coverage</strong><span>Front pack or full body</span></div>
+            <div class="spec"><strong>Finish</strong><span>Gloss or satin</span></div>
+            <div class="spec"><strong>Warranty</strong><span>Up to 10 years</span></div>
+            <div class="spec"><strong>From</strong><span>RM4,200</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="service-scene">
+        <div class="scene-image">
+          <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1300&q=86" alt="Interior restoration">
+        </div>
+        <div class="scene-copy">
+          <div class="scene-no">04 / CABIN RESTORATION</div>
+          <h3>Interior detailing</h3>
+          <p>Deep cleaning, steam treatment, leather conditioning, stain removal and odour neutralisation for a refreshed cabin.</p>
+          <div class="spec-grid">
+            <div class="spec"><strong>Materials</strong><span>Leather, fabric and trim</span></div>
+            <div class="spec"><strong>Treatment</strong><span>Steam and extraction</span></div>
+            <div class="spec"><strong>Protection</strong><span>Interior ceramic available</span></div>
+            <div class="spec"><strong>From</strong><span>RM280</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-results">
+  <div class="page">
+    <div class="page-head">
+      <div>
+        <div class="kicker">Interactive Results</div>
+        <h2>Drag to reveal the finish.</h2>
+      </div>
+      <p class="page-copy">Use the slider to compare a subdued finish with a restored, protected surface.</p>
+    </div>
+
+    <div class="compare-layout">
+      <div class="compare">
+        <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1500&q=86" alt="Before detailing">
+        <img class="compare-after" id="afterImage" src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1500&q=86" alt="After detailing">
+        <span class="compare-label before">Before</span>
+        <span class="compare-label after">After</span>
+        <div class="compare-line" id="compareLine"></div>
+        <input type="range" min="0" max="100" value="50" oninput="updateCompare(this.value)">
+      </div>
+
+      <div class="result-stack">
+        <div class="result-card"><strong>90%+</strong><span>Targeted visible-defect reduction depending on paint condition</span></div>
+        <div class="result-card"><strong>3 Stages</strong><span>Correction, refining and final finishing</span></div>
+        <div class="result-card"><strong>Panel Log</strong><span>Inspection notes recorded before and after work</span></div>
+        <div class="result-card"><strong>Final Seal</strong><span>Protection layer applied after correction</span></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section testimonials">
-    <div class="container">
-      <div class="section-head">
-        <h2>Trusted by owners who notice the details.</h2>
-        <p>Sample customer content shown for demonstration. Replace with verified reviews before publishing.</p>
+<section class="view" id="view-configurator">
+  <div class="page">
+    <div class="page-head">
+      <div>
+        <div class="kicker">Interactive Configurator</div>
+        <h2>Build your detailing package.</h2>
       </div>
-      <div class="review-grid">
-        <div class="review-main">
-          <div class="stars">★★★★★</div>
-          <blockquote>“The paint looked deeper than when I collected the car from the showroom.”</blockquote>
-          <div><strong>Daniel L.</strong><br><span style="color:var(--muted);font-size:12px">BMW 330i · Ceramic Signature</span></div>
+      <p class="page-copy">Choose the vehicle class, primary package and optional enhancements to generate an estimate.</p>
+    </div>
+
+    <div class="config-grid">
+      <div class="config-panel">
+
+        <div class="config-group">
+          <label>1. Vehicle category</label>
+          <div class="chips">
+            <button class="chip active vehicle-chip" data-name="Sedan / Coupe" data-price="0">Sedan / Coupe</button>
+            <button class="chip vehicle-chip" data-name="SUV / MPV" data-price="250">SUV / MPV</button>
+            <button class="chip vehicle-chip" data-name="Luxury / Exotic" data-price="600">Luxury / Exotic</button>
+            <button class="chip vehicle-chip" data-name="Collector Vehicle" data-price="900">Collector Vehicle</button>
+          </div>
         </div>
-        <div class="review-side">
-          <div><strong>4.9</strong><div class="stars">★★★★★</div></div>
-          <p>Professional communication, transparent recommendations and consistent finishing quality across every appointment.</p>
-          <span style="font-size:12px;color:#7f858b">Based on sample display data</span>
+
+        <div class="config-group">
+          <label>2. Primary package</label>
+          <div class="chips">
+            <button class="chip active package-chip" data-name="Premium Detail" data-price="480" data-duration="4–6 hours">Premium Detail</button>
+            <button class="chip package-chip" data-name="Ceramic Signature" data-price="1280" data-duration="1–2 days">Ceramic Signature</button>
+            <button class="chip package-chip" data-name="Atelier Collection" data-price="2680" data-duration="2–3 days">Atelier Collection</button>
+            <button class="chip package-chip" data-name="Front Track PPF" data-price="4200" data-duration="2–3 days">Front Track PPF</button>
+          </div>
         </div>
+
+        <div class="config-group">
+          <label>3. Optional enhancements</label>
+          <div class="addons">
+            <label class="addon">
+              <input class="addon-check" type="checkbox" data-name="Interior Ceramic Protection" data-price="580">
+              <div><strong>Interior Ceramic Protection</strong><small>Leather, fabric and trim protection</small></div>
+              <span class="addon-price">RM580</span>
+            </label>
+
+            <label class="addon">
+              <input class="addon-check" type="checkbox" data-name="Glass & Wheel Coating" data-price="420">
+              <div><strong>Glass & Wheel Coating</strong><small>Rain repellency and easier wheel care</small></div>
+              <span class="addon-price">RM420</span>
+            </label>
+
+            <label class="addon">
+              <input class="addon-check" type="checkbox" data-name="Engine Bay Detail" data-price="220">
+              <div><strong>Engine Bay Detail</strong><small>Careful cleaning and finishing treatment</small></div>
+              <span class="addon-price">RM220</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <aside class="summary-panel">
+        <div class="kicker">Estimated investment</div>
+        <div class="total" id="totalPrice">RM480</div>
+        <div class="duration" id="duration">Estimated duration: 4–6 hours</div>
+
+        <div class="summary-list" id="summaryList"></div>
+
+        <div class="summary-form">
+          <input id="ownerName" placeholder="Owner name">
+          <input id="vehicleModel" placeholder="Vehicle model">
+          <select id="preferredTiming">
+            <option>Earliest available slot</option>
+            <option>This week</option>
+            <option>This weekend</option>
+            <option>Choose later</option>
+          </select>
+          <button class="btn ice" onclick="sendEstimate()">Request Estimate on WhatsApp</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-studio">
+  <div class="page">
+    <div class="page-head">
+      <div>
+        <div class="kicker">Studio Tour</div>
+        <h2>See where every finish is created.</h2>
+      </div>
+      <p class="page-copy">A visual walkthrough of the reception, correction bay, coating zone, inspection area and handover space.</p>
+    </div>
+
+    <div class="tour-grid">
+      <article class="tour-card">
+        <img src="https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=1400&q=86" alt="Correction bay">
+        <div class="tour-copy"><span>Correction Bay</span><h3>Controlled lighting for precise surface inspection</h3></div>
+      </article>
+      <article class="tour-card">
+        <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=900&q=86" alt="Wash bay">
+        <div class="tour-copy"><span>Preparation</span><h3>Dedicated wash and decontamination area</h3></div>
+      </article>
+      <article class="tour-card">
+        <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=900&q=86" alt="Coating area">
+        <div class="tour-copy"><span>Coating Zone</span><h3>Clean environment for coating application</h3></div>
+      </article>
+      <article class="tour-card">
+        <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=900&q=86" alt="Wheel inspection">
+        <div class="tour-copy"><span>Detail Station</span><h3>Wheels, brakes and finishing details</h3></div>
+      </article>
+      <article class="tour-card">
+        <img src="https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=900&q=86" alt="Handover area">
+        <div class="tour-copy"><span>Handover</span><h3>Final inspection before vehicle collection</h3></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-garage">
+  <div class="page">
+    <div class="page-head">
+      <div>
+        <div class="kicker">Customer Garage</div>
+        <h2>Selected vehicles and completed treatments.</h2>
+      </div>
+      <p class="page-copy">A portfolio-style garage helps the Signature website feel like an established premium studio.</p>
+    </div>
+
+    <div class="garage-grid">
+      <article class="garage-card">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=86" alt="Porsche">
+        <div class="garage-body">
+          <h3>Porsche 911</h3>
+          <p>Front impact protection and ceramic surface treatment.</p>
+          <div class="tags"><span>Front PPF</span><span>Ceramic</span><span>Wheels</span></div>
+        </div>
+      </article>
+
+      <article class="garage-card">
+        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1000&q=86" alt="Mercedes">
+        <div class="garage-body">
+          <h3>Mercedes-AMG</h3>
+          <p>Multi-stage correction with long-term paint protection.</p>
+          <div class="tags"><span>Correction</span><span>5-Year Coating</span></div>
+        </div>
+      </article>
+
+      <article class="garage-card">
+        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1000&q=86" alt="Performance coupe">
+        <div class="garage-body">
+          <h3>Performance Coupe</h3>
+          <p>Exterior restoration and complete interior refresh.</p>
+          <div class="tags"><span>Polish</span><span>Interior</span><span>Glass</span></div>
+        </div>
+      </article>
+
+      <article class="garage-card">
+        <img src="https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1000&q=86" alt="BMW">
+        <div class="garage-body">
+          <h3>BMW M Series</h3>
+          <p>Paint enhancement with wheel and glass coating.</p>
+          <div class="tags"><span>Enhancement</span><span>Wheels</span><span>Glass</span></div>
+        </div>
+      </article>
+
+      <article class="garage-card">
+        <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1000&q=86" alt="Supercar">
+        <div class="garage-body">
+          <h3>Exotic Supercar</h3>
+          <p>Collector-grade detailing and protected storage preparation.</p>
+          <div class="tags"><span>PPF</span><span>Interior Ceramic</span></div>
+        </div>
+      </article>
+
+      <article class="garage-card">
+        <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1000&q=86" alt="Luxury interior">
+        <div class="garage-body">
+          <h3>Luxury Interior</h3>
+          <p>Steam treatment, leather care and interior ceramic protection.</p>
+          <div class="tags"><span>Steam</span><span>Leather</span><span>Protection</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-plans">
+  <div class="page">
+    <div class="page-head">
+      <div>
+        <div class="kicker">Ongoing Care</div>
+        <h2>Membership plans for long-term maintenance.</h2>
+      </div>
+      <p class="page-copy">Care plans add more value to the Signature package and demonstrate recurring customer services.</p>
+    </div>
+
+    <div class="plan-grid">
+      <article class="plan">
+        <h3>Essential Care</h3>
+        <div class="plan-price">RM1,200/year</div>
+        <ul>
+          <li>12 maintenance washes</li>
+          <li>Quarterly spray protection</li>
+          <li>Priority weekday booking</li>
+          <li>Member inspection rate</li>
+        </ul>
+        <button class="btn" onclick="membership('Essential Care')">Enquire</button>
+      </article>
+
+      <article class="plan featured">
+        <span class="badge">Most Popular</span>
+        <h3>Signature Care</h3>
+        <div class="plan-price">RM2,400/year</div>
+        <ul>
+          <li>12 premium maintenance washes</li>
+          <li>2 interior deep cleans</li>
+          <li>Unlimited coating top-up treatment</li>
+          <li>Priority weekend booking</li>
+        </ul>
+        <button class="btn ice" onclick="membership('Signature Care')">Enquire</button>
+      </article>
+
+      <article class="plan">
+        <h3>Collector Care</h3>
+        <div class="plan-price">Custom</div>
+        <ul>
+          <li>Multi-vehicle management</li>
+          <li>Collection maintenance schedule</li>
+          <li>Vehicle transport coordination</li>
+          <li>Dedicated studio advisor</li>
+        </ul>
+        <button class="btn" onclick="membership('Collector Care')">Enquire</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-faq">
+  <div class="page">
+    <div class="page-head">
+      <div>
+        <div class="kicker">Frequently Asked Questions</div>
+        <h2>Before your appointment.</h2>
+      </div>
+      <p class="page-copy">Clear answers help customers understand pricing, timing and protection options before contacting the studio.</p>
+    </div>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">How long does ceramic coating take?<span>+</span></button>
+        <div class="faq-a"><p>Most ceramic packages require one to three days depending on paint correction requirements, coating layers and curing time.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Is paint correction included before coating?<span>+</span></button>
+        <div class="faq-a"><p>Correction requirements depend on the selected package and existing paint condition. The vehicle is inspected before the final recommendation.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What is the difference between PPF and ceramic coating?<span>+</span></button>
+        <div class="faq-a"><p>PPF provides physical impact protection against chips and scratches. Ceramic coating improves gloss, hydrophobic behaviour and ease of maintenance.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can you collect and return the vehicle?<span>+</span></button>
+        <div class="faq-a"><p>Pickup and return can be arranged for selected locations, subject to schedule and vehicle requirements.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">How is the final quotation confirmed?<span>+</span></button>
+        <div class="faq-a"><p>The final quotation is confirmed after reviewing vehicle size, current condition, selected treatment and any optional enhancements.</p></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section booking" id="booking">
-    <div class="container">
-      <div class="booking-wrap">
-        <div class="booking-copy">
-          <div class="eyebrow">Appointment request</div>
-          <h2>Let us prepare your car properly.</h2>
-          <p style="color:#c4c8cc;line-height:1.75">Send your preferred package and vehicle details. Our team will confirm the recommended treatment, duration and final price.</p>
+<section class="view" id="view-booking">
+  <div class="page">
+    <div class="page-head">
+      <div>
+        <div class="kicker">Appointment Request</div>
+        <h2>Let us prepare your vehicle properly.</h2>
+      </div>
+      <p class="page-copy">Submit the details below and continue the enquiry directly through WhatsApp.</p>
+    </div>
+
+    <div class="booking-grid">
+      <div class="location-card">
+        <h3>Obsidian Motion Studio</h3>
+        <p>Premium car detailing, paint correction, ceramic coating, PPF and interior restoration.</p>
+
+        <div class="info-list">
+          <div>📍 Kuala Lumpur, Malaysia</div>
+          <div>🕒 Monday–Saturday, by appointment</div>
+          <div>📞 +60 16-808 3598</div>
+          <div>🚗 Vehicle pickup available for selected locations</div>
         </div>
 
-        <form class="booking-form" onsubmit="submitBooking(event)">
-          <div class="form-row">
-            <div class="field">
-              <label>Name</label>
-              <input id="name" required placeholder="Your name">
-            </div>
-            <div class="field">
-              <label>WhatsApp number</label>
-              <input id="phone" required placeholder="01X-XXXXXXX">
-            </div>
-          </div>
+        <div class="map">
+          <iframe src="https://www.google.com/maps?q=Kuala%20Lumpur%20Malaysia&output=embed" loading="lazy" title="Obsidian Motion Studio location"></iframe>
+        </div>
+      </div>
 
-          <div class="form-row">
-            <div class="field">
-              <label>Vehicle</label>
-              <input id="vehicle" required placeholder="e.g. BMW 330i">
-            </div>
-            <div class="field">
-              <label>Preferred package</label>
-              <select id="package">
-                <option>Maintenance Detail — RM180</option>
-                <option>Premium Detail — RM480</option>
-                <option>Ceramic Signature — RM1,280</option>
-                <option>Atelier Collection — RM2,680</option>
-              </select>
-            </div>
-          </div>
+      <div class="booking-card">
+        <h3>Request a studio slot</h3>
 
-          <div class="form-row">
-            <div class="field">
-              <label>Preferred date</label>
-              <input id="date" type="date">
-            </div>
-            <div class="field">
-              <label>Vehicle condition</label>
-              <select id="condition">
-                <option>Regular maintenance</option>
-                <option>Light swirl marks</option>
-                <option>Heavy paint defects</option>
-                <option>Interior needs deep cleaning</option>
-                <option>Not sure — please advise</option>
-              </select>
-            </div>
-          </div>
+        <form class="booking-form" onsubmit="sendBooking(event)">
+          <input id="bookName" placeholder="Your name" required>
+          <input id="bookPhone" placeholder="WhatsApp number" required>
 
-          <div class="field">
-            <label>Additional notes</label>
-            <textarea id="notes" placeholder="Tell us anything important about the car or service required."></textarea>
-          </div>
+          <input id="bookVehicle" placeholder="Vehicle model" required>
+          <select id="bookPackage">
+            <option>Premium Detail — RM480</option>
+            <option>Ceramic Signature — RM1,280</option>
+            <option>Atelier Collection — RM2,680</option>
+            <option>Front Track PPF — RM4,200</option>
+            <option>Custom Consultation</option>
+          </select>
 
-          <button class="submit" type="submit">Send booking request via WhatsApp</button>
-          <div class="form-note">Demo WhatsApp number: replace 60123456789 in the code before publishing.</div>
+          <input id="bookDate" type="date">
+          <select id="bookCondition">
+            <option>Regular maintenance</option>
+            <option>Light swirl marks</option>
+            <option>Heavy paint defects</option>
+            <option>Interior requires deep cleaning</option>
+            <option>Not sure — please advise</option>
+          </select>
+
+          <textarea id="bookNotes" placeholder="Tell us about the paint condition, stains, scratches or any special requirements"></textarea>
+
+          <button class="btn ice" type="submit">Continue on WhatsApp</button>
         </form>
       </div>
     </div>
-  </section>
-</main>
-
-<footer>
-  <div class="container footer">
-    <span>© 2026 Obsidian Auto Atelier · Kuala Lumpur, Malaysia</span>
-    <span>Car detailing · Paint correction · Ceramic coating · Rates in MYR</span>
   </div>
-</footer>
+</section>
 
-<a class="floating-book" href="#booking">Book Now</a>
+</main>
+</div>
+
+<div class="mobile-nav">
+  <button class="active" data-view="home">Home</button>
+  <button data-view="services">Services</button>
+  <button data-view="results">Results</button>
+  <button data-view="configurator">Builder</button>
+  <button data-view="garage">Garage</button>
+  <button data-view="booking">Book</button>
+</div>
 
 <script>
-function submitBooking(event){
+const allViewButtons=[...document.querySelectorAll("[data-view]")];
+const allViews=[...document.querySelectorAll(".view")];
+
+function showView(name){
+  allViews.forEach(view=>view.classList.toggle("active",view.id==="view-"+name));
+  allViewButtons.forEach(button=>button.classList.toggle("active",button.dataset.view===name));
+  document.querySelector(".workspace").scrollTo({top:0,behavior:"smooth"});
+}
+
+allViewButtons.forEach(button=>{
+  button.addEventListener("click",()=>showView(button.dataset.view));
+});
+
+function updateCompare(value){
+  document.getElementById("afterImage").style.clipPath=`inset(0 0 0 ${value}%)`;
+  document.getElementById("compareLine").style.left=value+"%";
+}
+
+let vehicleName="Sedan / Coupe";
+let vehiclePrice=0;
+let packageName="Premium Detail";
+let packagePrice=480;
+let packageDuration="4–6 hours";
+
+document.querySelectorAll(".vehicle-chip").forEach(button=>{
+  button.addEventListener("click",()=>{
+    document.querySelectorAll(".vehicle-chip").forEach(item=>item.classList.remove("active"));
+    button.classList.add("active");
+    vehicleName=button.dataset.name;
+    vehiclePrice=Number(button.dataset.price);
+    updateConfig();
+  });
+});
+
+document.querySelectorAll(".package-chip").forEach(button=>{
+  button.addEventListener("click",()=>{
+    document.querySelectorAll(".package-chip").forEach(item=>item.classList.remove("active"));
+    button.classList.add("active");
+    packageName=button.dataset.name;
+    packagePrice=Number(button.dataset.price);
+    packageDuration=button.dataset.duration;
+    updateConfig();
+  });
+});
+
+document.querySelectorAll(".addon-check").forEach(check=>check.addEventListener("change",updateConfig));
+
+function updateConfig(){
+  let total=vehiclePrice+packagePrice;
+  let addons=[];
+
+  document.querySelectorAll(".addon-check").forEach(check=>{
+    if(check.checked){
+      total+=Number(check.dataset.price);
+      addons.push({name:check.dataset.name,price:Number(check.dataset.price)});
+    }
+  });
+
+  document.getElementById("totalPrice").textContent="RM"+total.toLocaleString();
+  document.getElementById("duration").textContent="Estimated duration: "+packageDuration;
+
+  document.getElementById("summaryList").innerHTML=
+    `<div><span>${vehicleName}</span><strong>${vehiclePrice ? "RM"+vehiclePrice : "Base"}</strong></div>
+     <div><span>${packageName}</span><strong>RM${packagePrice.toLocaleString()}</strong></div>`+
+    addons.map(item=>`<div><span>${item.name}</span><strong>RM${item.price.toLocaleString()}</strong></div>`).join("");
+}
+
+function sendEstimate(){
+  const owner=document.getElementById("ownerName").value || "Not specified";
+  const model=document.getElementById("vehicleModel").value || "Not specified";
+  const timing=document.getElementById("preferredTiming").value;
+  const addons=[...document.querySelectorAll(".addon-check:checked")].map(item=>item.dataset.name).join(", ") || "None";
+  const total=document.getElementById("totalPrice").textContent;
+
+  const message=
+`Hi Obsidian Motion! I would like to request a detailing estimate.
+
+Owner: ${owner}
+Vehicle model: ${model}
+Vehicle category: ${vehicleName}
+Package: ${packageName}
+Enhancements: ${addons}
+Estimated total: ${total}
+Preferred timing: ${timing}`;
+
+  window.open("https://wa.me/60168083598?text="+encodeURIComponent(message),"_blank");
+}
+
+function membership(plan){
+  const message=`Hi Obsidian Motion! I would like to ask about the ${plan} membership.`;
+  window.open("https://wa.me/60168083598?text="+encodeURIComponent(message),"_blank");
+}
+
+function sendBooking(event){
   event.preventDefault();
 
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const vehicle = document.getElementById("vehicle").value.trim();
-  const packageName = document.getElementById("package").value;
-  const date = document.getElementById("date").value || "Flexible";
-  const condition = document.getElementById("condition").value;
-  const notes = document.getElementById("notes").value.trim() || "None";
+  const message=
+`Hi Obsidian Motion! I would like to request a detailing appointment.
 
-  const message =
-`Hi Obsidian Auto Atelier,
+Name: ${document.getElementById("bookName").value}
+WhatsApp: ${document.getElementById("bookPhone").value}
+Vehicle: ${document.getElementById("bookVehicle").value}
+Package: ${document.getElementById("bookPackage").value}
+Preferred date: ${document.getElementById("bookDate").value || "Flexible"}
+Vehicle condition: ${document.getElementById("bookCondition").value}
+Additional notes: ${document.getElementById("bookNotes").value || "None"}`;
 
-I would like to request a detailing appointment.
-
-Name: ${name}
-My WhatsApp: ${phone}
-Vehicle: ${vehicle}
-Package: ${packageName}
-Preferred Date: ${date}
-Vehicle Condition: ${condition}
-Additional Notes: ${notes}`;
-
-  const whatsappNumber = "60123456789";
-  const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank");
+  window.open("https://wa.me/60168083598?text="+encodeURIComponent(message),"_blank");
 }
+
+document.querySelectorAll(".faq-q").forEach(button=>{
+  button.addEventListener("click",()=>{
+    const item=button.closest(".faq-item");
+    item.classList.toggle("open");
+    button.querySelector("span").textContent=item.classList.contains("open") ? "−" : "+";
+  });
+});
+
+updateConfig();
 </script>
+
 </body>
 </html>
-'''
-
-path = Path("/mnt/data/car_detailing_signature_studio.html")
-path.write_text(html, encoding="utf-8")
-print(path)
