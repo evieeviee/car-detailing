@@ -1,124 +1,1182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PURE GLOSS | Mobile & Studio Car Care</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Space Grotesk', sans-serif; }</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PURE GLOSS | Mobile Car Wash, Polish & Detailing</title>
+<meta name="description" content="PURE GLOSS provides mobile and studio car wash, interior cleaning, polishing, paint correction, ceramic coating, headlight restoration and complete detailing services.">
+<meta name="keywords" content="mobile car wash, car detailing, car polish, interior cleaning, ceramic coating, paint correction, headlight restoration, mobile detailing Malaysia">
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --white:#ffffff;
+  --ice:#f5f8fb;
+  --soft:#eaf0f4;
+  --ink:#101820;
+  --muted:#69737d;
+  --lime:#b7f34a;
+  --blue:#6fd6ff;
+  --line:#dce3e8;
+  --green:#25d366;
+  --shadow:0 22px 55px rgba(22,34,44,.12);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ice);
+  color:var(--ink);
+  font-family:"Archivo",Arial,sans-serif;
+  overflow-x:hidden;
+  padding-bottom:0;
+}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;object-fit:cover}
+button,input,select,textarea{font:inherit}
+.container{width:min(1180px,calc(100% - 38px));margin:auto}
+
+.topbar{
+  background:var(--ink);
+  color:#fff;
+  padding:9px 18px;
+  font-size:12px;
+  font-weight:700;
+}
+.topbar-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+.topbar strong{color:var(--lime)}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  min-height:76px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:18px;
+}
+.brand{
+  font-family:"Syne",sans-serif;
+  font-size:27px;
+  font-weight:800;
+  white-space:nowrap;
+}
+.brand span{
+  color:#7bb91f;
+}
+.menu-wrap{
+  min-width:0;
+  overflow:hidden;
+}
+.menu{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  scroll-snap-type:x proximity;
+  padding:8px 2px;
+}
+.menu::-webkit-scrollbar{display:none}
+.menu a{
+  flex:0 0 auto;
+  scroll-snap-align:start;
+  padding:9px 13px;
+  border-radius:999px;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+  white-space:nowrap;
+}
+.menu a:hover{
+  background:var(--soft);
+  color:var(--ink);
+}
+.book-btn{
+  padding:12px 18px;
+  border-radius:999px;
+  background:var(--ink);
+  color:#fff;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.hero{
+  padding:54px 0 70px;
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  gap:42px;
+  align-items:center;
+  min-height:calc(100vh - 113px);
+}
+.hero-copy{
+  padding:30px 0;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:var(--soft);
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  font-weight:800;
+}
+h1,h2,h3{
+  font-family:"Syne",sans-serif;
+}
+h1{
+  margin-top:18px;
+  font-size:clamp(58px,7vw,98px);
+  line-height:.9;
+  letter-spacing:-2px;
+}
+h1 span{
+  background:var(--ink);
+  color:var(--lime);
+  padding:0 8px 4px;
+  display:inline-block;
+}
+.hero p{
+  margin-top:24px;
+  max-width:620px;
+  color:var(--muted);
+  line-height:1.75;
+  font-size:17px;
+}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:28px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:15px 21px;
+  border-radius:14px;
+  border:1px solid var(--ink);
+  font-weight:800;
+  cursor:pointer;
+}
+.btn.dark{
+  background:var(--ink);
+  color:#fff;
+}
+.btn.lime{
+  background:var(--lime);
+  border-color:var(--lime);
+  color:#111;
+}
+.btn.wa{
+  background:var(--green);
+  border-color:var(--green);
+  color:#fff;
+}
+
+.hero-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:28px;
+}
+.stat{
+  padding:16px;
+  border-left:3px solid var(--lime);
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 7px 20px rgba(25,35,45,.06);
+}
+.stat strong{
+  display:block;
+  font-size:16px;
+}
+.stat span{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.booking-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:28px;
+  box-shadow:var(--shadow);
+}
+.booking-card h2{
+  font-size:32px;
+}
+.booking-card p{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:13px;
+}
+.mode-switch{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:20px;
+}
+.mode-btn{
+  padding:14px 12px;
+  border:2px solid var(--line);
+  border-radius:14px;
+  background:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+.mode-btn.active{
+  background:var(--ink);
+  color:#fff;
+  border-color:var(--ink);
+}
+.booking-form{
+  display:grid;
+  gap:12px;
+  margin-top:16px;
+}
+.booking-form input,.booking-form select{
+  width:100%;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fbfcfd;
+}
+.booking-form button{
+  width:100%;
+}
+
+.hero-image{
+  margin-top:18px;
+  height:250px;
+  border-radius:18px;
+  overflow:hidden;
+}
+.hero-image img{height:100%}
+
+.service-ribbon{
+  border-top:1px solid var(--ink);
+  border-bottom:1px solid var(--ink);
+  background:var(--lime);
+  overflow:hidden;
+}
+.ribbon-track{
+  display:flex;
+  width:max-content;
+  padding:12px 0;
+  font-weight:800;
+  animation:move 20s linear infinite;
+}
+.ribbon-track span{
+  padding:0 26px;
+}
+@keyframes move{
+  to{transform:translateX(-50%)}
+}
+
+.section{
+  padding:92px 0;
+}
+.alt{
+  background:#fff;
+}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+  margin-bottom:34px;
+}
+.section h2{
+  margin-top:10px;
+  font-size:clamp(42px,5vw,68px);
+  line-height:.95;
+}
+.section-copy{
+  max-width:520px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.service-strip{
+  display:flex;
+  gap:18px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  padding-bottom:12px;
+}
+.service-strip::-webkit-scrollbar{display:none}
+.service-card{
+  flex:0 0 320px;
+  scroll-snap-align:start;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 10px 28px rgba(25,35,45,.07);
+}
+.service-card img{
+  height:235px;
+}
+.service-body{
+  padding:20px;
+}
+.service-card h3{
+  font-size:26px;
+}
+.service-card p{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+}
+.price{
+  display:block;
+  margin-top:13px;
+  font-weight:800;
+  color:#6da019;
+}
+.service-card a{
+  display:inline-block;
+  margin-top:13px;
+  font-size:13px;
+  font-weight:800;
+  color:var(--ink);
+}
+
+.package-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.package{
+  padding:28px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  position:relative;
+}
+.package.featured{
+  border:2px solid var(--ink);
+  background:linear-gradient(180deg,#f0ffd4,#fff);
+  transform:translateY(-10px);
+}
+.tag{
+  position:absolute;
+  top:-13px;
+  left:24px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:var(--ink);
+  color:var(--lime);
+  font-size:10px;
+  text-transform:uppercase;
+  font-weight:900;
+}
+.package h3{
+  font-size:29px;
+}
+.package-price{
+  margin-top:14px;
+  font-size:38px;
+  font-weight:900;
+}
+.package p{
+  margin-top:8px;
+  color:var(--muted);
+}
+.package ul{
+  margin:18px 0 0 18px;
+  color:#4f5962;
+  line-height:1.9;
+  font-size:14px;
+}
+.package .btn{
+  width:100%;
+  margin-top:22px;
+}
+
+.mobile-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+.mobile-card{
+  padding:30px;
+  border-radius:24px;
+  min-height:360px;
+}
+.mobile-card:first-child{
+  background:var(--ink);
+  color:#fff;
+}
+.mobile-card:last-child{
+  background:var(--blue);
+  color:var(--ink);
+}
+.mobile-card h3{
+  font-size:34px;
+}
+.mobile-card p{
+  margin-top:12px;
+  line-height:1.7;
+}
+.mobile-card ul{
+  margin:18px 0 0 18px;
+  line-height:1.9;
+}
+.area-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:20px;
+}
+.area-tags span{
+  padding:8px 11px;
+  border-radius:999px;
+  background:rgba(255,255,255,.13);
+  font-size:12px;
+  font-weight:700;
+}
+.mobile-card:last-child .area-tags span{
+  background:rgba(255,255,255,.45);
+}
+
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+.process{
+  padding:24px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:20px;
+}
+.process b{
+  font-family:"Syne";
+  font-size:38px;
+  color:#7bb91f;
+}
+.process h3{
+  margin-top:8px;
+  font-size:23px;
+}
+.process p{
+  margin-top:7px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+}
+
+.review-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.review{
+  padding:24px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+}
+.stars{color:#e4a600}
+.review p{
+  margin-top:12px;
+  color:#4d5861;
+  line-height:1.7;
+}
+.review strong{
+  display:block;
+  margin-top:14px;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:24px;
+}
+.info{
+  padding:30px;
+  border-radius:24px;
+  background:var(--ink);
+  color:#fff;
+}
+.info h3{
+  font-size:36px;
+}
+.info p{
+  margin-top:12px;
+  color:#c8d1d8;
+}
+.details{
+  display:grid;
+  gap:10px;
+  margin-top:20px;
+}
+.details div{
+  padding:13px;
+  background:rgba(255,255,255,.08);
+  border-radius:11px;
+}
+.map{
+  margin-top:22px;
+  height:310px;
+  border-radius:18px;
+  overflow:hidden;
+}
+.map iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+.form-card{
+  padding:30px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:24px;
+}
+.form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+.form input,.form select,.form textarea{
+  width:100%;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  background:#fbfcfd;
+}
+.form textarea{
+  grid-column:1/-1;
+  min-height:120px;
+}
+.form button{
+  grid-column:1/-1;
+}
+
+footer{
+  padding:30px 20px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  border-top:1px solid var(--line);
+}
+
+.float{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:1200;
+  padding:14px 18px;
+  border-radius:999px;
+  background:var(--green);
+  color:#fff;
+  font-weight:800;
+  box-shadow:0 15px 35px rgba(37,211,102,.28);
+}
+
+.mobile-bar{
+  display:none;
+}
+
+@media(max-width:980px){
+  .nav{grid-template-columns:auto 1fr}
+  .book-btn{display:none}
+  .hero,.contact-grid{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:1fr 1fr 1fr}
+  .package-grid,.review-grid{grid-template-columns:1fr}
+  .package.featured{transform:none}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .section-head{display:block}
+}
+@media(max-width:680px){
+  body{padding-bottom:74px}
+  .container{width:min(100% - 26px,1180px)}
+  .topbar-inner{
+    display:block;
+    text-align:center;
+  }
+  .topbar-inner span:last-child{
+    display:block;
+    margin-top:4px;
+  }
+  .nav{
+    grid-template-columns:1fr;
+    gap:0;
+    padding-top:10px;
+  }
+  .brand{text-align:center}
+  .menu-wrap{
+    margin:7px -13px 0;
+    padding:0 13px;
+  }
+  .menu a{
+    border:1px solid var(--line);
+    background:#fff;
+  }
+  h1{font-size:54px}
+  .hero{padding-top:34px}
+  .hero-stats{grid-template-columns:1fr}
+  .mode-switch,.mobile-grid,.process-grid,.form{grid-template-columns:1fr}
+  .form textarea,.form button{grid-column:auto}
+  .service-card{flex-basis:280px}
+  .float{display:none}
+  .mobile-bar{
+    display:flex;
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:1300;
+    gap:8px;
+    padding:10px;
+    background:#fff;
+    border-top:1px solid var(--line);
+  }
+  .mobile-bar a{
+    flex:1;
+    padding:13px 10px;
+    border-radius:12px;
+    text-align:center;
+    font-size:12px;
+    font-weight:800;
+  }
+  .mobile-bar a:first-child{
+    background:var(--ink);
+    color:#fff;
+  }
+  .mobile-bar a:last-child{
+    background:var(--lime);
+    color:#111;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+}
+</style>
 </head>
-<body class="bg-[#F8FAFC] text-slate-800 antialiased pb-20 md:pb-0">
 
-    <!-- Top Contact Strip -->
-    <div class="bg-slate-900 text-white text-xs py-2 px-6 flex justify-between items-center font-medium">
-        <span>📍 Mont Kiara / Subang Jaya Outlets</span>
-        <span class="text-lime-400 font-bold">⚡ Same-Day Slots Available</span>
+<body>
+
+<div class="topbar">
+  <div class="container topbar-inner">
+    <span>📍 Mont Kiara / Subang Jaya Outlets</span>
+    <span><strong>⚡ Same-Day Mobile & Studio Slots Available</strong></span>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home">PURE<span>GLOSS.</span></a>
+
+    <div class="menu-wrap">
+      <nav class="menu" aria-label="Scrollable car care navigation">
+        <a href="#services">Car Wash</a>
+        <a href="#services">Interior</a>
+        <a href="#services">Polish</a>
+        <a href="#services">Paint Correction</a>
+        <a href="#services">Ceramic Coating</a>
+        <a href="#services">Headlights</a>
+        <a href="#mobile">Mobile Service</a>
+        <a href="#packages">Packages</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#book">Book</a>
+      </nav>
     </div>
 
-    <!-- Header Navigation -->
-    <nav class="bg-white border-b border-slate-200 sticky top-0 z-40">
-        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="font-bold text-xl tracking-tight text-slate-900">
-                PURE<span class="text-lime-500">GLOSS.</span>
-            </a>
-            <div class="flex items-center gap-4">
-                <a href="#services" class="text-xs font-semibold uppercase text-slate-600 hover:text-slate-900">Services</a>
-                <a href="#book" class="bg-lime-400 hover:bg-lime-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-lg transition-all">
-                    Book Now
-                </a>
-            </div>
-        </div>
-    </nav>
+    <a class="book-btn"
+       target="_blank"
+       href="https://wa.me/60168083598?text=Hi%20PURE%20GLOSS!%20I%20would%20like%20to%20book%20a%20car%20care%20service.">
+       WhatsApp Booking
+    </a>
+  </div>
+</header>
 
-    <!-- Clean Hero Section -->
-    <section class="max-w-5xl mx-auto px-6 py-12 md:py-16">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-            <div class="space-y-6">
-                <span class="text-xs font-bold uppercase tracking-wider text-slate-500 bg-slate-200/60 px-3 py-1 rounded-md">
-                    Mobile & In-Studio Detailing
-                </span>
-                <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-none">
-                    WE COME TO YOU, <br><span class="text-lime-500 bg-slate-900 px-2 py-0.5 rounded">OR YOU COME TO US.</span>
-                </h1>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                    Premium waterless wash, interior deep steam extraction, and paint enhancement. Done at your home driveway or in our climate-controlled studio.
-                </p>
+<main>
 
-                <div class="grid grid-cols-2 gap-4 pt-2">
-                    <div class="border-l-2 border-lime-500 pl-3">
-                        <div class="font-bold text-slate-900 text-base">45-60 Mins</div>
-                        <div class="text-xs text-slate-500">Express Turnaround</div>
-                    </div>
-                    <div class="border-l-2 border-lime-500 pl-3">
-                        <div class="font-bold text-slate-900 text-base">pH-Neutral</div>
-                        <div class="text-xs text-slate-500">Paint-Safe Chemicals</div>
-                    </div>
-                </div>
-            </div>
+<section class="container hero" id="home">
+  <div class="hero-copy">
+    <div class="eyebrow">Mobile & in-studio car care</div>
+    <h1>We come to you,<br><span>or you come to us.</span></h1>
+    <p>
+      Car wash, interior deep cleaning, polishing, paint correction and ceramic protection
+      at your home driveway or inside our detailing studio.
+    </p>
 
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xl space-y-4" id="book">
-                <h2 class="text-lg font-bold text-slate-900">Select Booking Mode</h2>
-                
-                <div class="grid grid-cols-2 gap-3 text-xs">
-                    <button class="border-2 border-slate-900 bg-slate-900 text-white py-3 rounded-xl font-bold">
-                        🏡 Doorstep / Mobile
-                    </button>
-                    <button class="border-2 border-slate-200 hover:border-slate-900 text-slate-700 py-3 rounded-xl font-bold transition-all">
-                        🏬 Drop-off Studio
-                    </button>
-                </div>
-
-                <div class="space-y-3 text-xs">
-                    <input type="text" placeholder="Car Model (e.g. Honda Civic, BMW 3 Series)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-slate-900">
-                    <input type="text" placeholder="Location / Postcode" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 focus:outline-none focus:border-slate-900">
-                    <button class="w-full bg-lime-400 hover:bg-lime-500 text-slate-950 font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider transition-all">
-                        Check Slot Availability
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Simple Service Menu -->
-    <section class="max-w-5xl mx-auto px-6 py-12 border-t border-slate-200" id="services">
-        <h2 class="text-2xl font-bold text-slate-900 mb-8">Service Menu</h2>
-        <div class="space-y-4">
-            
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-slate-400 transition-all">
-                <div>
-                    <span class="text-[10px] font-bold text-lime-600 bg-lime-100 px-2 py-0.5 rounded uppercase">Popular</span>
-                    <h3 class="font-bold text-lg text-slate-900 mt-1">Interior Deep Sanitization & Steam</h3>
-                    <p class="text-xs text-slate-500">Extraction of carpet stains, leather conditioning, AC vent fogging, and odor neutralization.</p>
-                </div>
-                <div class="text-right w-full sm:w-auto flex sm:flex-col justify-between items-center gap-2">
-                    <span class="font-bold text-xl text-slate-900">RM 220</span>
-                    <button class="bg-slate-900 text-white text-xs px-4 py-2 rounded-lg font-bold hover:bg-slate-800">Select</button>
-                </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-slate-400 transition-all">
-                <div>
-                    <h3 class="font-bold text-lg text-slate-900">Paint Enhancement & Gloss Sealant</h3>
-                    <p class="text-xs text-slate-500">Single stage polish to clear light scratches, finished with a 6-month synthetic sealant coating.</p>
-                </div>
-                <div class="text-right w-full sm:w-auto flex sm:flex-col justify-between items-center gap-2">
-                    <span class="font-bold text-xl text-slate-900">RM 380</span>
-                    <button class="bg-slate-900 text-white text-xs px-4 py-2 rounded-lg font-bold hover:bg-slate-800">Select</button>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Mobile Fixed Action Bar (App-like experience) -->
-    <div class="fixed bottom-0 inset-x-0 bg-white border-t border-slate-200 p-3 md:hidden z-50 flex gap-2">
-        <a href="https://wa.me/" class="w-1/2 bg-slate-900 text-white text-xs font-bold py-3 rounded-xl text-center">WhatsApp Us</a>
-        <a href="#book" class="w-1/2 bg-lime-400 text-slate-950 text-xs font-bold py-3 rounded-xl text-center">Book Service</a>
+    <div class="actions">
+      <a class="btn lime" href="#services">View Services</a>
+      <a class="btn wa"
+         target="_blank"
+         href="https://wa.me/60168083598?text=Hi%20PURE%20GLOSS!%20I%20would%20like%20to%20check%20slot%20availability.">
+         Check WhatsApp Slots
+      </a>
     </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <strong>45–60 mins</strong>
+        <span>Express service</span>
+      </div>
+      <div class="stat">
+        <strong>pH-neutral</strong>
+        <span>Paint-safe products</span>
+      </div>
+      <div class="stat">
+        <strong>Mobile + studio</strong>
+        <span>Choose your location</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="booking-card" id="book">
+    <h2>Select your booking mode</h2>
+    <p>Choose doorstep service or studio drop-off.</p>
+
+    <div class="mode-switch">
+      <button class="mode-btn active" data-mode="Doorstep / Mobile">🏡 Doorstep / Mobile</button>
+      <button class="mode-btn" data-mode="Studio Drop-Off">🏬 Studio Drop-Off</button>
+    </div>
+
+    <div class="booking-form">
+      <input id="quickModel" placeholder="Car model, e.g. Honda Civic">
+      <input id="quickLocation" placeholder="Location or postcode">
+
+      <select id="quickService">
+        <option>Premium Car Wash</option>
+        <option>Interior Deep Cleaning</option>
+        <option>Machine Polish</option>
+        <option>Paint Correction</option>
+        <option>Ceramic Coating</option>
+        <option>Headlight Restoration</option>
+      </select>
+
+      <button class="btn lime" onclick="quickBooking()">Check Slot Availability</button>
+    </div>
+
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1000&q=86"
+           alt="PURE GLOSS mobile car detailing">
+    </div>
+  </div>
+</section>
+
+<div class="service-ribbon">
+  <div class="ribbon-track">
+    <span>CAR WASH ✦ INTERIOR STEAM CLEANING ✦ POLISHING ✦ PAINT CORRECTION ✦ CERAMIC COATING ✦ HEADLIGHT RESTORATION ✦</span>
+    <span>CAR WASH ✦ INTERIOR STEAM CLEANING ✦ POLISHING ✦ PAINT CORRECTION ✦ CERAMIC COATING ✦ HEADLIGHT RESTORATION ✦</span>
+  </div>
+</div>
+
+<section class="section alt" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Service menu</div>
+        <h2>Everyday cleaning to full protection</h2>
+      </div>
+      <p class="section-copy">
+        Scroll sideways to browse car wash, interior care, paint restoration and protection services.
+      </p>
+    </div>
+
+    <div class="service-strip">
+      <article class="service-card">
+        <img src="https://images.unsplash.com/photo-1608506375591-b90e1f955e4b?auto=format&fit=crop&w=900&q=86" alt="Premium car wash">
+        <div class="service-body">
+          <h3>Premium Car Wash</h3>
+          <p>Foam wash, wheel cleaning, hand dry, tyre dressing and quick interior vacuum.</p>
+          <span class="price">From RM45</span>
+          <a target="_blank" href="https://wa.me/60168083598?text=Hi%20PURE%20GLOSS!%20I%20would%20like%20to%20book%20a%20Premium%20Car%20Wash.">Select service →</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=900&q=86" alt="Interior deep cleaning">
+        <div class="service-body">
+          <h3>Interior Deep Clean</h3>
+          <p>Vacuum, steam extraction, stain treatment, leather care and odour neutralisation.</p>
+          <span class="price">From RM220</span>
+          <a target="_blank" href="https://wa.me/60168083598?text=Hi%20PURE%20GLOSS!%20I%20would%20like%20to%20book%20Interior%20Deep%20Cleaning.">Select service →</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <img src="https://images.unsplash.com/photo-1597007066704-67bf2068d5b2?auto=format&fit=crop&w=900&q=86" alt="Car polishing">
+        <div class="service-body">
+          <h3>Paint Enhancement</h3>
+          <p>Single-stage polish for better gloss, light swirl reduction and synthetic sealant.</p>
+          <span class="price">From RM380</span>
+          <a target="_blank" href="https://wa.me/60168083598?text=Hi%20PURE%20GLOSS!%20I%20would%20like%20to%20book%20Paint%20Enhancement.">Select service →</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=86" alt="Paint correction">
+        <div class="service-body">
+          <h3>Paint Correction</h3>
+          <p>Multi-stage polishing to reduce deeper swirls, oxidation, haze and light scratches.</p>
+          <span class="price">From RM650</span>
+          <a target="_blank" href="https://wa.me/60168083598?text=Hi%20PURE%20GLOSS!%20I%20would%20like%20to%20ask%20about%20Paint%20Correction.">Select service →</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=900&q=86" alt="Ceramic coating">
+        <div class="service-body">
+          <h3>Ceramic Coating</h3>
+          <p>Hydrophobic coating for improved gloss, easier washing and longer paint protection.</p>
+          <span class="price">From RM990</span>
+          <a target="_blank" href="https://wa.me/60168083598?text=Hi%20PURE%20GLOSS!%20I%20would%20like%20to%20ask%20about%20Ceramic%20Coating.">Select service →</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=86" alt="Headlight restoration">
+        <div class="service-body">
+          <h3>Headlight Restoration</h3>
+          <p>Restore faded or cloudy headlights for improved clarity and appearance.</p>
+          <span class="price">From RM90</span>
+          <a target="_blank" href="https://wa.me/60168083598?text=Hi%20PURE%20GLOSS!%20I%20would%20like%20to%20book%20Headlight%20Restoration.">Select service →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="packages">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Popular packages</div>
+        <h2>Choose your level of care</h2>
+      </div>
+      <p class="section-copy">
+        Sample package pricing can be replaced with the final business rates.
+      </p>
+    </div>
+
+    <div class="package-grid">
+      <article class="package">
+        <h3>Express Refresh</h3>
+        <div class="package-price">RM90</div>
+        <p>For routine weekly or bi-weekly cleaning.</p>
+        <ul>
+          <li>Foam wash</li>
+          <li>Wheel and tyre cleaning</li>
+          <li>Interior vacuum</li>
+          <li>Dashboard wipe</li>
+          <li>Spray sealant</li>
+        </ul>
+        <a class="btn dark" target="_blank" href="https://wa.me/60168083598?text=Hi%20PURE%20GLOSS!%20I%20would%20like%20to%20book%20Express%20Refresh.">Book Package</a>
+      </article>
+
+      <article class="package featured">
+        <span class="tag">Most Popular</span>
+        <h3>Full Reset</h3>
+        <div class="package-price">RM450</div>
+        <p>A complete interior and exterior refresh.</p>
+        <ul>
+          <li>Premium wash</li>
+          <li>Interior steam cleaning</li>
+          <li>Clay-bar treatment</li>
+          <li>Single-stage polish</li>
+          <li>Engine-bay wipe-down</li>
+        </ul>
+        <a class="btn lime" target="_blank" href="https://wa.me/60168083598?text=Hi%20PURE%20GLOSS!%20I%20would%20like%20to%20book%20Full%20Reset.">Book Package</a>
+      </article>
+
+      <article class="package">
+        <h3>Protect & Gloss</h3>
+        <div class="package-price">RM1,290</div>
+        <p>Longer-term gloss and easier maintenance.</p>
+        <ul>
+          <li>Exterior decontamination</li>
+          <li>Paint correction</li>
+          <li>Ceramic coating</li>
+          <li>Glass treatment</li>
+          <li>Wheel protection</li>
+        </ul>
+        <a class="btn dark" target="_blank" href="https://wa.me/60168083598?text=Hi%20PURE%20GLOSS!%20I%20would%20like%20to%20book%20Protect%20and%20Gloss.">Book Package</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="mobile">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Choose your convenience</div>
+        <h2>Doorstep or studio service</h2>
+      </div>
+    </div>
+
+    <div class="mobile-grid">
+      <article class="mobile-card">
+        <h3>Mobile Detailing</h3>
+        <p>Our team comes to your home, condominium or workplace where access and water conditions allow.</p>
+        <ul>
+          <li>Convenient doorstep appointment</li>
+          <li>Suitable for wash and interior services</li>
+          <li>Selected polishing services available</li>
+          <li>Location and parking access required</li>
+        </ul>
+        <div class="area-tags">
+          <span>Mont Kiara</span>
+          <span>Subang Jaya</span>
+          <span>Petaling Jaya</span>
+          <span>Damansara</span>
+        </div>
+      </article>
+
+      <article class="mobile-card">
+        <h3>Studio Detailing</h3>
+        <p>Best for longer services that require controlled lighting, equipment and extended curing time.</p>
+        <ul>
+          <li>Paint correction</li>
+          <li>Ceramic coating</li>
+          <li>Deep stain extraction</li>
+          <li>Longer restoration services</li>
+        </ul>
+        <div class="area-tags">
+          <span>Climate-controlled bay</span>
+          <span>Drop-off available</span>
+          <span>Inspection lighting</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">How it works</div>
+        <h2>Book in four simple steps</h2>
+      </div>
+    </div>
+
+    <div class="process-grid">
+      <article class="process">
+        <b>01</b>
+        <h3>Choose a mode</h3>
+        <p>Select mobile doorstep service or studio drop-off.</p>
+      </article>
+
+      <article class="process">
+        <b>02</b>
+        <h3>Select a service</h3>
+        <p>Choose car wash, interior, polish, correction or coating.</p>
+      </article>
+
+      <article class="process">
+        <b>03</b>
+        <h3>Confirm your slot</h3>
+        <p>Receive pricing, duration and availability through WhatsApp.</p>
+      </article>
+
+      <article class="process">
+        <b>04</b>
+        <h3>We detail your car</h3>
+        <p>Our team completes the selected service at your location or studio.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="reviews">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Customer reviews</div>
+        <h2>Convenient and carefully done</h2>
+      </div>
+    </div>
+
+    <div class="review-grid">
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <p>“The mobile team arrived on time and completed the wash in my condominium parking area.”</p>
+        <strong>Melissa — Sedan Owner</strong>
+      </article>
+
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <p>“The interior steam clean removed the smell and stains much better than expected.”</p>
+        <strong>Arif — SUV Owner</strong>
+      </article>
+
+      <article class="review">
+        <div class="stars">★★★★★</div>
+        <p>“Clear WhatsApp communication and the studio polish made the paint look much brighter.”</p>
+        <strong>Ken — Coupe Owner</strong>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Booking & quotation</div>
+        <h2>Tell us about your vehicle</h2>
+      </div>
+      <p class="section-copy">
+        Complete the form and continue directly through WhatsApp.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="info">
+        <h3>PURE GLOSS</h3>
+        <p>Mobile and in-studio car-care services for most vehicle types.</p>
+
+        <div class="details">
+          <div>📍 Mont Kiara / Subang Jaya</div>
+          <div>🕒 Daily, 9:00 AM–8:00 PM</div>
+          <div>📞 +60 16-808 3598</div>
+          <div>🚗 Mobile service and studio drop-off</div>
+        </div>
+
+        <div class="map">
+          <iframe src="https://www.google.com/maps?q=Mont%20Kiara%20Malaysia&output=embed"
+                  loading="lazy"
+                  title="PURE GLOSS service area"></iframe>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <form class="form" onsubmit="sendWhatsApp(event)">
+          <input id="name" placeholder="Your name" required>
+          <input id="phone" placeholder="Phone number" required>
+
+          <select id="mode">
+            <option>Doorstep / Mobile</option>
+            <option>Studio Drop-Off</option>
+          </select>
+
+          <select id="service">
+            <option>Premium Car Wash</option>
+            <option>Interior Deep Cleaning</option>
+            <option>Paint Enhancement</option>
+            <option>Paint Correction</option>
+            <option>Ceramic Coating</option>
+            <option>Headlight Restoration</option>
+            <option>Full Reset Package</option>
+          </select>
+
+          <input id="model" placeholder="Vehicle model">
+          <input id="location" placeholder="Location or postcode">
+
+          <textarea id="details" placeholder="Tell us about the vehicle condition, stains, scratches or preferred date"></textarea>
+
+          <button class="btn lime" type="submit">Continue on WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  © 2026 PURE GLOSS — Essential one-page mobile and studio car-care website
+</footer>
+
+<a class="float"
+   target="_blank"
+   href="https://wa.me/60168083598?text=Hi%20PURE%20GLOSS!%20I%20would%20like%20to%20book%20a%20car%20care%20service.">
+   WhatsApp
+</a>
+
+<div class="mobile-bar">
+  <a target="_blank" href="https://wa.me/60168083598?text=Hi%20PURE%20GLOSS!%20I%20would%20like%20to%20ask%20about%20your%20services.">WhatsApp Us</a>
+  <a href="#book">Book Service</a>
+</div>
+
+<script>
+let selectedMode="Doorstep / Mobile";
+
+document.querySelectorAll(".mode-btn").forEach(button=>{
+  button.addEventListener("click",()=>{
+    document.querySelectorAll(".mode-btn").forEach(item=>item.classList.remove("active"));
+    button.classList.add("active");
+    selectedMode=button.dataset.mode;
+  });
+});
+
+function quickBooking(){
+  const model=document.getElementById("quickModel").value || "Not specified";
+  const location=document.getElementById("quickLocation").value || "Not specified";
+  const service=document.getElementById("quickService").value;
+
+  const message=
+`Hi PURE GLOSS! I would like to check slot availability.
+
+Booking mode: ${selectedMode}
+Vehicle model: ${model}
+Location / postcode: ${location}
+Service: ${service}`;
+
+  window.open(
+    "https://wa.me/60168083598?text="+encodeURIComponent(message),
+    "_blank"
+  );
+}
+
+function sendWhatsApp(event){
+  event.preventDefault();
+
+  const name=document.getElementById("name").value;
+  const phone=document.getElementById("phone").value;
+  const mode=document.getElementById("mode").value;
+  const service=document.getElementById("service").value;
+  const model=document.getElementById("model").value || "Not specified";
+  const location=document.getElementById("location").value || "Not specified";
+  const details=document.getElementById("details").value || "None";
+
+  const message=
+`Hi PURE GLOSS! I would like to request a booking.
+
+Name: ${name}
+Phone: ${phone}
+Booking mode: ${mode}
+Service: ${service}
+Vehicle model: ${model}
+Location / postcode: ${location}
+Vehicle condition / preferred date: ${details}`;
+
+  window.open(
+    "https://wa.me/60168083598?text="+encodeURIComponent(message),
+    "_blank"
+  );
+}
+</script>
 
 </body>
 </html>
