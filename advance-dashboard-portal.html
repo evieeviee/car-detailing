@@ -1,270 +1,1319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VALET PRO | Interactive Detailer Portal</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .font-mono-code { font-family: 'JetBrains Mono', monospace; }
-        .tab-panel { display: none; }
-        .tab-panel.active { display: block; animation: slideIn 0.3s ease-out; }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(10px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VALET PRO | Signature Interactive Detailing Portal</title>
+<meta name="description" content="VALET PRO is an interactive premium car detailing portal with custom package building, live bay tracking, paint correction, ceramic coating, PPF, interior care and membership plans.">
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#090a0c;
+  --panel:#111318;
+  --panel2:#171a20;
+  --panel3:#1c2027;
+  --orange:#ff7a1a;
+  --orange2:#ff9b52;
+  --amber:#ffbd59;
+  --green:#25d366;
+  --cyan:#62d8ff;
+  --text:#f5f7fa;
+  --muted:#8f98a5;
+  --line:rgba(255,255,255,.08);
+  --shadow:0 28px 80px rgba(0,0,0,.45);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Plus Jakarta Sans",Arial,sans-serif;
+  overflow:hidden;
+}
+button,input,select,textarea{font:inherit}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;object-fit:cover}
+.mono{font-family:"JetBrains Mono",monospace}
+
+.app{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:280px 1fr;
+}
+
+.sidebar{
+  background:rgba(17,19,24,.96);
+  border-right:1px solid var(--line);
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:100vh;
+  position:relative;
+  z-index:20;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.brand-mark{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--orange),var(--amber));
+  color:#111;
+  display:grid;
+  place-items:center;
+  font-family:"JetBrains Mono";
+  font-weight:800;
+}
+.brand-title{
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:.8px;
+}
+.brand-sub{
+  margin-top:3px;
+  color:var(--orange2);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.3px;
+}
+.nav{
+  display:grid;
+  gap:8px;
+  margin-top:34px;
+}
+.nav-btn{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px 14px;
+  border-radius:13px;
+  border:1px solid transparent;
+  background:transparent;
+  color:#9aa3af;
+  cursor:pointer;
+  text-align:left;
+  font-weight:700;
+  font-size:13px;
+}
+.nav-btn:hover{
+  background:rgba(255,255,255,.04);
+  color:#fff;
+}
+.nav-btn.active{
+  background:var(--panel3);
+  border-color:rgba(255,122,26,.28);
+  color:var(--orange2);
+}
+.status-box{
+  border-top:1px solid var(--line);
+  padding-top:18px;
+}
+.status-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:11px;
+}
+.status-row span:first-child{color:var(--muted)}
+.status-open{color:#41dc8b}
+.status-note{
+  margin-top:7px;
+  color:#737d89;
+  font-size:10px;
+}
+.wa-side{
+  display:block;
+  margin-top:14px;
+  text-align:center;
+  background:var(--green);
+  color:#fff;
+  padding:11px 12px;
+  border-radius:11px;
+  font-weight:800;
+  font-size:12px;
+}
+
+.workspace{
+  height:100vh;
+  overflow-y:auto;
+  background:
+    radial-gradient(circle at top right,rgba(255,122,26,.08),transparent 26%),
+    var(--bg);
+}
+.top-mobile{
+  display:none;
+}
+.panel{
+  display:none;
+  padding:34px 40px 60px;
+  animation:fade .28s ease;
+}
+.panel.active{display:block}
+@keyframes fade{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.panel-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+  margin-bottom:30px;
+}
+.kicker{
+  color:var(--orange2);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.8px;
+}
+.panel h1{
+  margin:8px 0 0;
+  font-size:clamp(34px,4vw,58px);
+  line-height:.95;
+}
+.panel-copy{
+  max-width:520px;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:22px;
+  align-items:stretch;
+}
+.hero-card{
+  min-height:520px;
+  border-radius:24px;
+  overflow:hidden;
+  position:relative;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+.hero-card img{height:100%}
+.hero-card:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.88),rgba(0,0,0,.08) 65%);
+}
+.hero-overlay{
+  position:absolute;
+  z-index:2;
+  left:28px;
+  right:28px;
+  bottom:28px;
+}
+.hero-overlay .tag{
+  color:var(--orange2);
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+.hero-overlay h2{
+  margin:8px 0 0;
+  font-size:42px;
+  line-height:1;
+}
+.hero-overlay p{
+  color:#c6ccd3;
+  max-width:620px;
+  line-height:1.7;
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+.btn{
+  border:1px solid var(--line);
+  background:var(--panel2);
+  color:#fff;
+  padding:13px 18px;
+  border-radius:11px;
+  font-weight:800;
+  cursor:pointer;
+}
+.btn.orange{
+  background:var(--orange);
+  border-color:var(--orange);
+  color:#111;
+}
+.btn.green{
+  background:var(--green);
+  border-color:var(--green);
+}
+.dashboard-stack{
+  display:grid;
+  gap:16px;
+}
+.metric-card,.info-card,.form-card,.table-card,.timeline-card,.membership-card,.gallery-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:20px;
+}
+.metric-card{
+  padding:22px;
+}
+.metric-label{
+  color:var(--muted);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.metric-value{
+  margin-top:8px;
+  font-size:34px;
+  font-weight:800;
+}
+.metric-value.orange{color:var(--orange2)}
+.metric-note{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:12px;
+}
+.metric-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.builder-grid{
+  display:grid;
+  grid-template-columns:1.45fr .75fr;
+  gap:22px;
+}
+.option-block{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:22px;
+}
+.option-block + .option-block{margin-top:16px}
+.block-label{
+  color:#b0b7c0;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.3px;
+  font-weight:800;
+}
+.vehicle-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:14px;
+}
+.vehicle-btn{
+  padding:17px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:var(--panel2);
+  color:#d7dce2;
+  cursor:pointer;
+  text-align:left;
+  font-weight:800;
+}
+.vehicle-btn small{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-weight:500;
+}
+.vehicle-btn.active{
+  border-color:var(--orange);
+  color:#fff;
+  box-shadow:inset 0 0 0 1px var(--orange);
+}
+.module-list{
+  display:grid;
+  gap:10px;
+  margin-top:14px;
+}
+.module{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:12px;
+  align-items:center;
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--panel2);
+}
+.module input{
+  width:17px;
+  height:17px;
+  accent-color:var(--orange);
+}
+.module strong{font-size:13px}
+.module span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:4px;
+}
+.module-price{
+  color:var(--orange2)!important;
+  font-family:"JetBrains Mono";
+  font-weight:700;
+  margin:0!important;
+  white-space:nowrap;
+}
+.summary-card{
+  position:sticky;
+  top:24px;
+  background:linear-gradient(180deg,#191c22,var(--panel));
+  border:1px solid rgba(255,122,26,.28);
+  border-radius:20px;
+  padding:24px;
+  height:max-content;
+}
+.summary-total{
+  margin-top:8px;
+  font-size:38px;
+  color:var(--orange2);
+  font-weight:800;
+}
+.summary-duration{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:5px;
+}
+.summary-list{
+  display:grid;
+  gap:8px;
+  margin-top:18px;
+  color:#cbd1d8;
+  font-size:12px;
+}
+.summary-list div{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+.summary-form{
+  display:grid;
+  gap:10px;
+  margin-top:18px;
+}
+.summary-form input,.summary-form select,.form-grid input,.form-grid select,.form-grid textarea{
+  width:100%;
+  padding:13px;
+  border-radius:11px;
+  border:1px solid var(--line);
+  background:#0d0f13;
+  color:#fff;
+}
+
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.service-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+}
+.service-card img{height:220px}
+.service-body{padding:19px}
+.service-body h3{margin:0;font-size:22px}
+.service-body p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+.service-price{
+  color:var(--orange2);
+  font-weight:800;
+}
+.timeline{
+  display:grid;
+  gap:14px;
+}
+.timeline-card{
+  display:grid;
+  grid-template-columns:70px 1fr auto;
+  gap:18px;
+  align-items:center;
+  padding:20px;
+}
+.timeline-no{
+  color:var(--orange2);
+  font-size:28px;
+  font-weight:700;
+}
+.timeline-card h3{margin:0}
+.timeline-card p{
+  margin:6px 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+.timeline-time{
+  color:var(--cyan);
+  font-size:11px;
+  white-space:nowrap;
+}
+
+.table-card{
+  overflow:hidden;
+}
+.table-row{
+  display:grid;
+  grid-template-columns:.7fr 1.2fr 1.2fr 1fr;
+  gap:12px;
+  padding:16px 18px;
+  border-bottom:1px solid var(--line);
+  font-size:12px;
+  align-items:center;
+}
+.table-row:last-child{border-bottom:0}
+.table-row.head{
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-size:10px;
+}
+.status-progress{color:var(--amber)}
+.status-ready{color:var(--cyan)}
+.status-curing{color:#50df97}
+.status-booked{color:var(--orange2)}
+
+.membership-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.membership-card{
+  padding:24px;
+  position:relative;
+}
+.membership-card.featured{
+  border-color:var(--orange);
+  background:linear-gradient(180deg,rgba(255,122,26,.14),var(--panel));
+}
+.membership-card h3{font-size:24px}
+.membership-price{
+  margin-top:12px;
+  font-size:30px;
+  font-weight:800;
+}
+.membership-card ul{
+  color:#c8ced5;
+  line-height:1.9;
+  font-size:13px;
+  padding-left:18px;
+}
+.badge{
+  position:absolute;
+  top:14px;
+  right:14px;
+  background:var(--orange);
+  color:#111;
+  padding:5px 8px;
+  border-radius:999px;
+  font-size:9px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:1.3fr .7fr .7fr;
+  grid-auto-rows:230px;
+  gap:14px;
+}
+.gallery-card{
+  overflow:hidden;
+  position:relative;
+}
+.gallery-card:first-child{grid-row:span 2}
+.gallery-card img{height:100%}
+.gallery-card:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.72),transparent 60%);
+}
+.gallery-label{
+  position:absolute;
+  z-index:2;
+  left:16px;
+  bottom:14px;
+  font-size:13px;
+  font-weight:800;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:20px;
+}
+.info-card{padding:24px}
+.info-card h2{margin:0;font-size:32px}
+.info-card p{
+  color:var(--muted);
+  line-height:1.7;
+}
+.info-list{
+  display:grid;
+  gap:10px;
+  margin-top:18px;
+}
+.info-list div{
+  padding:13px;
+  background:var(--panel2);
+  border-radius:11px;
+  font-size:13px;
+}
+.map{
+  height:300px;
+  margin-top:18px;
+  border-radius:14px;
+  overflow:hidden;
+}
+.map iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+.form-card{padding:24px}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.form-grid textarea{
+  grid-column:1/-1;
+  min-height:120px;
+}
+.form-grid button{grid-column:1/-1}
+
+.mobile-bottom{display:none}
+
+@media(max-width:1100px){
+  .app{grid-template-columns:230px 1fr}
+  .builder-grid,.hero-grid,.contact-grid{grid-template-columns:1fr}
+  .summary-card{position:static}
+  .service-grid,.membership-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  body{overflow:auto;padding-bottom:72px}
+  .app{display:block}
+  .sidebar{display:none}
+  .workspace{height:auto;overflow:visible}
+  .top-mobile{
+    position:sticky;
+    top:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:13px 15px;
+    background:rgba(12,14,18,.95);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-mobile .brand-title{font-size:14px}
+  .top-mobile button{
+    border:1px solid var(--line);
+    background:var(--panel2);
+    color:#fff;
+    border-radius:10px;
+    padding:9px 11px;
+  }
+  .panel{padding:24px 16px 44px}
+  .panel-head{display:block}
+  .panel-copy{margin-top:14px}
+  .hero-card{min-height:440px}
+  .metric-grid,.vehicle-grid,.service-grid,.membership-grid,.contact-grid,.form-grid{grid-template-columns:1fr}
+  .gallery-grid{
+    grid-template-columns:1fr;
+    grid-auto-rows:250px;
+  }
+  .gallery-card:first-child{grid-row:auto}
+  .timeline-card{
+    grid-template-columns:52px 1fr;
+  }
+  .timeline-time{
+    grid-column:2;
+  }
+  .table-row{
+    grid-template-columns:1fr 1fr;
+  }
+  .table-row.head{display:none}
+  .mobile-bottom{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:100;
+    display:flex;
+    overflow-x:auto;
+    background:#111318;
+    border-top:1px solid var(--line);
+    padding:8px;
+    gap:7px;
+  }
+  .mobile-bottom button{
+    flex:0 0 auto;
+    border:1px solid var(--line);
+    background:var(--panel2);
+    color:#a6afb9;
+    padding:10px 12px;
+    border-radius:10px;
+    font-size:11px;
+    font-weight:800;
+  }
+  .mobile-bottom button.active{
+    color:var(--orange2);
+    border-color:rgba(255,122,26,.35);
+  }
+}
+</style>
 </head>
-<body class="bg-zinc-950 text-zinc-100 antialiased">
 
-    <!-- Main Workspace Grid -->
-    <div class="min-h-screen flex flex-col md:flex-row">
-        
-        <!-- SIDEBAR NAVIGATION -->
-        <aside class="w-full md:w-72 bg-zinc-900/90 border-r border-zinc-800 p-6 flex flex-col justify-between shrink-0">
-            <div class="space-y-8">
-                <!-- Brand -->
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-orange-500 text-black font-black flex items-center justify-center font-mono-code">V</div>
-                    <div>
-                        <div class="font-extrabold text-sm tracking-wider text-white">VALET PRO</div>
-                        <div class="text-[10px] font-mono-code text-orange-400 uppercase">Detailing Workspace</div>
-                    </div>
-                </div>
+<body>
 
-                <!-- Navigation Tabs -->
-                <nav class="space-y-1.5 text-xs font-semibold">
-                    <button onclick="openTab('configurator')" id="btn-configurator" class="sidebar-btn active w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-orange-400 bg-zinc-800 border border-zinc-700/50">
-                        <span>🛠️</span> <span>Build Package</span>
-                    </button>
-                    <button onclick="openTab('timeline')" id="btn-timeline" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-zinc-400 hover:text-white hover:bg-zinc-800/50">
-                        <span>⏱️</span> <span>Process Timeline</span>
-                    </button>
-                    <button onclick="openTab('tracker')" id="btn-tracker" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-zinc-400 hover:text-white hover:bg-zinc-800/50">
-                        <span>📅</span> <span>Live Bay Tracker</span>
-                    </button>
-                    <button onclick="openTab('vip')" id="btn-vip" class="sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-zinc-400 hover:text-white hover:bg-zinc-800/50">
-                        <span>👑</span> <span>VIP Membership</span>
-                    </button>
-                </nav>
-            </div>
+<div class="app">
 
-            <!-- Operating Status Indicator -->
-            <div class="pt-6 border-t border-zinc-800 space-y-2">
-                <div class="flex items-center justify-between text-[11px]">
-                    <span class="text-zinc-500">Studio Bays</span>
-                    <span class="text-emerald-400 font-mono-code font-bold">● 2 Open</span>
-                </div>
-                <div class="text-[10px] text-zinc-500 font-mono-code">Next Available: Today, 3:30 PM</div>
-            </div>
-        </aside>
+  <aside class="sidebar">
+    <div>
+      <div class="brand">
+        <div class="brand-mark">V</div>
+        <div>
+          <div class="brand-title">VALET PRO</div>
+          <div class="brand-sub mono">Signature Detailing OS</div>
+        </div>
+      </div>
 
-        <!-- MAIN WORKSPACE CONTENT AREA -->
-        <main class="flex-1 p-6 md:p-10 overflow-y-auto max-w-5xl">
-
-            <!-- TAB 1: INTERACTIVE PACKAGE BUILDER -->
-            <div id="panel-configurator" class="tab-panel active space-y-8">
-                <div>
-                    <span class="text-xs font-mono-code text-orange-400 uppercase tracking-widest">Step 01 / Package Configurator</span>
-                    <h1 class="text-3xl font-extrabold text-white mt-1">Design Your Detailing Plan</h1>
-                </div>
-
-                <div class="grid lg:grid-cols-3 gap-8">
-                    <!-- Options Selection (2 Cols) -->
-                    <div class="lg:col-span-2 space-y-6">
-                        
-                        <!-- Vehicle Size Selection -->
-                        <div class="space-y-3">
-                            <label class="text-xs font-bold text-zinc-400 uppercase tracking-wider">1. Select Vehicle Class</label>
-                            <div class="grid grid-cols-3 gap-3 text-xs">
-                                <button class="p-4 bg-zinc-900 border-2 border-orange-500 rounded-xl text-left font-bold text-white">
-                                    Compact / Sedan
-                                    <span class="block text-[10px] font-normal text-zinc-400 mt-1">Standard Rate</span>
-                                </button>
-                                <button class="p-4 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl text-left font-bold text-zinc-300">
-                                    Mid / Full SUV
-                                    <span class="block text-[10px] font-normal text-zinc-400 mt-1">+ RM 150</span>
-                                </button>
-                                <button class="p-4 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl text-left font-bold text-zinc-300">
-                                    Exotic / Supercar
-                                    <span class="block text-[10px] font-normal text-zinc-400 mt-1">Custom Care</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Add-On Modules -->
-                        <div class="space-y-3">
-                            <label class="text-xs font-bold text-zinc-400 uppercase tracking-wider">2. Choose Modules</label>
-                            <div class="space-y-2 text-xs">
-                                <label class="flex items-center justify-between p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl cursor-pointer hover:border-zinc-700">
-                                    <div class="flex items-center gap-3">
-                                        <input type="checkbox" checked class="accent-orange-500 w-4 h-4">
-                                        <div>
-                                            <span class="font-bold text-white block">Multi-Stage Paint Correction</span>
-                                            <span class="text-[11px] text-zinc-500">Removes swirl marks, holograms & light scratches</span>
-                                        </div>
-                                    </div>
-                                    <span class="font-mono-code text-orange-400 font-bold">+ RM 450</span>
-                                </label>
-
-                                <label class="flex items-center justify-between p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl cursor-pointer hover:border-zinc-700">
-                                    <div class="flex items-center gap-3">
-                                        <input type="checkbox" checked class="accent-orange-500 w-4 h-4">
-                                        <div>
-                                            <span class="font-bold text-white block">9H Nano Ceramic Coating (Body)</span>
-                                            <span class="text-[11px] text-zinc-500">3-Year hydrophobic UV gloss protection</span>
-                                        </div>
-                                    </div>
-                                    <span class="font-mono-code text-orange-400 font-bold">+ RM 800</span>
-                                </label>
-
-                                <label class="flex items-center justify-between p-4 bg-zinc-900/60 border border-zinc-800 rounded-xl cursor-pointer hover:border-zinc-700">
-                                    <div class="flex items-center gap-3">
-                                        <input type="checkbox" class="accent-orange-500 w-4 h-4">
-                                        <div>
-                                            <span class="font-bold text-white block">Windscreen Glass Armor & Wheel Coating</span>
-                                            <span class="text-[11px] text-zinc-500">Repels rain water and prevents brake dust adhesion</span>
-                                        </div>
-                                    </div>
-                                    <span class="font-mono-code text-orange-400 font-bold">+ RM 250</span>
-                                </label>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Real-Time Price Summary (1 Col) -->
-                    <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl space-y-6 h-fit">
-                        <div class="border-b border-zinc-800 pb-4">
-                            <span class="text-[10px] font-mono-code uppercase text-zinc-500">Estimated Total</span>
-                            <div class="text-3xl font-extrabold text-orange-400 font-mono-code mt-1">RM 1,250</div>
-                            <span class="text-[10px] text-zinc-400">Estimated duration: 6 - 8 Hours</span>
-                        </div>
-
-                        <form class="space-y-3 text-xs">
-                            <input type="text" placeholder="Owner Name" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-zinc-200 focus:outline-none focus:border-orange-500">
-                            <input type="text" placeholder="Plate Number" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-zinc-200 focus:outline-none focus:border-orange-500">
-                            <button type="button" class="w-full bg-orange-500 hover:bg-orange-400 text-black font-extrabold py-3.5 rounded-xl uppercase tracking-wider transition-all">
-                                Reserve Studio Slot
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 2: PROCESS TIMELINE -->
-            <div id="panel-timeline" class="tab-panel space-y-8">
-                <div>
-                    <span class="text-xs font-mono-code text-orange-400 uppercase tracking-widest">Step 02 / Transparency Guarantee</span>
-                    <h1 class="text-3xl font-extrabold text-white mt-1">Our 5-Stage Detailing Workflow</h1>
-                </div>
-
-                <div class="space-y-4 text-xs">
-                    <div class="p-5 bg-zinc-900/60 border border-zinc-800 rounded-xl flex gap-4">
-                        <div class="font-mono-code text-orange-400 font-bold text-lg">01</div>
-                        <div>
-                            <h3 class="font-bold text-white text-sm">Snow Foam & Decontamination Wash</h3>
-                            <p class="text-zinc-400 mt-1">pH-neutral hand wash, iron filings removal, and clay bar treatment to remove embedded contaminants from paint pores.</p>
-                        </div>
-                    </div>
-
-                    <div class="p-5 bg-zinc-900/60 border border-zinc-800 rounded-xl flex gap-4">
-                        <div class="font-mono-code text-orange-400 font-bold text-lg">02</div>
-                        <div>
-                            <h3 class="font-bold text-white text-sm">Paint Inspection & Thickness Gauge Test</h3>
-                            <p class="text-zinc-400 mt-1">Digital measurement of clear coat thickness across all panels to ensure safe compounding without damaging paint integrity.</p>
-                        </div>
-                    </div>
-
-                    <div class="p-5 bg-zinc-900/60 border border-zinc-800 rounded-xl flex gap-4">
-                        <div class="font-mono-code text-orange-400 font-bold text-lg">03</div>
-                        <div>
-                            <h3 class="font-bold text-white text-sm">Dual-Action Machine Polishing</h3>
-                            <p class="text-zinc-400 mt-1">Stage 1 compounding to remove defects, followed by Stage 2 finishing polish for ultimate optical clarity.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 3: LIVE TRACKER -->
-            <div id="panel-tracker" class="tab-panel space-y-6">
-                <div>
-                    <span class="text-xs font-mono-code text-orange-400 uppercase tracking-widest">Live Operations</span>
-                    <h1 class="text-3xl font-extrabold text-white mt-1">Today's Studio Schedule</h1>
-                </div>
-
-                <div class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden text-xs">
-                    <div class="grid grid-cols-4 p-4 border-b border-zinc-800 text-zinc-400 font-mono-code font-bold">
-                        <span>BAY #</span>
-                        <span>VEHICLE</span>
-                        <span>SERVICE</span>
-                        <span>STATUS</span>
-                    </div>
-                    <div class="grid grid-cols-4 p-4 border-b border-zinc-800 items-center">
-                        <span class="font-mono-code font-bold text-white">BAY 01</span>
-                        <span>Porsche 911 GT3</span>
-                        <span>Full PPF Wrap</span>
-                        <span class="text-amber-400 font-mono-code">● In Progress</span>
-                    </div>
-                    <div class="grid grid-cols-4 p-4 border-b border-zinc-800 items-center">
-                        <span class="font-mono-code font-bold text-white">BAY 02</span>
-                        <span>Mercedes AMG GTS</span>
-                        <span>Ceramic Coating</span>
-                        <span class="text-emerald-400 font-mono-code">● Curing Phase</span>
-                    </div>
-                    <div class="grid grid-cols-4 p-4 items-center">
-                        <span class="font-mono-code font-bold text-white">BAY 03</span>
-                        <span>Empty Slot</span>
-                        <span>Ready for Entry</span>
-                        <span class="text-cyan-400 font-mono-code">● Available @ 3:30 PM</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 4: VIP MEMBERSHIP -->
-            <div id="panel-vip" class="tab-panel space-y-6">
-                <div>
-                    <span class="text-xs font-mono-code text-orange-400 uppercase tracking-widest">Club Tier</span>
-                    <h1 class="text-3xl font-extrabold text-white mt-1">Valet Pro Care Club</h1>
-                </div>
-
-                <div class="bg-gradient-to-r from-orange-950/40 to-zinc-900 border border-orange-500/30 p-8 rounded-2xl space-y-4">
-                    <h2 class="text-xl font-bold text-white">Annual Detailing Subscription — MYR 2,400 / year</h2>
-                    <p class="text-xs text-zinc-400 leading-relaxed">
-                        Includes 12x Monthly Maintenance Hand Washes, 2x Interior Steam Cleanings, Unlimited Ceramic Top-Coat reboosts, and priority weekend bay reservations.
-                    </p>
-                    <button class="bg-orange-500 text-black text-xs font-bold px-6 py-3 rounded-xl uppercase tracking-wider">Inquire VIP Access</button>
-                </div>
-            </div>
-
-        </main>
+      <nav class="nav">
+        <button class="nav-btn active" data-tab="dashboard">◈ Dashboard</button>
+        <button class="nav-btn" data-tab="builder">🛠 Package Builder</button>
+        <button class="nav-btn" data-tab="services">✦ Services</button>
+        <button class="nav-btn" data-tab="timeline">⏱ Process Timeline</button>
+        <button class="nav-btn" data-tab="membership">♛ Membership</button>
+        <button class="nav-btn" data-tab="gallery">▣ Results Gallery</button>
+        <button class="nav-btn" data-tab="contact">⌖ Visit & Booking</button>
+      </nav>
     </div>
 
-    <!-- Tab Switcher Script -->
-    <script>
-        function openTab(tabName) {
-            // Hide all tab panels
-            const panels = document.querySelectorAll('.tab-panel');
-            panels.forEach(panel => panel.classList.remove('active'));
+    <div class="status-box">
+      <div class="status-row">
+        <span>Studio Bays</span>
+        <span class="status-open mono">● 2 OPEN</span>
+      </div>
+      <div class="status-note mono">Next available: Today, 3:30 PM</div>
+      <a class="wa-side" target="_blank" href="https://wa.me/60168083598?text=Hi%20VALET%20PRO!%20I%20would%20like%20to%20book%20a%20detailing%20service.">WhatsApp Booking</a>
+    </div>
+  </aside>
 
-            // Reset sidebar buttons
-            const buttons = document.querySelectorAll('.sidebar-btn');
-            buttons.forEach(btn => {
-                btn.className = "sidebar-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-zinc-400 hover:text-white hover:bg-zinc-800/50";
-            });
+  <main class="workspace">
+    <div class="top-mobile">
+      <div class="brand">
+        <div class="brand-mark">V</div>
+        <div class="brand-title">VALET PRO</div>
+      </div>
+      <button onclick="showTab('contact')">Book</button>
+    </div>
 
-            // Activate target panel & button
-            document.getElementById('panel-' + tabName).classList.add('active');
-            const activeBtn = document.getElementById('btn-' + tabName);
-            if (activeBtn) {
-                activeBtn.className = "sidebar-btn active w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-orange-400 bg-zinc-800 border border-zinc-700/50";
-            }
-        }
-    </script>
+    <section class="panel active" id="panel-dashboard">
+      <div class="panel-head">
+        <div>
+          <div class="kicker mono">Signature Package / Digital Detailing Portal</div>
+          <h1>Premium car care, managed like a system.</h1>
+        </div>
+        <p class="panel-copy">Build a package, understand every stage, check bay availability and reserve your studio slot from one interactive portal.</p>
+      </div>
+
+      <div class="hero-grid">
+        <article class="hero-card">
+          <img src="https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=1400&q=86" alt="Luxury car detailing">
+          <div class="hero-overlay">
+            <div class="tag mono">Paint Correction · Ceramic · PPF · Interior</div>
+            <h2>Precision detailing for serious vehicles.</h2>
+            <p>From maintenance washing to multi-stage correction and long-term protection.</p>
+            <div class="hero-actions">
+              <button class="btn orange" onclick="showTab('builder')">Build My Package</button>
+              <button class="btn green" onclick="showTab('contact')">Book on WhatsApp</button>
+            </div>
+          </div>
+        </article>
+
+        <div class="dashboard-stack">
+          <div class="metric-grid">
+            <div class="metric-card">
+              <div class="metric-label mono">Next Available</div>
+              <div class="metric-value orange">3:30 PM</div>
+              <div class="metric-note">Today · Bay 03</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label mono">Open Bays</div>
+              <div class="metric-value">02</div>
+              <div class="metric-note">Live studio status</div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-label mono">Most Selected Package</div>
+            <div class="metric-value">Correction + 9H</div>
+            <div class="metric-note">Paint correction with dual-layer ceramic coating</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-label mono">Protection Options</div>
+            <div class="summary-list">
+              <div><span>Ceramic coating</span><strong>1–5 years</strong></div>
+              <div><span>PPF coverage</span><strong>Front / Full body</strong></div>
+              <div><span>Glass & wheel coating</span><strong>Available</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-builder">
+      <div class="panel-head">
+        <div>
+          <div class="kicker mono">Step 01 / Interactive Configurator</div>
+          <h1>Build your detailing plan.</h1>
+        </div>
+        <p class="panel-copy">Select your vehicle class and preferred services. The estimated total and duration update automatically.</p>
+      </div>
+
+      <div class="builder-grid">
+        <div>
+          <div class="option-block">
+            <div class="block-label">1. Select vehicle class</div>
+            <div class="vehicle-grid">
+              <button class="vehicle-btn active" data-price="0" data-name="Compact / Sedan">
+                Compact / Sedan
+                <small>Standard rate</small>
+              </button>
+              <button class="vehicle-btn" data-price="150" data-name="SUV / MPV">
+                SUV / MPV
+                <small>+ RM150</small>
+              </button>
+              <button class="vehicle-btn" data-price="300" data-name="Luxury / Exotic">
+                Luxury / Exotic
+                <small>+ RM300</small>
+              </button>
+            </div>
+          </div>
+
+          <div class="option-block">
+            <div class="block-label">2. Choose care modules</div>
+            <div class="module-list">
+              <label class="module">
+                <input class="module-check" type="checkbox" data-price="120" data-duration="1" data-name="Premium Wash">
+                <div>
+                  <strong>Premium Wash & Decontamination</strong>
+                  <span>Foam wash, iron removal, clay treatment and wheel cleaning</span>
+                </div>
+                <span class="module-price">RM120</span>
+              </label>
+
+              <label class="module">
+                <input class="module-check" type="checkbox" checked data-price="450" data-duration="3" data-name="Paint Correction">
+                <div>
+                  <strong>Multi-Stage Paint Correction</strong>
+                  <span>Reduces swirl marks, oxidation, haze and light scratches</span>
+                </div>
+                <span class="module-price">RM450</span>
+              </label>
+
+              <label class="module">
+                <input class="module-check" type="checkbox" checked data-price="800" data-duration="3" data-name="9H Ceramic Coating">
+                <div>
+                  <strong>9H Nano Ceramic Coating</strong>
+                  <span>Hydrophobic gloss and UV protection with 3-year coverage</span>
+                </div>
+                <span class="module-price">RM800</span>
+              </label>
+
+              <label class="module">
+                <input class="module-check" type="checkbox" data-price="250" data-duration="1" data-name="Glass & Wheel Coating">
+                <div>
+                  <strong>Glass Armor & Wheel Coating</strong>
+                  <span>Rain repellency and easier brake-dust maintenance</span>
+                </div>
+                <span class="module-price">RM250</span>
+              </label>
+
+              <label class="module">
+                <input class="module-check" type="checkbox" data-price="320" data-duration="2" data-name="Interior Deep Clean">
+                <div>
+                  <strong>Interior Deep Clean & Steam</strong>
+                  <span>Vacuum, extraction, leather care, steam and odour treatment</span>
+                </div>
+                <span class="module-price">RM320</span>
+              </label>
+
+              <label class="module">
+                <input class="module-check" type="checkbox" data-price="2200" data-duration="8" data-name="Front PPF">
+                <div>
+                  <strong>Front-End Paint Protection Film</strong>
+                  <span>Clear impact protection for bonnet, bumper, mirrors and fenders</span>
+                </div>
+                <span class="module-price">RM2,200</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <aside class="summary-card">
+          <div class="metric-label mono">Estimated total</div>
+          <div class="summary-total mono" id="totalPrice">RM1,250</div>
+          <div class="summary-duration" id="totalDuration">Estimated duration: 6 hours</div>
+
+          <div class="summary-list" id="summaryList"></div>
+
+          <div class="summary-form">
+            <input id="builderName" placeholder="Owner name">
+            <input id="builderPlate" placeholder="Plate number">
+            <select id="builderDate">
+              <option>Today</option>
+              <option>Tomorrow</option>
+              <option>This Weekend</option>
+              <option>Choose Later</option>
+            </select>
+            <button class="btn orange" onclick="sendBuilder()">Reserve Studio Slot</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-services">
+      <div class="panel-head">
+        <div>
+          <div class="kicker mono">Service Architecture</div>
+          <h1>Complete detailing services.</h1>
+        </div>
+        <p class="panel-copy">A full range of car-care services for maintenance, correction, restoration and long-term protection.</p>
+      </div>
+
+      <div class="service-grid">
+        <article class="service-card">
+          <img src="https://images.unsplash.com/photo-1608506375591-b90e1f955e4b?auto=format&fit=crop&w=900&q=86" alt="Premium wash">
+          <div class="service-body">
+            <h3>Premium Wash</h3>
+            <p>Foam wash, wheels, hand dry, tyre dressing and spray protection.</p>
+            <div class="service-price">From RM80</div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=900&q=86" alt="Interior detailing">
+          <div class="service-body">
+            <h3>Interior Restoration</h3>
+            <p>Steam cleaning, stain extraction, leather care and odour treatment.</p>
+            <div class="service-price">From RM280</div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <img src="https://images.unsplash.com/photo-1597007066704-67bf2068d5b2?auto=format&fit=crop&w=900&q=86" alt="Paint correction">
+          <div class="service-body">
+            <h3>Paint Correction</h3>
+            <p>Single or multi-stage correction for swirls, oxidation and haze.</p>
+            <div class="service-price">From RM450</div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=900&q=86" alt="Ceramic coating">
+          <div class="service-body">
+            <h3>Ceramic Coating</h3>
+            <p>Hydrophobic protection, stronger gloss and easier maintenance.</p>
+            <div class="service-price">From RM800</div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=86" alt="Paint protection film">
+          <div class="service-body">
+            <h3>Paint Protection Film</h3>
+            <p>Transparent impact protection for high-risk panels or full body.</p>
+            <div class="service-price">From RM2,200</div>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=86" alt="Headlight restoration">
+          <div class="service-body">
+            <h3>Headlight Restoration</h3>
+            <p>Clarity restoration with UV sealant for faded headlight lenses.</p>
+            <div class="service-price">From RM120</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-timeline">
+      <div class="panel-head">
+        <div>
+          <div class="kicker mono">Step 02 / Transparency Workflow</div>
+          <h1>Our detailing process.</h1>
+        </div>
+        <p class="panel-copy">Every stage is documented so customers understand what happens to their vehicle and why.</p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-card">
+          <div class="timeline-no mono">01</div>
+          <div>
+            <h3>Initial Inspection & Photo Record</h3>
+            <p>Vehicle condition, defects and requested concerns are documented before work begins.</p>
+          </div>
+          <div class="timeline-time mono">20–30 MIN</div>
+        </article>
+
+        <article class="timeline-card">
+          <div class="timeline-no mono">02</div>
+          <div>
+            <h3>Snow Foam & Decontamination Wash</h3>
+            <p>pH-neutral washing, iron removal, tar removal and clay treatment.</p>
+          </div>
+          <div class="timeline-time mono">60–90 MIN</div>
+        </article>
+
+        <article class="timeline-card">
+          <div class="timeline-no mono">03</div>
+          <div>
+            <h3>Paint Measurement & Correction</h3>
+            <p>Paint thickness is measured before safe compounding and finishing polish.</p>
+          </div>
+          <div class="timeline-time mono">2–5 HOURS</div>
+        </article>
+
+        <article class="timeline-card">
+          <div class="timeline-no mono">04</div>
+          <div>
+            <h3>Protection Application</h3>
+            <p>Ceramic coating, PPF, glass coating or sealant is applied according to the package.</p>
+          </div>
+          <div class="timeline-time mono">1–8 HOURS</div>
+        </article>
+
+        <article class="timeline-card">
+          <div class="timeline-no mono">05</div>
+          <div>
+            <h3>Final Inspection & Care Briefing</h3>
+            <p>Lighting inspection, finishing touches and aftercare guidance before handover.</p>
+          </div>
+          <div class="timeline-time mono">30–45 MIN</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-tracker">
+      <div class="panel-head">
+        <div>
+          <div class="kicker mono">Live Operations</div>
+          <h1>Today's bay schedule.</h1>
+        </div>
+        <p class="panel-copy">A visual operations board that demonstrates how clients can check availability and progress.</p>
+      </div>
+
+      <div class="table-card">
+        <div class="table-row head mono">
+          <span>Bay</span><span>Vehicle</span><span>Service</span><span>Status</span>
+        </div>
+        <div class="table-row">
+          <strong class="mono">BAY 01</strong>
+          <span>Porsche 911 GT3</span>
+          <span>Front PPF</span>
+          <span class="status-progress mono">● IN PROGRESS</span>
+        </div>
+        <div class="table-row">
+          <strong class="mono">BAY 02</strong>
+          <span>Mercedes AMG GTS</span>
+          <span>Ceramic Coating</span>
+          <span class="status-curing mono">● CURING</span>
+        </div>
+        <div class="table-row">
+          <strong class="mono">BAY 03</strong>
+          <span>Available</span>
+          <span>Ready for entry</span>
+          <span class="status-ready mono">● 3:30 PM</span>
+        </div>
+        <div class="table-row">
+          <strong class="mono">BAY 04</strong>
+          <span>BMW X5</span>
+          <span>Interior Restoration</span>
+          <span class="status-booked mono">● BOOKED 5:00 PM</span>
+        </div>
+      </div>
+
+      <div class="hero-actions" style="margin-top:20px">
+        <button class="btn orange" onclick="showTab('contact')">Reserve Available Bay</button>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-membership">
+      <div class="panel-head">
+        <div>
+          <div class="kicker mono">Valet Pro Care Club</div>
+          <h1>Ongoing vehicle-care plans.</h1>
+        </div>
+        <p class="panel-copy">Membership options for customers who want regular maintenance and priority access.</p>
+      </div>
+
+      <div class="membership-grid">
+        <article class="membership-card">
+          <h3>Maintenance</h3>
+          <div class="membership-price">RM1,200/year</div>
+          <ul>
+            <li>12 maintenance washes</li>
+            <li>Priority weekday booking</li>
+            <li>Quarterly spray sealant</li>
+            <li>Member inspection rate</li>
+          </ul>
+          <button class="btn" onclick="membershipInquiry('Maintenance')">Enquire</button>
+        </article>
+
+        <article class="membership-card featured">
+          <span class="badge">Most Popular</span>
+          <h3>Signature Care</h3>
+          <div class="membership-price">RM2,400/year</div>
+          <ul>
+            <li>12 premium maintenance washes</li>
+            <li>2 interior steam cleanings</li>
+            <li>Unlimited ceramic top-coat reboosts</li>
+            <li>Priority weekend bays</li>
+          </ul>
+          <button class="btn orange" onclick="membershipInquiry('Signature Care')">Enquire</button>
+        </article>
+
+        <article class="membership-card">
+          <h3>Collector</h3>
+          <div class="membership-price">Custom</div>
+          <ul>
+            <li>Multi-vehicle management</li>
+            <li>Collection maintenance schedule</li>
+            <li>Private transport coordination</li>
+            <li>Dedicated care advisor</li>
+          </ul>
+          <button class="btn" onclick="membershipInquiry('Collector')">Enquire</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-gallery">
+      <div class="panel-head">
+        <div>
+          <div class="kicker mono">Results Gallery</div>
+          <h1>Finish, clarity and protection.</h1>
+        </div>
+        <p class="panel-copy">A visual showcase area for completed paint correction, coating, PPF and interior work.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <article class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1200&q=86" alt="Corrected black car paint">
+          <div class="gallery-label">Multi-stage paint correction</div>
+        </article>
+        <article class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=86" alt="Ceramic coating finish">
+          <div class="gallery-label">Ceramic gloss finish</div>
+        </article>
+        <article class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=900&q=86" alt="Detailed sports car wheel">
+          <div class="gallery-label">Wheel and brake-detail care</div>
+        </article>
+        <article class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=900&q=86" alt="Clean luxury interior">
+          <div class="gallery-label">Interior restoration</div>
+        </article>
+        <article class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=900&q=86" alt="Professional detailing process">
+          <div class="gallery-label">Studio detailing process</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-contact">
+      <div class="panel-head">
+        <div>
+          <div class="kicker mono">Visit & Booking</div>
+          <h1>Reserve your detailing slot.</h1>
+        </div>
+        <p class="panel-copy">Share your vehicle, preferred service and date. The enquiry continues directly through WhatsApp.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="info-card">
+          <h2>VALET PRO Studio</h2>
+          <p>Premium detailing, paint correction, ceramic coating, PPF and interior restoration.</p>
+
+          <div class="info-list">
+            <div>📍 Shah Alam / Damansara Studio</div>
+            <div>🕒 Daily, 9:00 AM–8:00 PM</div>
+            <div>📞 +60 16-808 3598</div>
+            <div>🚗 Secure drop-off and vehicle pickup available</div>
+          </div>
+
+          <div class="map">
+            <iframe src="https://www.google.com/maps?q=Shah%20Alam%20Malaysia&output=embed" loading="lazy" title="VALET PRO location"></iframe>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <form class="form-grid" onsubmit="sendBooking(event)">
+            <input id="contactName" placeholder="Owner name" required>
+            <input id="contactPhone" placeholder="Phone number" required>
+
+            <select id="contactVehicle">
+              <option>Compact / Sedan</option>
+              <option>SUV / MPV</option>
+              <option>Luxury / Exotic</option>
+            </select>
+
+            <select id="contactService">
+              <option>Premium Wash</option>
+              <option>Interior Restoration</option>
+              <option>Paint Correction</option>
+              <option>Ceramic Coating</option>
+              <option>Paint Protection Film</option>
+              <option>Custom Package</option>
+            </select>
+
+            <input id="contactModel" placeholder="Vehicle model">
+            <input id="contactDate" type="date">
+
+            <textarea id="contactDetails" placeholder="Describe paint condition, scratches, stains or preferred package"></textarea>
+
+            <button class="btn orange" type="submit">Continue on WhatsApp</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="mobile-bottom">
+  <button class="active" data-tab="dashboard">Home</button>
+  <button data-tab="builder">Builder</button>
+  <button data-tab="services">Services</button>
+  <button data-tab="tracker">Tracker</button>
+  <button data-tab="membership">Club</button>
+  <button data-tab="contact">Book</button>
+</div>
+
+<script>
+const navButtons=[...document.querySelectorAll("[data-tab]")];
+const panels=[...document.querySelectorAll(".panel")];
+
+function showTab(name){
+  panels.forEach(panel=>panel.classList.toggle("active",panel.id==="panel-"+name));
+  navButtons.forEach(btn=>btn.classList.toggle("active",btn.dataset.tab===name));
+  document.querySelector(".workspace").scrollTo({top:0,behavior:"smooth"});
+}
+
+navButtons.forEach(btn=>{
+  btn.addEventListener("click",()=>showTab(btn.dataset.tab));
+});
+
+let vehicleName="Compact / Sedan";
+let vehiclePrice=0;
+
+const vehicleButtons=[...document.querySelectorAll(".vehicle-btn")];
+const moduleChecks=[...document.querySelectorAll(".module-check")];
+
+vehicleButtons.forEach(button=>{
+  button.addEventListener("click",()=>{
+    vehicleButtons.forEach(item=>item.classList.remove("active"));
+    button.classList.add("active");
+    vehicleName=button.dataset.name;
+    vehiclePrice=Number(button.dataset.price);
+    updateBuilder();
+  });
+});
+
+moduleChecks.forEach(check=>check.addEventListener("change",updateBuilder));
+
+function updateBuilder(){
+  let total=vehiclePrice;
+  let duration=0;
+  let items=[];
+
+  moduleChecks.forEach(check=>{
+    if(check.checked){
+      total+=Number(check.dataset.price);
+      duration+=Number(check.dataset.duration);
+      items.push({name:check.dataset.name,price:Number(check.dataset.price)});
+    }
+  });
+
+  document.getElementById("totalPrice").textContent="RM"+total.toLocaleString();
+  document.getElementById("totalDuration").textContent="Estimated duration: "+Math.max(duration,1)+" hours";
+
+  const list=document.getElementById("summaryList");
+  list.innerHTML=
+    `<div><span>${vehicleName}</span><strong>${vehiclePrice ? "RM"+vehiclePrice : "Base"}</strong></div>`+
+    items.map(item=>`<div><span>${item.name}</span><strong>RM${item.price}</strong></div>`).join("");
+}
+
+function sendBuilder(){
+  const name=document.getElementById("builderName").value || "Not specified";
+  const plate=document.getElementById("builderPlate").value || "Not specified";
+  const date=document.getElementById("builderDate").value;
+  const selected=moduleChecks.filter(c=>c.checked).map(c=>c.dataset.name).join(", ") || "No modules selected";
+  const total=document.getElementById("totalPrice").textContent;
+
+  const message=
+`Hi VALET PRO! I would like to reserve a studio slot.
+
+Owner: ${name}
+Plate number: ${plate}
+Vehicle class: ${vehicleName}
+Selected modules: ${selected}
+Estimated total: ${total}
+Preferred timing: ${date}`;
+
+  window.open("https://wa.me/60168083598?text="+encodeURIComponent(message),"_blank");
+}
+
+function membershipInquiry(plan){
+  const message=`Hi VALET PRO! I would like to ask about the ${plan} membership plan.`;
+  window.open("https://wa.me/60168083598?text="+encodeURIComponent(message),"_blank");
+}
+
+function sendBooking(event){
+  event.preventDefault();
+
+  const message=
+`Hi VALET PRO! I would like to request a detailing booking.
+
+Owner: ${document.getElementById("contactName").value}
+Phone: ${document.getElementById("contactPhone").value}
+Vehicle class: ${document.getElementById("contactVehicle").value}
+Vehicle model: ${document.getElementById("contactModel").value || "Not specified"}
+Service: ${document.getElementById("contactService").value}
+Preferred date: ${document.getElementById("contactDate").value || "Flexible"}
+Vehicle condition / notes: ${document.getElementById("contactDetails").value || "None"}`;
+
+  window.open("https://wa.me/60168083598?text="+encodeURIComponent(message),"_blank");
+}
+
+updateBuilder();
+</script>
+
 </body>
 </html>
